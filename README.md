@@ -1,12 +1,15 @@
 # FreeBSD on T530
 
-Experience in FreeBSD - Setup on ThinkPad T530 and Daily Usage
-
+Experience in FreeBSD -- Setup (Post-Installation) on ThinkPad T530 and Daily Usage
 
 On ThinkPad T530 which configured with NVIDIA Optimus, it is necessary to set the right configurations in BIOS. 
 
-ThinkPad T530 is built with GF108 / NVS 5400 NVIDIA Card. This is known on web as NVIDIA Optimus. In fact, the following configurations set is not only required in BSD but Arch Linux, Slackware, and Fedora, too. I have not tried with Ubuntu. 
+ThinkPad T530 is built with GF108 / NVS 5400 NVIDIA Card. This is known on web as NVIDIA Optimus. In fact, the following configurations set is not only required in BSD but Arch Linux, Slackware, and Fedora, too. I have not tried with Ubuntu.
 
+#Assumption
+FreeBSD Installation is successful and the root password is set and it is online.
+
+# Empirical Post-Intsallation
 
 ## BIOS's Display Configurations for UNIX and LINUX
 
@@ -16,7 +19,7 @@ ThinkPad T530 is built with GF108 / NVS 5400 NVIDIA Card. This is known on web a
 
 ## Next Steps
 
-This practical guide is the steps rackled to get a working FreeBSD with XFCE4 setup on ThinkPad T530.
+This practical guide is the applied steps to get a working FreeBSD with XFCE4 setup on ThinkPad T530.
 
 The next steps are organised in each folder in this repository. Starting by X.Server and System.conf, then X.driver. And finally, xfce.
 
