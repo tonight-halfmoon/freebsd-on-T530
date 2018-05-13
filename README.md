@@ -10,9 +10,8 @@ ThinkPad T530 is built with GF108 / NVS 5400 NVIDIA Card. This is known on web a
 
 ## BIOS's Display Configurations for UNIX and LINUX
 
-1. Screen: Digital on ThinkPad
-2. Card: Discrete Graphics
-3. Automatic OS search for Optimus Capability: FALSE
+1. Graphics Device: Discrete Graphics
+2. OS Detection for NVIDIA Optimus: Disabled
 
 
 ## Next Steps
