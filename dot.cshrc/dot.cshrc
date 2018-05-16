@@ -31,10 +31,17 @@ setenv	BLOCKSIZE	K
 setenv	EDITOR	vi
 setenv	PAGER	more
 
+# P.S. \e is equivalent to \033
+
+#setenv TITLE "%{\033]0;%n@%m:%~\007%}"
+setenv TITLE "%{\e]0;%~\007%}"
+
 if ($?prompt) then
 	# An interactive shell -- set some stuff up
 	#set prompt = "%N@%m:%~ %# "
-	set prompt = "%{\e[36;1m%}%N@%m:%~%{\033[1;0;35m%}%# "
+	#set prompt = "%{\e[36;1m%}%N@%m:%~%{\033[1;0;35m%}%# "
+	set prompt = "${TITLE}%{\e[36;1m%}%N@%m:%{\e[33;1m%}%~ %{\e[35;1m%}%#%{\e[0m%} "
+
 	set promptchars = "%#"
 
 	set filec
