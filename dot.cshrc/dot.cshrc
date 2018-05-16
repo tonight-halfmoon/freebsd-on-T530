@@ -36,11 +36,22 @@ setenv	PAGER	more
 #setenv TITLE "%{\033]0;%n@%m:%~\007%}"
 setenv TITLE "%{\e]0;%~\007%}"
 
+# Colors!
+#
+set	red="%{\e[31;1m%}"
+set	g="%{\e[32;0m%}"
+set	y="%{\e[33;1m%}"
+set	b="%{\e[34;1m%}"
+set	m="%{\e[35;1m%}"
+set	c="%{\e[36;1m%}"
+set	w="%{\e[37;0m%}"
+set	reset="%{\e[0m%}"
+
 if ($?prompt) then
 	# An interactive shell -- set some stuff up
 	#set prompt = "%N@%m:%~ %# "
-	#set prompt = "%{\e[36;1m%}%N@%m:%~%{\033[1;0;35m%}%# "
-	set prompt = "${TITLE}%{\e[36;1m%}%N@%m:%{\e[33;1m%}%~ %{\e[35;1m%}%#%{\e[0m%} "
+	#set prompt = "%{\e[36;1m%}%N@%m:%~%{\033[1;0;35m%}%#%{\e[0m%} "
+	set prompt = "${TITLE}${red}AT${c}%N@%m:${y}%~ ${m}%#${reset} "
 
 	set promptchars = "%#"
 
@@ -59,3 +70,5 @@ if ($?prompt) then
 	endif
 
 endif
+
+unset red g y b m c w reset
