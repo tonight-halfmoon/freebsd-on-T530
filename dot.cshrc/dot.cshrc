@@ -51,6 +51,7 @@ if ($?prompt) then
 	# An interactive shell -- set some stuff up
 	#set prompt = "%N@%m:%~ %# "
 	#set prompt = "%{\e[36;1m%}%N@%m:%~%{\033[1;0;35m%}%#%{\e[0m%} "
+	# References: /usr/local/etc/profile.d/vte.sh
 	set prompt = "${TITLE}${red}AT${c}%N@%m:${y}%~ ${m}%#${reset} "
 
 	set promptchars = "%#"
