@@ -1,4 +1,6 @@
 
+! This method works as Post-Installation
+
 # swapinfo
 
 ! Use the partition name shown by swapinfo to be the value of 'of' as follows
