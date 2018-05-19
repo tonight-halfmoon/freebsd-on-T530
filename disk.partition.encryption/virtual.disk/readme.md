@@ -1,7 +1,6 @@
 
 # Encrypted Virtual Disk Practical Steps
 
-
 ## Preconditions
 > geli is enabled
 
@@ -21,8 +20,8 @@
 > ! Interactive:
 
 ```
-Enter new passphrase: 
-Reenter new passphrase: 
+Enter new passphrase:
+Reenter new passphrase:
 ```
 
 > ! Success Output
@@ -46,7 +45,7 @@ can be restored with the following command:
 # ls /dev/md
 ```
 
->! System output 
+> ! System output
 
 ```
 md0% md0.eli% mdctl%
@@ -56,7 +55,7 @@ md0% md0.eli% mdctl%
 
 ```
 # dd if=/dev/random of=/dev/md0.eli bs=1m
-# newfs /dev/md0.eli 
+# newfs /dev/md0.eli
 $ mkdir /your/new/virtual.disk/mount/point
 # mount /dev/md0.eli /your/new/virtual.disk/mount/point
 # chown -R <your.user.name> /your/new/virtual.disk/mount/point
