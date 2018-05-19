@@ -27,8 +27,7 @@ FreeBSD Installation is successful and the root password is set and it is online
 
 ## Overview
 
-> The steps are organised in each folder in this repository. Starting by [`X.Server`](./X.S
-erver) and then [`X.driver`](./X.driver). 
+> The steps are organised in mainly 3 folders. Starting by [`X.Server`](./X.Server) and then [`X.driver`](./X.driver). 
 
 The two cardinal files resulted in these steps are found in folder [`System.conf`](./System.conf). And finally, [`xfce`](/xfce).
 
