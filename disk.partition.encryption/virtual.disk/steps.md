@@ -51,8 +51,8 @@ md0% md0.eli% mdctl%
 ```
 # dd if=/dev/random of=/dev/md0.eli bs=1m
 # newfs /dev/md0.eli 
-$ mkdir /path/to/your/new/virtual.disk/mount/point
-# mount /dev/md0.eli /path/to/your/new/virtual.disk/mount/point
-# chown -R <your.user.name> /path/to/your/new/virtual.disk/mount/point
+$ mkdir /your/new/virtual.disk/mount/point
+# mount /dev/md0.eli /your/new/virtual.disk/mount/point
+# chown -R <your.user.name> /your/new/virtual.disk/mount/point
 ```
 
