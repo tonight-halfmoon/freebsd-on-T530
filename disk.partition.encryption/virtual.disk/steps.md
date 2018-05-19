@@ -1,6 +1,11 @@
 
 # Encrypted Virtual Disk Practical Steps
 
+
+## Preconditions
+> geli is enabled
+
+
 > ! 10 GB file-backed virtual disk
 
 ```
