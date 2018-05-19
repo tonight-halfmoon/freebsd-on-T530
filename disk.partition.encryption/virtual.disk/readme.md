@@ -5,8 +5,9 @@
 ## Preconditions
 > geli is enabled
 
+## The Steps
 
-> ! 10 GB file-backed virtual disk
+> ! Make a 10 GB file-backed virtual disk
 
 ```
 # dd if=/dev/zero of=/path/to/somefile bs=1m count=10k
