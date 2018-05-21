@@ -11,12 +11,12 @@
 > ! Make a 10 GB file-backed virtual disk
 
 ```
- % dd if=/dev/zero of=/home/<username>/vnimg.ebucket bs=64M count=160
- # mdconfig -a -t vnode -f /home/<username>/vnimg.ebucket -u 0
+ % dd if=/dev/zero of=mirror/vnimg.ebucket bs=64M count=160
+ # mdconfig -a -t vnode -f mirror/vnimg.ebucket -u 0
  # bsdlabel -w md0 auto
  # newfs md0a
- # dd if=/dev/random of=/root/md0.key bs=64 count=1
- # geli init -s 4096 -K /root/md0.key /dev/md0
+ # dd if=/dev/random of=/etc/geli/md0.key bs=64 count=1
+ # geli init -s 4096 -K /etc/geli/md0.key /dev/md0
 ```
 
 > ! Interactive:
@@ -38,12 +38,12 @@ can be restored with the following command:
 > Attach it
 
 ```
- # geli attach -k /root/md0.key /dev/md0
+ # geli attach -k /etc/geli/md0.key /dev/md0
 ```
 
 > ! Interactive
 
-Enter passphrase: 
+Enter passphrase:
 
 
 > ! check result
@@ -62,7 +62,7 @@ md0% md0.eli% mdctl%
 > Finalise
 
 ```
-# dd if=/dev/random of=/dev/md0.eli bs=64M
+ # dd if=/dev/random of=/dev/md0.eli bs=64M
 ```
 
 > ! System output
@@ -77,7 +77,7 @@ dd: /dev/md0.eli: end of device
 ```
 
 ```
-# newfs /dev/md0.eli
+ # newfs /dev/md0.eli
 ```
 
 > ! System output
@@ -95,19 +95,19 @@ super-block backups (for fsck_ffs -b #) at:
 
 
 ```
-$ mkdir /virtual.disk.mount.point
+ $ mkdir /mount.point
 ```
 
 
 ```
-# mount /dev/md0.eli /virtual.disk.mount.point
+ # mount /dev/md0.eli /mount.point
 ```
 
 > ! Check result
 
 
 ```
-# df -H
+ # df -H
 ```
 
 > ! System output
@@ -119,18 +119,18 @@ devfs           1.0k    1.0k      0B   100%    /dev
 /dev/ada0p4     5.2G    873M    3.9G    18%    /var
 /dev/ada0p5     2.1G     18M    1.9G     1%    /tmp
 /dev/ada0p6     204G     18G    169G    10%    /usr
-/dev/md0.eli     10G    8.2k    9.6G     0%    /virtual.disk.mount.point
+/dev/md0.eli     10G    8.2k    9.6G     0%    /mount.point
 
 ```
 
 ```
-# chown -R <your.user.name> /virtual.disk.mount.point
+ # chown -R <your.user.name> /mount.point
 ```
 
 > ! Umount, detach and Freeup all resources
 
 ```
- # umount /virtual.disk.mount.point
+ # umount /mount.point
 ```
 
 ```
@@ -146,13 +146,13 @@ devfs           1.0k    1.0k      0B   100%    /dev
 > Attach the encrypted virtual disk
 
 ```
- # mdconfig -a -t vnode -f /home/<username>/vnimg.ebucket -u 0
+ # mdconfig -a -t vnode -f mirror/vnimg.ebucket -u 0
 ```
 
 ```
- # geli attach -k /root/md0.key /dev/md0
+ # geli attach -k /etc/geli/md0.key /dev/md0
 
 ```
- # mount /dev/md0.eli /home/<username>/virtual.disk.mount.point/
+ # mount /dev/md0.eli /mount.point/
 
 ```
