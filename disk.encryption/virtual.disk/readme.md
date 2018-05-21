@@ -127,15 +127,21 @@ devfs           1.0k    1.0k      0B   100%    /dev
  # chown -R <your.user.name> /mount.point
 ```
 
-> ! Umount, detach and Freeup all resources
+## Detach and freeup all reasources
+
+> Umount
 
 ```
  # umount /mount.point
 ```
 
+> Detach
+ 
 ```
  # geli detach md0.eli
 ```
+
+> Freeup all resources
 
 ```
  # mdconfig -d -u 0
@@ -143,16 +149,27 @@ devfs           1.0k    1.0k      0B   100%    /dev
 
 ## Steps after a reboot
 
-> Attach the encrypted virtual disk
+
+### Attach the encrypted virtual disk
+
+
+#### Enable Memory Disk
 
 ```
  # mdconfig -a -t vnode -f mirror/vnimg.ebucket -u 0
 ```
 
+#### Attach encrypted disk using `geli` with the prepared key
+
 ```
  # geli attach -k /etc/geli/md0.key /dev/md0
 
 ```
+
+#### Mount the encrypted memory disk as a device
+ 
+```
  # mount /dev/md0.eli /mount.point/
 
 ```
+--------------------------------------------------------------
