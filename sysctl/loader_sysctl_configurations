@@ -1,1 +1,3 @@
 % sysctl -dW kern.ipc
+
+% sysctl hw.acpi

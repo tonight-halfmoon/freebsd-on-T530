@@ -138,7 +138,7 @@ devfs           1.0k    1.0k      0B   100%    /dev
 > Detach
  
 ```
- # geli detach md0.eli
+ # geli detach /dev/md0.eli
 ```
 
 > Freeup all resources

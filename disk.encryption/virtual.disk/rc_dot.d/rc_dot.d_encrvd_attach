@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# PROVIDE: attach an encrypted virtual disk
+# PROVIDE: Attach an encrypted virtual disk
 # REQUIRE:
 # KEYWORD: 
 
@@ -9,30 +9,43 @@
 name="encrvd_attach"
 rcvar=${name}_enable
 
-printf '\n\nChecking if Virtual Disk is already attached ...\n\n'
+stop_cmd=detach_encrvd
+start_cmd=attach_encrvd
 
-abspath_vdimg="/usr/local/var/vnimg.ebucket"
+detach_encrvd()
+{
 
-found=`mdconfig -l -u /dev/md0 | awk '{print $4}'`
+	printf '\n\nChecking if Virtual Disk is already attached ...\n\n'
 
-if [ "$found" = "$abspath_vdimg" ]; then
-	printf 'Virtual Disk is already mounted.\n\n'
-	return
-fi
+	abspath_vdimg="/usr/local/var/vnimg.ebucket"
 
-printf '\n\nEnabling Virtual Disk ...\n'
+	found=`mdconfig -l -u /dev/md0 | awk '{print $4}'`
 
-mdconfig -a -t vnode -f /usr/local/var/vnimg.ebucket -u 0
+	if [ "$found" = "$abspath_vdimg" ]; then
+		printf 'Detaching the virtual disk ...\n\n'
+		umount /usr/home/rosemary/ebuckets
+		geli detach /dev/md0.eli
+		mdconfig -d -u 0
+	fi
+}
 
-printf '\n\nAttaching it with geli ...\n\n'
+attach_encrvd()
+{
+	printf '\n\nEnabling Virtual Disk ...\n'
 
-geli attach -k /etc/geli/md0.key /dev/md0
+	mdconfig -a -t vnode -f /usr/local/var/vnimg.ebucket -u 0
 
-mkdir -p /usr/home/rosemary/ebuckets
+	printf '\n\nAttaching it with geli ...\n\n'
 
-printf '\n\nMounting your Encrypted Virtual Disk @ /usr/home/rosemary/ebuckets ...\n'
+	geli attach -k /etc/geli/md0.key /dev/md0
 
-mount /dev/md0.eli /usr/home/rosemary/ebuckets
+	mkdir -p /usr/home/rosemary/ebuckets
 
+	printf '\n\nMounting your Encrypted Virtual Disk @ /usr/home/rosemary/ebuckets ...\n'
+
+	mount /dev/md0.eli /usr/home/rosemary/ebuckets
+}
+
+load_rc_config ${name}
 
 run_rc_command "$1"
