@@ -12,16 +12,13 @@ rcvar=${name}_enable
 stop_cmd=detach_encrvd
 start_cmd=attach_encrvd
 
-nothing()
-{
-}
 # Terminology
 # 		md		Memory Disk
 #		dev		Device
 #		mdconfig	Memory Disk Configuration	
 #		geli		Disk Encryption Technology Method
 #		mp		mounting point
-#		vnimg		image file backing up a vnode
+#		vnimg		file system image configured as a vnode
 
 init_variables()
 {
@@ -34,25 +31,29 @@ init_variables()
 
 detach_encrvd()
 {
-	printf 'Detaching the virtual disk ...\n\n'
 	_md="md0"
 	init_variables ${_md}
+
 	found=`mdconfig -l -u ${_dev} | awk '{print $4}'`
+
+	printf "\n[-] Detaching the memory disk ${_md}...\n\n"
 
 	if [ "$found" = ${_vnimg} ]; then
 		umount -f ${_mp}
 		geli detach /dev/md0.eli
 		mdconfig -d -u 0
-		echo "Done."
+		echo "! Done."
+	else
+		echo "! Nothing to do."
 	fi
 }
 
 attach_encrvd()
 {
-	printf '\n\nAttaching encrypted vnode md ...\n\n'
-
 	_md="md0"
 	init_variables ${_md}
+
+	printf "\n[-] Attaching a memory disk as ${_md}...\n\n"
 
 	#if mount -d ${_dev_dot_eli} 2>&1 >/dev/null; then
 	if mount -d ${_dev_dot_eli} 2>/dev/null; then
@@ -65,9 +66,9 @@ attach_encrvd()
 			_fsck_cmd="fsck"
 		fi
 		if ! eval ${_fsck_cmd} ${_dev_dot_eli} >/dev/null; then
-			echo "Fsck failed on ${_dev_dot_eli}, not mounting the filesystem."
+			echo "Fsck failed on ${_dev_dot_eli}, not mounting the file system."
 		else	
-			echo "Detaching `${_dev_dot_eli}` ..."
+			echo "[-] Detaching ${_dev_dot_eli} ..."
 			geli detach ${_dev_dot_eli}
 		fi
 	fi
@@ -77,24 +78,24 @@ attach_encrvd()
 			echo "Failed to attach geli md as ${_dev} with the key provided and passphrase."
 		else
 			mount_dev ${_dev_dot_eli}
-			echo "Done."
+			echo "! Done."
 		fi
 	else
-		printf '\n\n`md` configuration failed.\n\n'
+		printf '! Failed to attach the file system image.\n\n'
 	fi
 }
 
 mount_dev()
 {
 	mkdir -p ${_mp}
-	printf "\n\nMounting $1 on ${_mp} ...\n"
+	printf "\n\n[-] Mounting $1 on ${_mp} ...\n"
 	mount $1 ${_mp}
 }
 
 enable_md()
 {
 	if mdconfig -l -u $1 >/dev/null 2>&1; then	
-		echo "Destroying `$1` ..."
+		echo "[-] Destroying $1 ..."
 		mdconfig -d -u $1
 	fi
 	if ! mdconfig -a -t vnode -f ${_vnimg} -u 0; then
@@ -108,3 +109,4 @@ enable_md()
 load_rc_config ${name}
 
 run_rc_command "$1"
+
