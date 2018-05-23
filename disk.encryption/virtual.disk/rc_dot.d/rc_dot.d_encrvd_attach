@@ -39,7 +39,7 @@ detach_encrvd()
 
 	if [ "$found" = ${_vnimg} ]; then
 		printf 'Detaching the virtual disk ...\n\n'
-		umount ${_mp}
+		umount -f ${_mp}
 		geli detach /dev/md0.eli
 		mdconfig -d -u 0
 		echo "Done."
@@ -50,7 +50,7 @@ detach_encrvd()
 
 attach_encrvd()
 {
-	printf '\n\nStart Attach process ...\n\n'
+	printf '\n\nStarted to attaching your encrypted vnode ...\n\n'
 
 	_md="md0"
 	init_variables ${_md}
@@ -103,7 +103,7 @@ enable_md()
 		echo "Configuring $1 device failed"
 		return 0
 	else
-		echo "md configured."
+		printf 'md configured.\n\n'
 		return 1
 	fi
 }
