@@ -12,39 +12,102 @@ rcvar=${name}_enable
 stop_cmd=detach_encrvd
 start_cmd=attach_encrvd
 
+nothing()
+{
+}
+# Terminology
+# 		md		Memory Disk
+#		dev		Device
+#		mdconfig	Memory Disk Configuration	
+#		geli		Disk Encryption Technology Method
+
+init_variables()
+{
+ 	_dev="/dev/${_md}"
+	_geli_md_key="/etc/geli/md0.key"
+	_mp="/usr/home/rosemary/ebuckets"
+	_dev_dot_eli="${_dev}"'.eli'
+	_vnimg="/usr/local/var/vnimg.ebucket" 
+}
+
 detach_encrvd()
 {
-
 	printf '\n\nChecking if Virtual Disk is already attached ...\n\n'
+	_md="md0"
+	init_variables ${_md}
+	found=`mdconfig -l -u ${_dev} | awk '{print $4}'`
 
-	abspath_vdimg="/usr/local/var/vnimg.ebucket"
-
-	found=`mdconfig -l -u /dev/md0 | awk '{print $4}'`
-
-	if [ "$found" = "$abspath_vdimg" ]; then
+	if [ "$found" = ${_vnimg} ]; then
 		printf 'Detaching the virtual disk ...\n\n'
-		umount /usr/home/rosemary/ebuckets
+		umount ${_mp}
 		geli detach /dev/md0.eli
 		mdconfig -d -u 0
+		echo "Done."
+	else
+		echo "Nothing to do."
 	fi
 }
 
 attach_encrvd()
 {
-	printf '\n\nEnabling Virtual Disk ...\n'
+	printf '\n\nStart Attach process ...\n\n'
 
-	mdconfig -a -t vnode -f /usr/local/var/vnimg.ebucket -u 0
+	_md="md0"
+	init_variables ${_md}
 
-	printf '\n\nAttaching it with geli ...\n\n'
+	#if mount -d ${_dev_dot_eli} 2>&1 >/dev/null; then
+	if mount -d ${_dev_dot_eli} 2>/dev/null; then
+		echo "Un-mount ..."
+		umount ${_mp}
 
-	geli attach -k /etc/geli/md0.key /dev/md0
+		if checkyesno background_fsck; then
+			_fsck_cmd="fsck -F"
+		else
+			_fsck_cmd="fsck"
+		fi
+		if ! eval ${_fsck_cmd} ${_dev_dot_eli} >/dev/null; then
+			echo "Fsck failed on ${_dev_dot_eli}, not mounting the filesystem."
+		else	
+			echo "Detach ${_dev_dot_eli}."
+			geli detach ${_dev_dot_eli}
+		fi
+	fi
 
-	mkdir -p /usr/home/rosemary/ebuckets
-
-	printf '\n\nMounting your Encrypted Virtual Disk @ /usr/home/rosemary/ebuckets ...\n'
-
-	mount /dev/md0.eli /usr/home/rosemary/ebuckets
+	if ! enable_md ${_md}; then
+		if ! geli attach -k ${_geli_md_key} ${_dev}; then
+			echo "Failed to attach geli md as ${_dev} with the key provided and passphrase."
+		else
+			mount_dev ${_dev_dot_eli}
+			echo "Done."
+		fi
+	else
+		printf '\n\nFailed.\n\n'
+	fi
 }
+
+mount_dev()
+{
+	mkdir -p ${_mp}
+	printf "\n\nMounting $1 on ${_mp} ...\n"
+	mount $1 ${_mp}
+}
+
+enable_md()
+{
+	if mdconfig -l -u $1 >/dev/null 2>&1; then	
+		echo "$1 already configured."
+		echo "Destroying $1."
+		mdconfig -d -u $1
+	fi
+	if ! mdconfig -a -t vnode -f ${_vnimg} -u 0; then
+		echo "Configuring $1 device failed"
+		return 0
+	else
+		echo "md configured."
+		return 1
+	fi
+}
+
 
 load_rc_config ${name}
 

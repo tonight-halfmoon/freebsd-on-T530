@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# PROVIDE: Attach an encrypted virtual disk
+# REQUIRE:
+# KEYWORD: 
+
+. /etc/rc.subr
+
+name="encrvd_attach"
+rcvar=${name}_enable
+
+stop_cmd=detach_encrvd
+start_cmd=attach_encrvd
+
+detach_encrvd()
+{
+
+	printf '\n\nChecking if Virtual Disk is already attached ...\n\n'
+
+	abspath_vdimg="/usr/local/var/vnimg.ebucket"
+
+	found=`mdconfig -l -u /dev/md0 | awk '{print $4}'`
+
+	if [ "$found" = "$abspath_vdimg" ]; then
+		printf 'Detaching the virtual disk ...\n\n'
+		umount /usr/home/rosemary/ebuckets
+		geli detach /dev/md0.eli
+		mdconfig -d -u 0
+	fi
+}
+
+attach_encrvd()
+{
+	printf '\n\nEnabling Virtual Disk ...\n'
+
+	mdconfig -a -t vnode -f /usr/local/var/vnimg.ebucket -u 0
+
+	printf '\n\nAttaching it with geli ...\n\n'
+
+	geli attach -k /etc/geli/md0.key /dev/md0
+
+	mkdir -p /usr/home/rosemary/ebuckets
+
+	printf '\n\nMounting your Encrypted Virtual Disk @ /usr/home/rosemary/ebuckets ...\n'
+
+	mount /dev/md0.eli /usr/home/rosemary/ebuckets
+}
+
+load_rc_config ${name}
+
+run_rc_command "$1"
