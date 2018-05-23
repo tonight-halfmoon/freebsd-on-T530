@@ -20,6 +20,8 @@ nothing()
 #		dev		Device
 #		mdconfig	Memory Disk Configuration	
 #		geli		Disk Encryption Technology Method
+#		mp		mounting point
+#		vnimg		image file backing up a vnode
 
 init_variables()
 {
@@ -32,32 +34,29 @@ init_variables()
 
 detach_encrvd()
 {
-	printf '\n\nChecking if Virtual Disk is already attached ...\n\n'
+	printf 'Detaching the virtual disk ...\n\n'
 	_md="md0"
 	init_variables ${_md}
 	found=`mdconfig -l -u ${_dev} | awk '{print $4}'`
 
 	if [ "$found" = ${_vnimg} ]; then
-		printf 'Detaching the virtual disk ...\n\n'
 		umount -f ${_mp}
 		geli detach /dev/md0.eli
 		mdconfig -d -u 0
 		echo "Done."
-	else
-		echo "Nothing to do."
 	fi
 }
 
 attach_encrvd()
 {
-	printf '\n\nStarted to attaching your encrypted vnode ...\n\n'
+	printf '\n\nAttaching encrypted vnode md ...\n\n'
 
 	_md="md0"
 	init_variables ${_md}
 
 	#if mount -d ${_dev_dot_eli} 2>&1 >/dev/null; then
 	if mount -d ${_dev_dot_eli} 2>/dev/null; then
-		echo "Un-mount ..."
+		# "Un-mounting ..."
 		umount ${_mp}
 
 		if checkyesno background_fsck; then
@@ -68,7 +67,7 @@ attach_encrvd()
 		if ! eval ${_fsck_cmd} ${_dev_dot_eli} >/dev/null; then
 			echo "Fsck failed on ${_dev_dot_eli}, not mounting the filesystem."
 		else	
-			echo "Detach ${_dev_dot_eli}."
+			echo "Detaching `${_dev_dot_eli}` ..."
 			geli detach ${_dev_dot_eli}
 		fi
 	fi
@@ -81,7 +80,7 @@ attach_encrvd()
 			echo "Done."
 		fi
 	else
-		printf '\n\nFailed.\n\n'
+		printf '\n\n`md` configuration failed.\n\n'
 	fi
 }
 
@@ -95,15 +94,12 @@ mount_dev()
 enable_md()
 {
 	if mdconfig -l -u $1 >/dev/null 2>&1; then	
-		echo "$1 already configured."
-		echo "Destroying $1."
+		echo "Destroying `$1` ..."
 		mdconfig -d -u $1
 	fi
 	if ! mdconfig -a -t vnode -f ${_vnimg} -u 0; then
-		echo "Configuring $1 device failed"
 		return 0
 	else
-		printf 'md configured.\n\n'
 		return 1
 	fi
 }
