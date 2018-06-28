@@ -5,6 +5,11 @@
 
 > geli is enabled
 
+```
+In /boot/loader.conf set the following line
+
+geom_eli_load="YES"
+```
 
 ## The Steps
 

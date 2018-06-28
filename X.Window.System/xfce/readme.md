@@ -1,8 +1,8 @@
 # Xfce Installation
 
 
-```
-	1. pkg install xfce
+```	
+1. pkg install xfce
 ```
 
 ```
