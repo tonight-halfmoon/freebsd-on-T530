@@ -29,3 +29,5 @@
 ;; Global Keys
 (global-set-key (kbd "M-1") 'kill-whole-line)
 (global-set-key (kbd "M-o") 'ace-window)
+;; Reference: https://www.gnu.org/software/emacs/manual/html_node/efaq/Backspace-invokes-help.html
+(normal-erase-is-backspace-mode 1)
