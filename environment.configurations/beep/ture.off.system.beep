@@ -1,0 +1,41 @@
+
+Reference> http://quitsendingmetrash.com/lrn/unix/freeBsd/systemBeepOff.php
+
+FreeBSD suckstem beep:
+default 
+
+There are several ways to turn off the system beep|bell:
+Turn off system beep outside X11
+Turn off system beep inside X11
+Turn off system beep globally (including reboots)
+
+Turn off the system beep in the terminal without X11 use:
+kbdcontrol -b off
+
+Turn beep on outside X11:
+kbdcontrol -b 100.100
+
+The 100.100 stands for duration:pitch. 10.1, 50.50, 20.40 would be other valid choices. You can definetly come up with a cooler sound than the default. 
+
+Turn beep off in X11:
+xset b 0
+
+Add xset b 0 to .xintrc to turn off on startx
+
+Turn beep on in X11:
+xset b 1
+You can choose from 1-100 with xset -b
+
+View the bell settings with sysctl before turning off system beeps globally:
+sysctl hw | grep bell
+hw.syscons.bell: 1
+
+Turn off bell until reboot
+sysctl hw.syscons.bell=0
+hw.syscons.bell: 0
+
+To change the bell to 0 and keep the setting through a restart, add this line to /etc/sysctl.conf
+hw.syscons.bell=0
+
+default
+
