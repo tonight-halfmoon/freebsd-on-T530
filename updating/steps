@@ -4,3 +4,5 @@
 # portmaster -aD
 # pkg update
 # pkg upgrade
+#
+#### Reference: https://www.freebsd.org/doc/handbook/ports-using.html
