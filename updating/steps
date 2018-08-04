@@ -1,0 +1,6 @@
+# portstap fetch update
+# portsnap extract
+# portsnap update
+# portmaster -aD
+# pkg update
+# pkg upgrade
