@@ -13,32 +13,31 @@ alias lf	ls -FA
 alias ll	ls -lAF
 alias ls	ls -FG
 
-bindkey "^[[3~" delete-char-or-list-or-eof
-
-setenv		CLICOLOR 1
-
-setenv LSCOLORS	"fxbxgxdxGxegedabagacad"
-
-#set autolist = TAB
-
 # These are normally set through /etc/login.conf.  You may override them here
 # if wanted.
 # set path = (/sbin /bin /usr/sbin /usr/bin /usr/local/sbin /usr/local/bin $HOME/bin)
-setenv	BLOCKSIZE	K
+setenv	BLOCKSIZE	G
 # A righteous umask
 # umask 22
 
-setenv	EDITOR	vi
+#bindkey "^[[3~" delete-char-or-list-or-eof
+
+# Reference: http://www.ibb.net/~anne/keyboard.html
+# Reference: https://lists.freebsd.org/pipermail/freebsd-questions/2004-July/054180.html
+#bindkey "^?" delete-char
+#ibindkey "\e[3~" delete-char
+#bindkey "\e[1~" beginning-of-line
+#bindkey "\e[4~" end-of-line
+
+setenv CLICOLOR 1
+setenv LSCOLORS "fxbxgxdxGxegedabagacad"
+
+setenv	EDITOR	emacs #vi
 setenv	PAGER	more
+setenv  TITLE   "%{\e]0;%~\007%}"
 
-# P.S. \e is equivalent to \033
-
-#setenv TITLE "%{\033]0;%n@%m:%~\007%}"
-setenv TITLE "%{\e]0;%~\007%}"
-
-# Colors!
-#
-set	red="%{\e[31;1m%}"
+# colors!
+set     red="%{\e[31;1m%}"
 set	g="%{\e[32;0m%}"
 set	y="%{\e[33;1m%}"
 set	b="%{\e[34;1m%}"
@@ -47,14 +46,12 @@ set	c="%{\e[36;1m%}"
 set	w="%{\e[37;0m%}"
 set	reset="%{\e[0m%}"
 
+
 if ($?prompt) then
 	# An interactive shell -- set some stuff up
 	#set prompt = "%N@%m:%~ %# "
-	#set prompt = "%{\e[36;1m%}%N@%m:%~%{\033[1;0;35m%}%#%{\e[0m%} "
-	# References: /usr/local/etc/profile.d/vte.sh
-	set prompt = "${TITLE}${red}AT${c}%N@%m:${y}%~ ${m}%#${reset} "
-
 	set promptchars = "%#"
+	set prompt = "${TITLE}${red}AT${c}%N@%m:${y}%c ${m}%#${reset} "
 
 	set filec
 	set history = 1000
