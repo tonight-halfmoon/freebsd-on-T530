@@ -6,3 +6,9 @@
 # pkg upgrade
 #
 #### Reference: https://www.freebsd.org/doc/handbook/ports-using.html
+##############  https://forums.freebsd.org/threads/not-able-to-build-gnupg.52242/
+#
+#
+#cd /usr/ports/sysutils/lsof
+#make install
+#
