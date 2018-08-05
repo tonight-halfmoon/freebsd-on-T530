@@ -2,6 +2,8 @@
 # portsnap extract
 # portsnap update
 # portmaster -aD
+# pkg check -Ba
+# portupgrade -R firefox
 # pkg update
 # pkg upgrade
 #
