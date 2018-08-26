@@ -18,4 +18,4 @@ add the necessary configuration in ~/.emacs
 
 References:
 [] https://www.lambdacat.com/post-modern-emacs-setup-for-erlang/
-
+[] http://erlang.org/faq/tools.html
