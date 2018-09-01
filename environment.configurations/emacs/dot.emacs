@@ -30,7 +30,9 @@
 (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
 
-(set-cursor-color "#7F00FF")
+(set-cursor-color "#ff00ff")
+(setq-default cursor-type 'hbar)
+(setq-default x-stretch-cursor 1)
 (setq inhibit-startup-screen t)
 
 ;; Global Keys
@@ -51,3 +53,5 @@
   (add-to-list 'company-backends 'company-distel))
 
 (setq distel-completion-valid-syntax "a-zA-Z:_-")
+
+(load "~/.emacs.d/emacs-format-all-the-code/format-all.el")
