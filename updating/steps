@@ -14,3 +14,6 @@
 #cd /usr/ports/sysutils/lsof
 #make install
 #
+portmaster --clean-distfiles
+portsclean -C
+portsclean -DD
