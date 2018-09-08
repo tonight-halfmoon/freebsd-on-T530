@@ -1,7 +1,7 @@
 # X Server Practical Configuration Steps - The Minumum Configurations to be able to login to Xfce session or some display manager
 
 
-0. Set the Display in BIOS to Integrated Graphics or Discrete Graphics
+0. Set the Display in BIOS to Discrete Graphics
 
 1. Install, enable and start service `dbus`
 
@@ -14,7 +14,15 @@
 
 ```
 
-2. Install Xorg and clear any Xorg configurations if any
+2. Enable hald
+
+```
+ # sysrc hald_enable="YES"
+ 
+ # service hald start 
+``` 
+
+3. Install Xorg and clear any Xorg configurations if any
 
 ```
  # pkg install xorg

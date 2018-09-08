@@ -1,0 +1,92 @@
+hostb0@pci0:0:0:0:	class=0x060000 card=0x21f617aa chip=0x01548086 rev=0x09 hdr=0x00
+    vendor     = 'Intel Corporation'
+    device     = '3rd Gen Core processor DRAM Controller'
+    class      = bridge
+    subclass   = HOST-PCI
+pcib1@pci0:0:1:0:	class=0x060400 card=0x21f617aa chip=0x01518086 rev=0x09 hdr=0x01
+    vendor     = 'Intel Corporation'
+    device     = 'Xeon E3-1200 v2/3rd Gen Core processor PCI Express Root Port'
+    class      = bridge
+    subclass   = PCI-PCI
+xhci0@pci0:0:20:0:	class=0x0c0330 card=0x21f617aa chip=0x1e318086 rev=0x04 hdr=0x00
+    vendor     = 'Intel Corporation'
+    device     = '7 Series/C210 Series Chipset Family USB xHCI Host Controller'
+    class      = serial bus
+    subclass   = USB
+none0@pci0:0:22:0:	class=0x078000 card=0x21f617aa chip=0x1e3a8086 rev=0x04 hdr=0x00
+    vendor     = 'Intel Corporation'
+    device     = '7 Series/C216 Chipset Family MEI Controller'
+    class      = simple comms
+em0@pci0:0:25:0:	class=0x020000 card=0x21f317aa chip=0x15028086 rev=0x04 hdr=0x00
+    vendor     = 'Intel Corporation'
+    device     = '82579LM Gigabit Network Connection (Lewisville)'
+    class      = network
+    subclass   = ethernet
+ehci0@pci0:0:26:0:	class=0x0c0320 card=0x21f617aa chip=0x1e2d8086 rev=0x04 hdr=0x00
+    vendor     = 'Intel Corporation'
+    device     = '7 Series/C216 Chipset Family USB Enhanced Host Controller'
+    class      = serial bus
+    subclass   = USB
+hdac1@pci0:0:27:0:	class=0x040300 card=0x21f617aa chip=0x1e208086 rev=0x04 hdr=0x00
+    vendor     = 'Intel Corporation'
+    device     = '7 Series/C216 Chipset Family High Definition Audio Controller'
+    class      = multimedia
+    subclass   = HDA
+pcib2@pci0:0:28:0:	class=0x060400 card=0x21f617aa chip=0x1e108086 rev=0xc4 hdr=0x01
+    vendor     = 'Intel Corporation'
+    device     = '7 Series/C216 Chipset Family PCI Express Root Port 1'
+    class      = bridge
+    subclass   = PCI-PCI
+pcib3@pci0:0:28:1:	class=0x060400 card=0x21f617aa chip=0x1e128086 rev=0xc4 hdr=0x01
+    vendor     = 'Intel Corporation'
+    device     = '7 Series/C210 Series Chipset Family PCI Express Root Port 2'
+    class      = bridge
+    subclass   = PCI-PCI
+pcib4@pci0:0:28:2:	class=0x060400 card=0x21f617aa chip=0x1e148086 rev=0xc4 hdr=0x01
+    vendor     = 'Intel Corporation'
+    device     = '7 Series/C210 Series Chipset Family PCI Express Root Port 3'
+    class      = bridge
+    subclass   = PCI-PCI
+ehci1@pci0:0:29:0:	class=0x0c0320 card=0x21f617aa chip=0x1e268086 rev=0x04 hdr=0x00
+    vendor     = 'Intel Corporation'
+    device     = '7 Series/C216 Chipset Family USB Enhanced Host Controller'
+    class      = serial bus
+    subclass   = USB
+isab0@pci0:0:31:0:	class=0x060100 card=0x21f617aa chip=0x1e558086 rev=0x04 hdr=0x00
+    vendor     = 'Intel Corporation'
+    device     = 'QM77 Express Chipset LPC Controller'
+    class      = bridge
+    subclass   = PCI-ISA
+ahci0@pci0:0:31:2:	class=0x010601 card=0x21f617aa chip=0x1e038086 rev=0x04 hdr=0x00
+    vendor     = 'Intel Corporation'
+    device     = '7 Series Chipset Family 6-port SATA Controller [AHCI mode]'
+    class      = mass storage
+    subclass   = SATA
+none1@pci0:0:31:3:	class=0x0c0500 card=0x21f617aa chip=0x1e228086 rev=0x04 hdr=0x00
+    vendor     = 'Intel Corporation'
+    device     = '7 Series/C216 Chipset Family SMBus Controller'
+    class      = serial bus
+    subclass   = SMBus
+vgapci0@pci0:1:0:0:	class=0x030000 card=0x21f617aa chip=0x0def10de rev=0xa1 hdr=0x00
+    vendor     = 'NVIDIA Corporation'
+    device     = 'GF108M [NVS 5400M]'
+    class      = display
+    subclass   = VGA
+hdac0@pci0:1:0:1:	class=0x040300 card=0x21f617aa chip=0x0bea10de rev=0xa1 hdr=0x00
+    vendor     = 'NVIDIA Corporation'
+    device     = 'GF108 High Definition Audio Controller'
+    class      = multimedia
+    subclass   = HDA
+sdhci_pci0@pci0:2:0:0:	class=0x088001 card=0x21f617aa chip=0xe8231180 rev=0x05 hdr=0x00
+    vendor     = 'Ricoh Co Ltd'
+    device     = 'PCIe SDXC/MMC Host Controller'
+    class      = base peripheral
+none2@pci0:2:0:3:	class=0x0c0010 card=0x21f617aa chip=0xe8321180 rev=0x04 hdr=0x00
+    vendor     = 'Ricoh Co Ltd'
+    device     = 'R5C832 PCIe IEEE 1394 Controller'
+    class      = serial bus
+    subclass   = FireWire
+iwn0@pci0:3:0:0:	class=0x028000 card=0x13118086 chip=0x00858086 rev=0x34 hdr=0x00
+    vendor     = 'Intel Corporation'
+    device     = 'Centrino Advanced-N 6205 [Taylor Peak]'
+    class      = network

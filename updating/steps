@@ -17,3 +17,5 @@
 portmaster --clean-distfiles
 portsclean -C
 portsclean -DD
+delete many packages at once with regX
+pkg delete -R '*proto-*'
