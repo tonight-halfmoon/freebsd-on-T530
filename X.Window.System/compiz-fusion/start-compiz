@@ -1,0 +1,4 @@
+#!/bin/sh
+compiz --replace --sm-disable --ignore-desktop-hints ccp &
+emerald --replace &
+

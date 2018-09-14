@@ -178,3 +178,7 @@ devfs           1.0k    1.0k      0B   100%    /dev
 
 ```
 --------------------------------------------------------------
+
+
+## References>
+[] https://forums.freebsd.org/threads/howto-encrypting-virtual-disks.20382/

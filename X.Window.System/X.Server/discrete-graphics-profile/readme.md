@@ -75,3 +75,21 @@ By now, you must be logged to the default X Display Manager. Log out and continu
  $ startx
 
 ```
+
+10. Install and try Slim as a Login Manager
+
+```
+ # portmaster -R x11/slim
+
+ # service slim onestart
+
+```
+
+11. Setup Slim Login Manager
+
+```
+ There are two ways to do this
+
+ 11.1 Append `/etc/ttys` with
+ 11.2 Append `/etc/rc.conf` with
+```

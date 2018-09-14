@@ -1,0 +1,1 @@
+To check `xrandr`, evaluate it $ xrandr under X Manager. Trying to evaluate in Virtual Terminal / Console will disappoint you. xrandr(1) requires X to be running. Otherwise, if it is reallz necessary to evaluate in Console, then first set DISPLAY.
