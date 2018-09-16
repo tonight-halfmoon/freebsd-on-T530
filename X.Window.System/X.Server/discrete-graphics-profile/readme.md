@@ -93,3 +93,11 @@ By now, you must be logged to the default X Display Manager. Log out and continu
  11.1 Append `/etc/ttys` with
  11.2 Append `/etc/rc.conf` with
 ```
+
+12. Setup `synaptics` 
+
+```
+ 12.1 Download module synaptics
+ 12.2 Configure `xorg.conf` as shown in the example provieded 
+
+```

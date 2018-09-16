@@ -1,0 +1,4 @@
+/usr/ports/x11-drivers/xf86-input-synaptics
+
+# portmaster -R x11-drivers/xf86-input-synaptics
+
