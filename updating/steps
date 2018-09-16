@@ -3,7 +3,9 @@
 # portsnap update
 # portmaster -aD
 # pkg check -Ba
-# portupgrade -R firefox
+# portmaster -a
+#
+#
 # pkg update
 # pkg upgrade
 #
@@ -18,4 +20,8 @@ portmaster --clean-distfiles
 portsclean -C
 portsclean -DD
 delete many packages at once with regX
-pkg delete -R '*proto-*'
+pkg delete -R '*proto-*'a
+
+
+# Upgrade a package
+# portupgrade -R firefox

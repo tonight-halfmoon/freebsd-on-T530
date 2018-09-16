@@ -30,16 +30,27 @@
  
 ``` 
 
-> 4. Enable Nvidia Optimus in BIOS and Generate Xorg Configurations
+> 4. 
+
+	[] With Nvidia Optimus
+	If you have chosen Nvidia Optimus in BIOS, then do the following
+	Enable Nvidia Optimus in BIOS and Generate Xorg Configurations
+```
+	# Xorg -configure
+ 	# cp /root/xorg.conf.new /etc/X11/xorg.conf
 
 ```
- # Xorg -configure
 
- # cp /root/xorg.conf.new /etc/X11/xorg.conf
+	[] With Discrete Graphics
+	If you have chosen Nvidia Optimus in BIOS, then do the following
+	Enable Discrete Graphics in BIOS and Generate Nvidia-xconfig
+```
+	# nvidia-xconfig      
 
 ```
 
-> 5. Replace 'vesa' with 'intel' and set the correct VGA Devices' BusId values
+> 5. [] In case of Nvidia Optimus, then 
+	 Replace 'vesa' with 'intel' and set the correct VGA Devices' BusId values
 
 ```
  # pciconf -lv | grep vga
@@ -68,6 +79,9 @@
  kld_list="nvidia-modeset"
 
 ```
+
+> 7. Append '/etc/rc.conf', '/boot/loader.conf' and '/etc/X11/xorg.conf' as provided in this repository
+
 
 # reboot
 
