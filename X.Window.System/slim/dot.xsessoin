@@ -1,0 +1,11 @@
+#!/bin/sh
+
+setxkbmap -option ctrl:nocaps
+redshift &
+
+export __GL_YIELD="USLEEP"
+nvidia-settings -l
+
+exec $1
+
+
