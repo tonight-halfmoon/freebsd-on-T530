@@ -5,8 +5,16 @@
 # see also csh(1), environ(7).
 # more examples available at /usr/share/examples/csh/
 #
+#
+#
 
-alias h		history 25
+#setenv XMODIFIERS @im=fcitx
+#setenv GTK_IM_MODULE fcitx
+#setenv GTK3_IM_MODULE fcitx
+
+# vidcontrol cyan black
+
+alias h		history 10000
 alias j		jobs -l
 alias la	ls -aF
 alias lf	ls -FA
@@ -28,9 +36,12 @@ setenv	BLOCKSIZE	G
 #ibindkey "\e[3~" delete-char
 #bindkey "\e[1~" beginning-of-line
 #bindkey "\e[4~" end-of-line
+bindkey "^[[3~" delete-char
+bindkey "^R" history-search-backward
 
-setenv CLICOLOR 1
-setenv LSCOLORS "fxbxgxdxGxegedabagacad"
+setenv CLICOLOR		1
+
+setenv LSCOLORS "GxCxgxdxGxegedaCagacad"
 
 setenv	EDITOR	emacs #vi
 setenv	PAGER	more

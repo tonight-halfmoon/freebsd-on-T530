@@ -10,9 +10,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(blink-cursor-mode t)
  '(cursor-type (quote hbar))
- '(custom-enabled-themes (quote (tango-dark)))
+ '(custom-enabled-themes (quote (deeper-blue)))
  '(font-use-system-font t)
  '(package-selected-packages (quote (company)))
  '(tool-bar-mode nil))
@@ -55,3 +57,13 @@
 (setq distel-completion-valid-syntax "a-zA-Z:_-")
 
 (load "~/.emacs.d/emacs-format-all-the-code/format-all.el")
+
+;; (require 'clang-format)
+;; (global-set-key (kbd "C-c i") 'clang-format-region)
+;; (global-set-key (kbd "C-c u") 'clang-format-buffer)
+
+;; (setq clang-format-style-option "llvm")
+
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'hickey t)
