@@ -1,0 +1,923 @@
+     1	19:23	pkg install bim
+     2	19:23	pkg instal vim
+     3	19:25	pw groupmod video -m rosemary || groupmod wheel -m rosemary
+     4	19:25	exit
+     5	19:37	pkg install xfce
+     6	19:42	exit
+     7	19:58	less /var/log/xferlog
+     8	19:58	less /var/log/Xorg.0.log
+     9	19:59	kldload linux
+    10	20:00	sysrc linux_enable="YES"
+    11	20:00	kld load nvidia
+    12	20:00	kldload nvidia
+    13	20:01	kldload nvidia-modeset
+    14	20:01	pkg update
+    15	20:01	pkg upgrade
+    16	20:01	pkg install nvidia-driver
+    17	20:50	less /var/log/userlog
+    18	20:50	less /var/log/debug.log
+    19	20:56	kldload nvidia-modeset
+    20	20:58	sysrc kld_list="nvidia-modeset"
+    21	21:10	vim /etc/rc.conf
+    22	21:10	vim /boot/loader.conf
+    23	21:11	exit
+    24	21:15	pkg install git
+    25	21:21	exit
+    26	21:23	exit
+    27	21:28	Xorg -configure
+    28	21:28	doff /root/xorg.conf.new /etc/X11/xorg.conf
+    29	21:29	diff /root/xorg.conf.new /etc/X11/xorg.conf
+    30	21:29	cp /root/xorg.conf.new /etc/X11/xorg.conf
+    31	21:29	vim /etc/X11/xorg.conf
+    32	21:29	exit
+    33	21:32	pciconf -lv | grep vga > pciconf.out
+    34	21:32	vim pciconf.out
+    35	21:32	pciconf -lv > pciconf.out
+    36	21:32	vim pciconf.out
+    37	21:33	vim /etc/X11/xorg.conf
+    38	21:34	vim /etc/rc.conf
+    39	21:35	sysrc nvidia_load="YES"
+    40	21:35	vim /etc/rc.conf
+    41	21:36	exit
+    42	21:36	vim /etc/X11/xorg.conf
+    43	21:37	exit
+    44	21:37	vim /etc/X11/xorg.conf
+    45	21:38	vim /etc/X11/xorg.conf
+    46	21:38	vim /etc/X11/xorg.conf
+    47	21:40	vim /etc/rc.conf
+    48	21:41	exit
+    49	21:41	vim /etc/rc.conf
+    50	21:41	vim /etc/rc.conf
+    51	21:41	exit
+    52	21:58	vim /etc/X11/xorg.conf
+    53	21:59	vim /etc/X11/xorg.conf
+    54	21:59	exit
+    55	22:12	pkg update
+    56	22:13	exit
+    57	22:13	vim /var/log/Xorg.0.log
+    58	22:16	pkg install intel
+    59	22:17	pkg install intel-driver
+    60	22:18	pkg info | grep intel
+    61	22:20	pkg install xf86-video-intel
+    62	22:20	pkg install xf86-video-intel
+    63	22:20	exit
+    64	22:55	vim /etc/rc.conf
+    65	22:59	exit
+    66	19:35	pkg update
+    67	19:35	pkg upgrade
+    68	19:35	pkg install firefox
+    69	19:35	pg install chromiom
+    70	19:35	pkg install chromiom
+    71	19:35	pkg install chromium
+    72	19:50	exit
+    73	20:25	vim /etc/rc.conf
+    74	20:25	vim /boot/loader.conf
+    75	20:29	exit
+    76	20:52	pkg install emacs
+    77	20:53	pkg install erlang
+    78	20:54	echo "/usr/local/lib/erlang/lib/tools-2.9.1/emacs" > erlang.emacs.mod.line
+    79	20:55	exit
+    80	21:22	sysctl -dW kern.ipc
+    81	21:22	exit
+    82	21:47	vim /boot/loader.conf
+    83	21:48	exit
+    84	21:49	cd
+    85	21:50	vim /boot/loader.conf
+    86	21:50	exit
+    87	22:01	exit
+    88	22:21	exit
+    89	6:10	vim /etc/X11/xorg.conf
+    90	6:12	vim /etc/X11/xorg.conf
+    91	6:13	exit
+    92	17:42	pkg install glx
+    93	17:42	emacs src2/event_manager.erl
+    94	17:43	less /var/log/Xorg.0.log
+    95	17:44	pkg install kbd
+    96	17:44	pkg update
+    97	17:44	pkg upgrade
+    98	17:52	pkg upgrade
+    99	17:55	vim /etc/sysctl.conf
+   100	17:56	sysctl kern.ipc.shm_allow_removed=1
+   101	17:56	vim /etc/sysctl.conf
+   102	17:58	cd
+   103	18:02	exit
+   104	18:02	exit
+   105	18:05	pkg install gtk
+   106	18:05	pkg install gtkrc
+   107	18:05	pkg install gtk
+   108	18:06	pkg install libgtk
+   109	18:07	pkg -l | grep glib
+   110	18:07	pkg -l | grep nvidia
+   111	18:07	pkg search -o g ; lib
+   112	18:08	pkg search -o glib
+   113	18:09	pkg search -o gtk
+   114	18:10	pkg search -o gtk3
+   115	18:13	pkg search -o gtk20
+   116	18:13	pkg search -o gtk30
+   117	18:13	pkg search -o gtk3
+   118	18:15	pkg info gtk
+   119	18:15	pkg install gtk
+   120	18:15	pkg search -o gtk
+   121	18:15	pkg search -o gtk3
+   122	18:17	pkg install gtk30
+   123	18:18	pkg install gtk3
+   124	18:18	pkg install ghc
+   125	18:22	pkg install hs-cabal-install
+   126	18:23	cabal update
+   127	18:23	cabal install gtk2hs-buildtools
+   128	18:26	pkg install alex
+   129	18:26	cabal install hXmixer
+   130	18:26	pkg install pango
+   131	18:27	exit
+   132	18:37	pkg install xf86vidmodeproto
+   133	18:38	pkg install xmms-xf86audio
+   134	18:38	pkg install libXxf86dga
+   135	18:38	pkg install libXxf86misc
+   136	18:39	pkg instal libXxf86vm
+   137	18:39	pkg install xf86dga
+   138	18:39	pkg install xf86dgaproto
+   139	18:39	pkg install xf86driproto
+   140	18:39	pkg install xf86miscproto
+   141	18:40	pkg install xf86rushproto
+   142	18:40	pkg install xf86vidmodeproto
+   143	18:40	exit
+   144	19:28	pkg update
+   145	19:32	pkg upgrade
+   146	19:32	exit
+   147	19:10	vim /etc/X11/xorg.conf
+   148	19:14	pkg update
+   149	19:14	pkg upgrade
+   150	19:15	pkg install nvidia-settings
+   151	19:15	nvidia-settings
+   152	19:15	man nvidia-settings
+   153	19:16	nvidia-settings --load-config-only
+   154	19:16	nvidia-settings --glxinfo
+   155	19:24	pkg install nvidia
+   156	19:24	pkg install nvidia-modeset
+   157	19:24	pkg install nvidia-driver
+   158	19:24	pkg install nvidia-driver-405
+   159	19:24	pkg install nvidia-driver-304
+   160	19:25	pkg install nvidia-driver-340
+   161	19:31	exit
+   162	19:33	vim /boot/loader.conf
+   163	19:36	vim /boot/loader.conf
+   164	19:36	exit
+   165	9:50	pkg update
+   166	9:50	pkg ugrade-all
+   167	9:50	pkg ugrade
+   168	9:50	pkg update-all
+   169	9:50	pkg help
+   170	9:51	pkg upgrade
+   171	10:04	pkg upgrade
+   172	10:04	pkg update
+   173	10:04	pkg upgrade
+   174	10:04	exit
+   175	16:56	vim /home/rosemary/.cshrc
+   176	16:56	exit
+   177	17:24	pkg install nvidia-detect
+   178	17:24	pkg install kmod-nvidia
+   179	17:24	pkg install nvidia
+   180	17:24	pkg install nvidia-driver
+   181	17:24	pkg update nvidia-driver
+   182	17:25	pkg install jwm
+   183	17:25	exit
+   184	17:44	vim /etc/X11/xorg.conf
+   185	17:46	exit
+   186	19:46	pkg install glx
+   187	19:47	pkg install glxgears
+   188	19:48	pkg install mesa-dri
+   189	19:48	kldstat | grep -E "drm|i919"
+   190	19:49	vim /etc/X11/xorg.conf
+   191	19:56	pkg instal libgl
+   192	19:56	pkg install libgl
+   193	19:57	portmaster
+   194	20:00	pkg install xdri
+   195	20:00	pkg update xdri
+   196	20:01	pkg upgrade xdri
+   197	20:01	pkg upgrade dri
+   198	20:01	pkg install dri
+   199	20:02	pkg install mesa
+   200	20:02	pkg install mesa-demo
+   201	20:03	pkg install mesa-demos
+   202	20:03	exit
+   203	20:38	vim /boot/loader.conf
+   204	20:40	pkg install compton
+   205	20:41	exit
+   206	21:54	pkg install xorgproto
+   207	21:54	pkg install orgproto
+   208	21:55	pkg install xorgproto
+   209	21:55	portmaster -aD
+   210	21:57	pkg install x11/xorgproto
+   211	21:57	pkg install x11/xorgproto
+   212	21:57	pkg install X11/xorgproto
+   213	21:57	pkg install x11/Xorgproto
+   214	21:57	pkg install xorgproto
+   215	22:00	exit
+   216	22:02	portmaster -aD
+   217	22:04	cd /usr/ports/
+   218	22:04	ls
+   219	22:04	cd x11-drivers/
+   220	22:04	ls
+   221	22:05	cd xorg-drivers/
+   222	22:05	ls
+   223	22:05	make install
+   224	22:06	make install
+   225	22:06	make install
+   226	22:07	make clean
+   227	22:07	make install
+   228	22:07	make clean
+   229	22:08	ls
+   230	22:09	make
+   231	22:09	make rebuild
+   232	22:09	rebuild
+   233	22:10	vim Makefile
+   234	22:11	ls
+   235	22:11	make clean
+   236	22:12	ls
+   237	22:12	cd ..
+   238	22:12	ls
+   239	22:12	vim xf86-input-mutouch/
+   240	22:12	ls
+   241	22:12	cd ..
+   242	22:12	ls
+   243	22:13	cd sysutils/
+   244	22:13	ls
+   245	22:13	lsof/
+   246	22:13	ls
+   247	22:13	cd lsf
+   248	22:13	cd lsof/
+   249	22:13	ls
+   250	22:13	make install
+   251	22:14	pkg install portupgrade
+   252	22:15	portupgrade -R firefox
+   253	22:19	cd ..
+   254	22:19	ls
+   255	22:20	ls
+   256	22:20	cd ..
+   257	22:20	ls
+   258	22:21	cd x11
+   259	22:21	ls
+   260	22:21	cd nvidia-driver
+   261	22:21	ls
+   262	22:49	pkgdb -F
+   263	22:49	pkg check
+   264	23:27	pkg install jdiskreport
+   265	23:30	hd
+   266	23:33	exit
+   267	23:49	make install
+   268	23:50	ls
+   269	23:50	make clean
+   270	23:50	mkd reinstall
+   271	23:51	make reinstall
+   272	23:51	make clean
+   273	23:51	cd ..
+   274	23:51	ls
+   275	23:51	cd ..
+   276	23:51	cd x11-drivers/
+   277	23:51	ls
+   278	23:51	cd xorg-drivers/
+   279	23:51	ls
+   280	23:51	make install
+   281	23:52	make clean
+   282	23:52	cd ..
+   283	23:52	cd ..
+   284	23:52	ls
+   285	23:52	cd x11
+   286	23:52	ls
+   287	23:52	cd nvidia-
+   288	23:52	cd nvidia-driver
+   289	23:52	ls
+   290	23:52	portupgrade -R nvidia-driver
+   291	23:53	pkgdb -F
+   292	23:53	pkg check
+   293	23:53	pkg help check
+   294	0:04	hd
+   295	0:05	portupgrade -R xorg-server
+   296	0:06	portsclean -D
+   297	0:07	cd ..
+   298	0:07	ls
+   299	0:07	cd xorg
+   300	0:07	ls
+   301	0:07	cd ..
+   302	0:07	ls
+   303	0:07	cd nvidia-
+   304	0:07	cd nvidia-driver
+   305	0:07	ls
+   306	0:07	make install
+   307	0:08	make clean
+   308	0:08	exit
+   309	0:08	pkg help check
+   310	0:08	pkg check -Ba
+   311	0:08	exit
+   312	0:09	exit
+   313	0:10	exit
+   314	0:13	portmaster --clean-distfiles
+   315	0:14	exut
+   316	0:14	exit
+   317	0:23	vin /etc/rc.conf
+   318	0:23	vim /etc/X11/xorg.conf
+   319	0:24	vim /etc/X11/xorg.conf
+   320	0:24	vim /etc/X11/xorg.conf
+   321	0:24	exit
+   322	8:10	portmaster -af
+   323	10:55	pkg delete x86driproto
+   324	10:56	pkg remove x86driproto
+   325	10:56	pkg remove xf86driproto
+   326	10:56	portmaster -af
+   327	11:15	pkg remove xexproto
+   328	11:16	pkg delete xexproto
+   329	11:16	pkg search xexproto
+   330	11:16	less /tmp/portmasterfail.txt
+   331	11:16	less /tmp/portmasterfail.txt
+   332	11:16	less /tmp/portmasterfail.txt
+   333	11:16	less /tmp/portmasterfail.txt
+   334	11:17	pkg search
+   335	11:17	pkg search "xexproto"
+   336	11:17	pkg search "*xexproto*"
+   337	11:17	pkg -S "xexproto"
+   338	11:18	pkg seaach -S "xexproto"
+   339	11:18	pkg search -S "xexproto"
+   340	11:18	pkg remove xexproto
+   341	11:18	pkg remove xex
+   342	11:18	man pkg
+   343	11:20	pkg delete xexproto
+   344	11:21	pkg delete xextproto
+   345	11:21	portmaster -af
+   346	11:43	pkg delete printproto
+   347	11:43	portmaster -af
+   348	12:01	pkg delete inputproto
+   349	12:02	pkg delete -x proto
+   350	12:07	portmaster -af
+   351	19:05	startx
+   352	19:08	mand portmaster
+   353	19:08	man portmaster
+   354	19:09	less /tmp/portmasterfail.txt
+   355	19:09	cat /tmp/portmasterfail.txt
+   356	19:09	cp /tmp/portmasterfail.txt .
+   357	19:09	vim portmasterfail.txt
+   358	19:09	vi portmasterfail.txt
+   359	19:11	cat /tmp/portmasterfail.txt
+   360	19:11	vi portmasterfail.txt
+   361	19:12	exec `echo portmasterfail.txt`
+   362	19:12	exec echo portmasterfail.txt
+   363	19:12	exec `cat portmasterfail.txt`
+   364	19:13	cat portmasterfail.txt
+   365	19:13	cat portmasterfail.txt
+   366	19:13	vi portmasterfail.txt
+   367	19:13	exec cat portmasterfail.txt
+   368	19:14	exec `cat portmasterfail.txt`
+   369	19:14	vi portmasterfail.txt
+   370	19:14	exec `cat portmasterfail.txt`
+   371	19:14	vi portmasterfail.txt
+   372	19:14	exec `cat portmasterfail.txt`
+   373	19:19	man portmasterfail.txt
+   374	19:19	man portmaster
+   375	19:20	vi portmasterfail.txt
+   376	19:21	exec `cat portmasterfail.txt`
+   377	20:37	fd
+   378	20:37	sd
+   379	20:37	df
+   380	20:37	df -h
+   381	20:40	portsnap fetch update
+   382	20:41	portsclean -C
+   383	20:41	portsclean -D
+   384	20:42	portsclean -DD
+   385	20:42	df -h
+   386	20:42	portmaster --clean-distfiles
+   387	20:42	df -h
+   388	20:42	exit
+   389	20:47	cd /usr/ports/
+   390	20:48	ls
+   391	20:48	find . -name "xfce"
+   392	20:49	find . -name "xfce*"
+   393	20:49	cd x11-wm/
+   394	20:49	ls
+   395	20:49	cd xfce4
+   396	20:49	ls
+   397	20:49	cd ..
+   398	20:49	cd ..
+   399	20:49	cd
+   400	20:50	portmaster -R x11/nvidi-driver
+   401	20:50	portmaster -R x11/nvidia-driver
+   402	21:03	kldload nvidia
+   403	21:04	cd /usr/ports/
+   404	21:04	fin . -name "mesa-demos"
+   405	21:04	find . -name "mesa-demos"
+   406	21:05	find . -name "emacs"
+   407	21:05	portmaster -R editors/emacs
+   408	21:24	exit
+   409	21:30	cd
+   410	21:30	portmaster -R x11-wm/xfce4
+   411	21:31	ls
+   412	21:31	cd /home/rosemary
+   413	21:31	ls
+   414	21:31	cat drm_dri
+   415	21:32	cat libgl.error
+   416	21:32	cat libgl.too.old.2
+   417	21:33	xdriinfo
+   418	21:34	cd /usr/ports/
+   419	21:34	find . -name "xdri"
+   420	21:34	find . -name "dri"
+   421	21:34	find . -name "xdri"
+   422	21:34	find . -name "xddri"
+   423	21:35	find . -name "asi"
+   424	21:35	find . -name "asadsi"
+   425	21:35	find . -name "kae3asadsi"
+   426	21:35	find . -name "zqqkae3asadsi"
+   427	21:35	find . -name "*sad*
+   428	21:35	find . -name "*sad*"
+   429	21:35	find . -name "*dri*"
+   430	21:35	cd x11-drivers/
+   431	21:35	ls
+   432	21:36	cd ..
+   433	21:36	ls
+   434	21:36	cd x11-servers/
+   435	21:36	ls
+   436	21:36	portmaster -R x11-wm/xfce4
+   437	4:44	exit
+   438	18:53	portmaster -R xorg-servers/xorg-server
+   439	18:53	portmaster -R x11-servers/xorg-server
+   440	18:55	portmaster -C
+   441	18:55	portmaster -DD
+   442	18:55	portmaster --clean-distfiles
+   443	18:55	portsclean -C
+   444	18:55	portsclean -DD
+   445	18:56	exit
+   446	18:58	portmaster -R x11/xorg
+   447	19:07	exit
+   448	19:10	load i915kms
+   449	19:10	kldload i915kms
+   450	19:10	kldload i915
+   451	19:10	cat /etc/rc.conf
+   452	19:10	kldload drm
+   453	19:10	kldload dxi
+   454	19:11	kldload dmi
+   455	19:11	kldload drm2
+   456	19:11	kldload dri
+   457	19:11	kldload dri2
+   458	19:11	kldload xdi
+   459	19:11	sysrc i915_load="YES"
+   460	19:12	cat /boot/loader.conf
+   461	19:13	ls
+   462	19:13	cat readme.md
+   463	19:13	vi /etc/X11/xorg.conf
+   464	19:13	kldload dri2
+   465	19:13	cd /usr/ports/
+   466	19:13	ls
+   467	19:14	cd x11
+   468	19:14	ls
+   469	19:14	cd ..
+   470	19:14	ls
+   471	19:14	cd x11/dri
+   472	19:14	ls
+   473	19:14	cd x11-drivers/
+   474	19:14	ls
+   475	19:14	portmaster -R x11-drivers/xf86-video-intel
+   476	19:16	kldload dri
+   477	19:18	ls
+   478	19:19	cd xorg-drivers/
+   479	19:19	ls
+   480	19:19	cd ..
+   481	19:19	cd ..
+   482	19:19	ls
+   483	19:19	cd x11
+   484	19:19	ls
+   485	19:19	cd dri3proto/
+   486	19:19	ls
+   487	19:21	cd
+   488	19:21	cd /home/rosemary/
+   489	19:21	ls
+   490	19:21	cat drm_dri
+   491	19:22	exit
+   492	19:24	cd /usr/ports/
+   493	19:24	ls
+   494	19:24	portmaster -R graphics/driconf/
+   495	19:25	portmaster -R graphics/mes
+   496	19:25	portmaster -R graphics/mesa-dri
+   497	19:31	ls
+   498	19:31	cd x11
+   499	19:31	ls
+   500	19:31	cd ..
+   501	19:31	ls
+   502	19:31	fin . -name "mesa-demos"
+   503	19:31	find . -name "mesa-demos"
+   504	19:32	portmaster -R graphics/mesa-demos
+   505	19:35	portsnap fetch update
+   506	19:35	portmaster -R graphics/mesa-demos
+   507	19:36	cd graphics/
+   508	19:36	cd mesa-demos/
+   509	19:36	ls
+   510	19:36	cd ..
+   511	19:36	portmaster --clean-distfiles
+   512	19:36	exit
+   513	19:42	pkg install nvidia-driver
+   514	19:42	pkg install pulseaudio
+   515	19:42	pkg update
+   516	19:43	pkg upgrade
+   517	19:51	xdriinfo
+   518	19:51	exit
+   519	17:37	vim /etc/rc.conf
+   520	17:37	vi /etc/rc.conf
+   521	17:38	kldload polkitd
+   522	17:38	kldload hald
+   523	17:38	vi /etc/rc.conf
+   524	17:38	kldload i915
+   525	17:38	kldload i915kms
+   526	17:38	kldload drm
+   527	17:38	kldload dxi
+   528	17:39	kldload dri
+   529	17:39	man kldload
+   530	17:39	man kldload
+   531	17:40	vim /etc/rc.conf
+   532	17:40	vi /etc/rc.conf
+   533	17:40	vi /boot/loader.conf
+   534	17:40	cd ..
+   535	17:40	exit
+   536	18:42	cd
+   537	18:42	portmaster -R x11/nvidia-driver
+   538	18:49	exit
+   539	19:02	pkg delete pulseduadio
+   540	19:02	pkg delete -x "*pulse*uadio*"
+   541	19:02	pkg delete "*pulse*uadio*"
+   542	19:02	pkg delete pulseaudio
+   543	19:03	vim /etc/X11/xorg.conf
+   544	19:03	vi /etc/X11/xorg.conf
+   545	19:03	kldload drm
+   546	19:03	kldload dri
+   547	19:03	kldload dri2
+   548	19:03	exit
+   549	19:25	vim /etc/X11/xorg.conf
+   550	19:25	exit
+   551	19:43	vim /etc/X11/xorg.conf
+   552	19:47	exit
+   553	19:51	vim /etc/rc.conf
+   554	20:15	kldload uidfix
+   555	20:15	kldload kmod
+   556	20:15	exit
+   557	20:17	vim /etc/rc.conf
+   558	20:18	portsnap fetch update
+   559	20:18	portmaster -R graphics/mesa-libs
+   560	20:20	pkg install mesa-libs
+   561	20:20	pkg install glproto
+   562	20:20	portmaster -R x11/glproto
+   563	20:21	portmaster -R x11/dri3proto
+   564	20:21	portmaster -R x11/libX11
+   565	20:22	portmaster -R x11/libXext
+   566	20:23	portmaster -R x11/linux-c6-xorg-files
+   567	20:23	portmaster -R x11/linux-c6-xorg-libs
+   568	20:24	portmaster -R emulators/linux-base-c6
+   569	20:24	portmaster -R emulators/linux_base-c6
+   570	20:26	portmaster -R multimedia/libvdpau
+   571	20:26	exit
+   572	20:32	portupgrade -f drm-kmod
+   573	20:32	portmaster -R drm-kmod
+   574	20:33	portmaster -R x11-drivers/drm-kmod
+   575	20:33	vim /etc/X11/xorg.conf
+   576	20:33	less /var/log/Xorg.0.log
+   577	20:37	pw groupmod video -m rosemary || pw groupmod wheel -m rosemary
+   578	20:38	xrandr
+   579	20:38	exit
+   580	20:40	mv /etc/X11/xorg.conf /etc/X11/xorg.conf_bu
+   581	20:40	exit
+   582	20:55	vim /etc/X11/xorg.conf_bu
+   583	20:56	nvidia-xconfig
+   584	20:56	nvidia-settings
+   585	20:56	portmaster -R nvidia-xcofig
+   586	20:56	portmaster -R nvidia-xconfig
+   587	20:56	portmaster -R nvidia-configure
+   588	20:56	portmaster -R nvidia-config
+   589	20:59	cd freebsd-on-T530/
+   590	20:59	ls
+   591	20:59	cd X.Window.System/
+   592	20:59	ls
+   593	20:59	cd video-drivers/
+   594	20:59	ls
+   595	20:59	cat re
+   596	20:59	cat readme.md
+   597	20:59	pciconf | grep vga
+   598	20:59	pciconf | grep vga
+   599	20:59	pciconf -lv | grep vga
+   600	21:01	lspci
+   601	21:01	glxinfo
+   602	21:02	ls
+   603	21:02	cd ..
+   604	21:03	ls
+   605	21:03	cd X.Server/
+   606	21:03	ls
+   607	21:03	cat readme.md
+   608	21:04	cd
+   609	21:04	portmaster -R nvidia-settings
+   610	21:04	portmaster -R nvidia-setting
+   611	21:04	portmaster -R x11/nvidia-setting
+   612	21:04	portmaster -R x11/nvidia-settings
+   613	21:05	nvidia-xconfigure
+   614	21:05	nvidia-xconfig
+   615	21:05	exit
+   616	12:57	pkg update
+   617	12:57	pkg upgrade
+   618	12:58	ls
+   619	12:58	historz
+   620	12:58	history
+   621	12:58	history > history_aug18
+   622	12:58	less history_aug18
+   623	12:59	portsnap fetch update
+   624	13:00	portmaster -help
+   625	13:00	portmaster -a
+   626	16:38	less history_aug18
+   627	16:41	portsclean -C
+   628	16:41	portsclean -DD
+   629	16:44	portmaster --clean-distfiles
+   630	16:44	exit
+   631	16:58	pkg install chromiom
+   632	16:58	pkg install chromium
+   633	17:00	pkg install chromium
+   634	17:00	pkg install firefoz
+   635	17:00	pkg install firefox
+   636	17:21	exit
+   637	15:32	/etc/rc.d/moused start
+   638	15:33	exit
+   639	15:49	vim /etc/rc.conf
+   640	15:51	/etc/rc.d/moused restart
+   641	15:51	root@scuba:/home/rosemary #
+   642	15:51	df
+   643	15:52	root@scuba:/home/rosemary # root@scuba:/home/rosemary # root@scuba:/home/rosemary # root@scuba:/home/rosemary # root@scuba:/home/rosemary # root@scuba:/home/rosemary #
+   644	15:52	root@scuba:/home/rosemary #
+   645	15:53	exit
+   646	22:47	cp /home/rosemary/freebsd-on-T530/X.Window.System/X.Server/etc_X11_xorg.conf xorg.conf
+   647	22:47	ls
+   648	22:47	vi xorg.conf
+   649	22:47	vi xorg.conf
+   650	22:48	cd
+   651	22:48	ls
+   652	22:48	cd /home/rosemary/
+   653	22:48	ls
+   654	22:48	ls
+   655	22:48	cat xorgconfiguide
+   656	22:49	vim /etc/X11/xorg.conf
+   657	22:49	vi /etc/X11/xorg.conf
+   658	22:49	ls
+   659	22:49	cat xorgconfiguide
+   660	22:49	vi /etc/X11/xorg.conf
+   661	22:50	ls
+   662	22:50	cat xfceconfguide
+   663	22:50	vi /etc/X11/xorg.conf
+   664	22:50	ls
+   665	22:50	exit
+   666	21:43	pkg install glxgears
+   667	21:43	pkg install glxinfo
+   668	21:44	less /var/log/Xorg.0.log
+   669	21:50	exit
+   670	22:31	vim /etc/X11/xorg.conf
+   671	22:34	vim /etc/X11/xorg.conf
+   672	22:34	vim /etc/X11/xorg.conf
+   673	22:35	emacs /etc/X11/xorg.conf
+   674	22:35	cd .emacs.d/
+   675	22:35	ls
+   676	22:35	cd distel
+   677	22:35	ls
+   678	22:35	cat README
+   679	22:35	vim README
+   680	22:36	vim INSTALL
+   681	22:36	ls
+   682	22:36	make
+   683	22:36	. release.sh
+   684	22:36	vim INSTALL
+   685	22:37	make -e install
+   686	22:38	vim .emacs
+   687	22:38	cd ..
+   688	22:38	cd ..
+   689	22:38	vim .emacs
+   690	22:39	ls
+   691	22:39	cd .emacs.d/
+   692	22:39	ls
+   693	22:39	cd distel
+   694	22:39	ls
+   695	22:39	make -e install
+   696	22:44	exit
+   697	23:21	cd /etc/X11/xorg.conf.d/
+   698	23:21	ls
+   699	23:21	vim 10-nvidia.conf
+   700	23:21	exit
+   701	0:42	vim /etc/X11/xorg.conf
+   702	0:42	ls
+   703	0:42	cd /etc/X11/
+   704	0:42	ls
+   705	0:42	cp xorg.conf xorg.conf_backupSep18
+   706	0:43	cd /~~~~~~~~~~~~~nvidia-configure
+   707	0:43	cd
+   708	0:43	cd /usr/ports/
+   709	0:43	lks
+   710	0:43	lks
+   711	0:43	ls
+   712	0:43	cd x11-drivers/
+   713	0:43	ls
+   714	0:43	cd xorg-drivers/
+   715	0:43	ls
+   716	0:43	cd ..
+   717	0:43	cd ..
+   718	0:43	ls
+   719	0:43	find . -maxdepth 5 -name 'nvidia-configure'
+   720	11:44	service hald status
+   721	12:23	cd /usr/ports/
+   722	12:23	find . -maxdepth 3 -name "vlc"
+   723	12:24	portmaster -R multimedia/vlc
+   724	14:33	echo "                                                                                " > lastmessage.md
+   725	14:33	Qt 4 can be built with optional support for:
+   726	14:33	- Common UNIX Printing System ( CUPS ) ( enabled by default )
+   727	14:33	- Network Audio System ( NAS )
+   728	14:33	- Qt style that renders using GTK ( QGTKSTYLE )
+   729	14:33	In order to enable them, you have to add
+   730	14:33	QT4_OPTIONS= CUPS NAS QGTKSTYLE
+   731	14:33	to your /etc/make.conf and compile devel/qt4-corelib and
+   732	14:33	x11-toolkits/qt4-gui ports.
+   733	14:33	Attention! Whenever you change the QT4_OPTIONS both
+   734	14:33	devel/qt4-corelib and x11-toolkits/qt4-gui ports must be rebuilt!
+   735	14:33	vim lastmessage.md
+   736	14:33	mv lastmessage.md /home/rosemary/
+   737	14:33	exit
+   738	14:36	portmaster -R multimedia/vlc
+   739	14:37	pkg install vlc
+   740	14:38	pkg install vlc
+   741	14:44	cd /usr/ports/ multimedia/vlc
+   742	14:44	cd /usr/ports/multimedia/vlc
+   743	14:44	ls
+   744	14:44	make clean install
+   745	14:46	portsnap fetch update
+   746	14:46	portsnap fetch
+   747	14:46	portsnap update
+   748	14:47	portsnap extract
+   749	14:51	make clean install
+   750	14:51	make clean install
+   751	14:51	cd ..
+   752	14:51	cd ..
+   753	14:51	exit
+   754	14:54	portmaster -R multimedia/vlc
+   755	14:55	portupgrade --help
+   756	14:56	portupgrade
+   757	14:57	portupgrade vlc
+   758	14:57	portupgrade multimedia/vlc
+   759	14:57	portmaster -R multimedia/vlc
+   760	14:57	cd multimedia/vlc
+   761	14:57	make clean install
+   762	14:57	pkg delete vlc
+   763	15:11	make config
+   764	15:23	make clean install
+   765	15:28	exit
+   766	15:33	pkg install wget
+   767	15:33	wget https://fhg.sexart.com/mtsets/C443EC5887D799C45157A168C344B90B/SA_20180713_Glimmer_01_Gisha-Forza-Melissa-Benz_1984x1116_02min_00sec.mp4
+   768	15:35	vlc SA_20180713_Glimmer_01_Gisha-Forza-Melissa-Benz_1984x1116_02min_00sec.mp4
+   769	15:35	eit
+   770	15:35	ezit
+   771	15:35	exit
+   772	19:02	ls
+   773	19:02	rm SA_20180713_Glimmer_01_Gisha-Forza-Melissa-Benz_1984x1116_02min_00sec.mp4
+   774	19:02	exit
+   775	20:55	kldload vesa
+   776	20:55	exit
+   777	21:46	vidfont
+   778	21:47	vidfont
+   779	21:47	vidfont
+   780	21:47	vidfont
+   781	18:08	vim /etc/X11/xorg.conf
+   782	20:39	cd /root/.emacs.d/
+   783	20:39	ls
+   784	20:39	ls
+   785	20:39	cd ..
+   786	20:39	ls
+   787	20:39	cd
+   788	20:41	exit
+   789	21:04	exit
+   790	21:28	vim /etc/rc.conf
+   791	21:28	ls
+   792	21:29	vim sysconsconf
+   793	21:29	vim /boot/device.hints
+   794	21:29	vim /boot/device.hints
+   795	21:30	sudo vim
+   796	21:30	su vim
+   797	21:30	vim /boot/loader.conf
+   798	21:31	cd /usr/ports/
+   799	21:31	find . -maxdepth 4 -name "*vesa*"
+   800	21:31	portmaster -R x11-drivers/xf86-video-vesa/
+   801	21:32	exit
+   802	23:00	cat freebsd-on-T530/System.Console/readme.md
+   803	23:00	cd /usr/src/
+   804	23:00	make buildkernel KERNCONF=VESAKERN
+   805	23:29	exit
+   806	18:44	cd /etc/
+   807	18:44	cd X11/
+   808	18:44	ls
+   809	18:44	vim xorg.conf
+   810	18:45	vim xorg.conf
+   811	18:45	vim /etc/rc.conf
+   812	18:45	vim /boot/loader.conf
+   813	21:14	vim /usr/local/etc/X11/xdm/Xsession
+   814	21:14	vim /usr/local/etc/X11/xdm/Xsession.sample
+   815	21:15	vim /usr/local/etc/X11/xdm/xdm-config
+   816	22:12	kldload snd_hda
+   817	22:12	exit
+   818	20:22	vim /etc/ttys
+   819	20:23	exit
+   820	0:40	vim /etc/ttys
+   821	0:41	vim /usr/local/etc/X11/xdm/Xsession
+   822	0:42	vim /usr/local/share/xsessions/xfce.desktop
+   823	0:42	exit
+   824	0:53	service slim onestart
+   825	0:55	ls logwhilestartingupxfce4fromslim
+   826	0:55	vim logwhilestartingupxfce4fromslim
+   827	0:57	vim /usr/local/etc/slim.conf
+   828	0:58	vim /etc/ttys
+   829	0:58	vim /usr/local/etc/slim.conf
+   830	0:58	vim /etc/ttys
+   831	1:00	vim /usr/local/etc/slim.conf
+   832	1:01	vim /usr/local/etc/slim.conf
+   833	1:03	vim /usr/local/share/xsessions/xfce.desktop
+   834	1:07	service slim onestart
+   835	1:47	vim /etc/rc.conf
+   836	1:47	service slim start
+   837	16:26	exit
+   838	2:31	kldload aesni
+   839	2:32	dh
+   840	2:32	fd -h
+   841	2:32	hd -f
+   842	2:32	hd -l
+   843	2:32	hd
+   844	2:35	ls /dev/ufssuspend
+   845	2:42	gpart
+   846	2:42	gpart list
+   847	2:42	gpart
+   848	2:43	gpart list -a efi
+   849	2:43	exit
+   850	0:17	mv /usr/home/rosemary/scrap
+   851	0:17	mv /home/rosemary/scrap/freebsd-1920x1080/ .
+   852	0:17	ls
+   853	0:17	cd ..
+   854	0:17	cd ..
+   855	0:17	cd ..
+   856	0:17	cd etc/
+   857	0:17	ls
+   858	0:17	vim slim.conf
+   859	0:19	cd ..
+   860	0:19	ls
+   861	0:20	cd llvm60/
+   862	0:20	ls
+   863	0:20	cd libexec/
+   864	0:20	ls
+   865	0:20	cd ..
+   866	0:20	ls
+   867	0:20	cd lib
+   868	0:20	ls
+   869	0:21	cd ..
+   870	0:21	ls
+   871	0:21	cd ..
+   872	0:21	ls
+   873	0:21	cd llvm70/
+   874	0:21	ls
+   875	0:21	cd ..
+   876	0:21	ls
+   877	0:22	cd etc/
+   878	0:22	vim slim.conf
+   879	0:29	exit
+   880	21:46	vim /etc/rc.conf
+   881	21:47	vim /etc/rc.conf
+   882	21:48	service netif start
+   883	21:48	service netif restart
+   884	21:48	service netif stop
+   885	21:48	service netif restart
+   886	21:49	kill 74307
+   887	21:49	service netif restart
+   888	21:49	netstat
+   889	21:50	wpa_supplicant -dd
+   890	21:52	poweroff
+   891	10:35	pkg install latex
+   892	10:35	pkg install tex
+   893	10:35	portsnap fetch extract
+   894	10:37	find -maxdepth 3 -name 'tex*'
+   895	10:37	find . -maxdepth 3 -name 'tex*'
+   896	10:38	portsnap fetch update
+   897	10:39	freebsd-update fetch
+   898	10:39	portmaster -R print/textlive-base
+   899	10:40	portmaster -R print/texlive-base
+   900	10:41	portmaster -R print/texlive-base
+   901	10:48	portmaster japanese/fcitx-mozc
+   902	10:49	pkg update
+   903	10:49	pkg upgrade
+   904	10:49	~
+   905	10:49	portmaster japanese/fcitx-mozc
+   906	10:56	exit
+   907	10:56	exit
+   908	10:56	exxit
+   909	10:56	exit
+   910	11:11	pkg install ja-font-sazanami
+   911	11:11	pkg install ja-font-kocji
+   912	11:11	pkg install ja-font-kochi
+   913	11:12	pkg install ja-font-vlgothic
+   914	11:12	pkg install hanazono-fonts-ttf
+   915	11:13	vim /etc/X11/xorg.conf
+   916	11:16	pkg install setxkbmap
+   917	11:21	history
+   918	11:22	exit
+   919	11:28	vim /etc/X11/xorg.conf
+   920	11:30	vim /etc/rc.conf
+   921	11:31	vim /boot/loader.conf
+   922	12:38	exit
+   923	19:34	history > history.root
