@@ -43,3 +43,4 @@ Once done you can continue to set `ttyv8` to `'on'`. As usual, to directly log-o
 3. [FreeBSD Forums](https://forums.freebsd.org)
 4. [FreshPorts](https://freshports.org/x11/nvidia-driver/)
 5. [Forums - Specific Thread](https://forums.freebsd.org/threads/how-to-solving-xorg-with-nvidia-issues-no-screens-found-ee-and-other-nasty-problems-gremlins.64941/)
+6. [Wiki - Tuning Power Comsumption] (https://wiki.freebsd.org/TuningPowerConsumption)
