@@ -7,7 +7,10 @@ This command will include all available firmware drivers
 For more detail: $ man iwn
 
 Then, let's find out the firmware of your network device
-The device listed upon command # pciconf -lv
+The device listed upon command # pciconf -lv | grep device
+
+device     = 'Centrino Advanced-N 6205 [Taylor Peak]'
+
 
 # cd /usr/src/sys/modules/iwnfw/iwn6000g2b/
 # make
