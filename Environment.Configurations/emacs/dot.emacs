@@ -58,6 +58,22 @@
 
 (load "~/.emacs.d/emacs-format-all-the-code/format-all.el")
 
+
+;; Image dimensions
+;; Reference: https://www.emacswiki.org/emacs/image-dimensions-minor-mode.el
+;; Display the image dimensions in the mode line, when viewing an image.
+
+(load "~/.emacs.d/image-dimensions/image-dimensions-minor-mode.el")
+(eval-after-load 'image-mode '(require 'image-dimensions-minor-mode))
+
+ (setq frame-title-format
+       '(buffer-file-name
+         ("%b (Emacs) %f" image-dimensions-minor-mode-dimensions)
+         (dired-directory
+          (:eval (concat (buffer-name) " (Emacs) " dired-directory))
+("%b (Emacs)"))))
+
+
 ;; (require 'clang-format)
 ;; (global-set-key (kbd "C-c i") 'clang-format-region)
 ;; (global-set-key (kbd "C-c u") 'clang-format-buffer)
