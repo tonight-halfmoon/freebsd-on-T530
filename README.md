@@ -23,29 +23,14 @@ Check files `cpu_info`, `machine.info` for more details on the subject machine s
 ## Assumption
 FreeBSD Installation is successful and the root password is set and it is online.
 
-## Empirical Post-Intsallation
-
-
-## BIOS's Display Configurations for UNIX and LINUX
+## BIOS's Display Configurations
 
 1. Graphics Device: Discrete Graphics
 2. OS Detection for NVIDIA Optimus: Disabled
 
-
-### The output of these steps
+## This Experience 
 
 > To logon a FreeBSD onto a Xfce4 session on ThinkPad T530 with graphics driven by NVIDIA card
-
-
-### Overview
-
-> The steps are organised in mainly 3 folders. Starting by [`X.Server`](./X.Server) and then [`X.driver`](./X.driver). 
-
-The two cardinal files resulted in these steps are found in folder [`System.conf`](./System.conf). And finally, [`xfce`](/xfce).
-
-A complete list is in [`one`](./one/readme.md).
-
-Once done you can continue to set `ttyv8` to `'on'`. As usual, to directly log-on to your Xfce4 graphical platform.
 
 
 ## References:
