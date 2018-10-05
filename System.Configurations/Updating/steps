@@ -1,0 +1,50 @@
+```
+# portstap fetch update
+# portsnap extract
+# portsnap update
+# portmaster -aD
+# pkg check -Ba
+# portmaster -a
+```
+
+```
+# pkg update
+# pkg upgrade
+
+```
+## Reference:
+0. https://www.freebsd.org/doc/handbook/ports-using.html
+0. https://forums.freebsd.org/threads/not-able-to-build-gnupg.52242/
+
+```
+#cd /usr/ports/sysutils/lsof
+#make install
+```
+portmaster --clean-distfiles
+portsclean -C
+portsclean -DD
+delete many packages at once with regX
+pkg delete -R '*proto-*'a
+
+```
+# Upgrade a package
+# portupgrade -R firefox
+```
+
+
+##  EoF of FreeBSD release 11.1 
+
+
+No updates needed to update system to 11.1-RELEASE-p15.
+
+WARNING: FreeBSD 11.1-RELEASE-p15 HAS PASSED ITS END-OF-LIFE DATE.
+
+
+Threfore, the system is upgraded to release 11.2 as follows
+
+
+```
+ # freebsd-update upgrade -r 11.2
+
+```
+

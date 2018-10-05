@@ -6,6 +6,13 @@ Experience in FreeBSD -- Setup (Post-Installation) on ThinkPad T530 and Daily Us
 
 On ThinkPad T530 which configured with NVIDIA Optimus, it is necessary to set the right configurations in BIOS.
 
+## FreeBSD Release
+
+Release 11.1 is originally installed and then the system is upgraded to release 11.2.
+The EoL of release 11.2 is 11.3-Release + 3 months as published on [FreeBSD Security Information](https://www.freebsd.org/security/security.html#sup).
+
+Check folder Updating in this repository to see how it is upgraded to release 11.2. 
+
 ## Machine Specifications
 The subject machine has the following specifications
 ```
