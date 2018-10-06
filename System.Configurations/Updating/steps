@@ -42,9 +42,19 @@ WARNING: FreeBSD 11.1-RELEASE-p15 HAS PASSED ITS END-OF-LIFE DATE.
 
 Threfore, the system is upgraded to release 11.2 as follows
 
+```
+# freebsd-update fetch
+```
+Failed since EoL has expired on release 11.1. Then, I did the following
 
 ```
  # freebsd-update upgrade -r 11.2
 
+ # freebsd-update install
 ```
+
+Installing updates...
+Kernel updates have been installed.  Please reboot and run
+"/usr/sbin/freebsd-update install" again to finish installing updates.
+
 
