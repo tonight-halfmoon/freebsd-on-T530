@@ -1,9 +1,16 @@
 
-Before making a release update, make sure to save yourself from a long time waste. First, check on Freshports.org whether Nvidia driver got a new version than the one installed for the current release installed.
+Before making a release update, make sure to save yourself from a long time waste. 
+
+
+First, read the release notes of the target release. In this case, [FreeBSD 11.2-RELEASE Release Notes](https://www.freebsd.org.releases/11,2R/relnotes.html).
+
+Second, check on Freshports.org whether Nvidia driver got a new version than the one installed for the current release installed.
 
 In case you need to modify certain files like `/etc/ttys` after updating.
 
+```
 ? boot -s
+```
 
 ```
 # fsck -y
