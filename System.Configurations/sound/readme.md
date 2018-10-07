@@ -10,6 +10,17 @@ In case you are interested to identify the installed device card and load its dr
 ```
 $ cat /dev/sndstat
 ```
+Output>
+```
+Installed devices:
+pcm0: <NVIDIA GT440 (HDMI/DP 8ch)> (play)
+pcm1: <NVIDIA GT440 (HDMI/DP 8ch)> (play)
+pcm2: <NVIDIA GT440 (HDMI/DP 8ch)> (play)
+pcm3: <NVIDIA GT440 (HDMI/DP 8ch)> (play)
+pcm4: <Realtek ALC269 (Analog 2.0+HP/2.0)> (play/rec) default
+pcm5: <Realtek ALC269 (Internal Analog Mic)> (rec)
+No devices installed from userspace.
+```
 
 From the list shown of the output you get the sound card name
 
