@@ -1,0 +1,10 @@
+
+```
+$ kbdcontrol -b quiet.off
+```
+
+For permanent configuration in file `/etc/rc.conf` add the following line
+
+```
+allscreen_kbdflags="-b quiet.off"
+```
