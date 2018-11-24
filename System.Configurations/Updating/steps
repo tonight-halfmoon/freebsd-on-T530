@@ -2,6 +2,7 @@
 # portstap fetch update
 # portsnap extract
 # portsnap update
+# portmaster -ady --no-confirm
 # portmaster -aD
 # pkg check -Ba
 # portmaster -a
@@ -57,4 +58,7 @@ Installing updates...
 Kernel updates have been installed.  Please reboot and run
 "/usr/sbin/freebsd-update install" again to finish installing updates.
 
+pkg_deinstall name
+/usr/ports/name make deinstall
 
+pkg autoremove
