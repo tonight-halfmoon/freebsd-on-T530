@@ -14,6 +14,8 @@
 
 # vidcontrol cyan black
 
+setenv TERM "xterm-color"
+
 alias h		history 10000
 alias j		jobs -l
 alias la	ls -aF
@@ -32,11 +34,11 @@ setenv	BLOCKSIZE	G
 
 # Reference: http://www.ibb.net/~anne/keyboard.html
 # Reference: https://lists.freebsd.org/pipermail/freebsd-questions/2004-July/054180.html
-#bindkey "^?" delete-char
-#ibindkey "\e[3~" delete-char
+#bindkey "^?" delete-char # for Console
+#bindkey "^[[3~" delete-char # for xterm
+#bindkey "\e[3~" delete-char
 #bindkey "\e[1~" beginning-of-line
-#bindkey "\e[4~" end-of-line
-bindkey "^[[3~" delete-char
+bindkey "\e[4~" end-of-line
 bindkey "^R" history-search-backward
 
 setenv CLICOLOR		1
