@@ -1,3 +1,10 @@
+
+
+
+# Commands related to maintain FreeBSD and system packages and apps
+
+## Update & Install packages
+
 ```
 # portstap fetch update
 # portsnap extract
@@ -6,6 +13,7 @@
 # portmaster -aD
 # pkg check -Ba
 # portmaster -a
+
 ```
 
 ```
@@ -13,13 +21,18 @@
 # pkg upgrade
 
 ```
+
 ## Reference:
 0. https://www.freebsd.org/doc/handbook/ports-using.html
 0. https://forums.freebsd.org/threads/not-able-to-build-gnupg.52242/
 
+
 ```
 #cd /usr/ports/sysutils/lsof
 #make install
+```
+
+## Clean up 
 ```
 portmaster --clean-distfiles
 portsclean -C
@@ -28,11 +41,16 @@ delete many packages at once with regX
 pkg delete -R '*proto-*'a
 
 ```
+
+## Upgrade certain package 
+
+```
 # Upgrade a package
 # portupgrade -R firefox
 ```
 
 
+## Updating FreeBSD 
 ##  EoF of FreeBSD release 11.1 
 
 
@@ -46,7 +64,9 @@ Threfore, the system is upgraded to release 11.2 as follows
 ```
 # freebsd-update fetch
 ```
+
 Failed since EoL has expired on release 11.1. Then, I did the following
+
 
 ```
  # freebsd-update upgrade -r 11.2
@@ -58,7 +78,19 @@ Installing updates...
 Kernel updates have been installed.  Please reboot and run
 "/usr/sbin/freebsd-update install" again to finish installing updates.
 
-pkg_deinstall name
-/usr/ports/name make deinstall
 
-pkg autoremove
+## Uninstall/Deinstall packages
+
+1. Method 1
+```
+# pkg_deinstall name
+
+2. Method 2
+# /usr/ports/name make deinstall
+```
+
+## Fix broken apps when they depend on packages has been removed
+```
+# pkg autoremove
+```
+
