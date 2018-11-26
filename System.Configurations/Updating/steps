@@ -91,6 +91,13 @@ Kernel updates have been installed.  Please reboot and run
 
 ## Fix broken apps when they depend on packages has been removed
 ```
+# pkg update -f
+
+# pkg check -a -d
+```
+
+## Autoremove left-over packages
+```
 # pkg autoremove
 ```
 
