@@ -28,7 +28,7 @@
  '(ansi-color-names-vector
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(custom-enabled-themes (quote (tsdh-dark)))
- '(package-selected-packages (quote (whitespace-cleanup-mode kotlin-mode))))
+ '(package-selected-packages (quote (company whitespace-cleanup-mode kotlin-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -40,3 +40,6 @@
 ;; M-x package-install RET whitespace-cleanup-mode RET
 (require 'whitespace-cleanup-mode)
 (global-whitespace-cleanup-mode t)
+
+;; Company-mode
+(add-hook 'after-init-hook 'global-company-mode)
