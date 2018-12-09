@@ -6,15 +6,37 @@
 ## Update & Install packages
 
 ```
-# portstap fetch update
+# portsnap fetch update
 # portsnap extract
 # portsnap update
 # portmaster -ady --no-confirm
+;; **
 # portmaster -aD
 # pkg check -Ba
 # portmaster -a
 
 ```
+
+** When something goes wrong with a package then try the following
+
+```
+# portmaster -w -r package-name
+```
+In case the command with optin -r does not work try without it, as follows:
+
+```
+# portmaster -w package-name
+```
+
+Find out the reason of failure. If that is because of packages conflict, the deinstall the other package which the cause.
+Sometimes, it may even need to deinstall the package first. Then, try again.
+
+Then, to continue the full update. Try with the following
+
+```
+# portmaster -afR --no-confirm
+```
+
 
 ```
 # pkg update
