@@ -28,7 +28,9 @@
  '(ansi-color-names-vector
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(custom-enabled-themes (quote (tsdh-dark)))
- '(package-selected-packages (quote (company whitespace-cleanup-mode kotlin-mode))))
+ '(package-selected-packages
+   (quote
+    (scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -43,3 +45,21 @@
 
 ;; Company-mode
 (add-hook 'after-init-hook 'global-company-mode)
+
+;; Erlang Mode
+(setq load-path (cons "/usr/local/lib/erlang/lib/tools-2.9.1/emacs" load-path))
+(setq erlang-root-dir "/usr/local/lib/erlang")
+(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+(require 'erlang-start)
+
+;; Distel
+(add-to-list 'load-path "~/.emacs.d/distel/elisp")
+(require 'distel)
+(distel-setup)
+
+;; Flycheck-mode
+(global-flycheck-mode t)
+(add-hook 'after-init-hook 'global-company-mode)
+
+(provide '.emacs)
+;;; .emacs ends here
