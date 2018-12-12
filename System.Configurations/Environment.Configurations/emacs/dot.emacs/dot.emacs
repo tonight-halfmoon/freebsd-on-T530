@@ -1,4 +1,3 @@
-
 ;;; package --- Summary:
 
 ;;; Commentary:
@@ -19,7 +18,6 @@
     (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -38,7 +36,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(mode-line-buffer-id ((t (:background "black" :foreground "green" :weight bold :height 0.9)))))
 
 ;; whitespace-cleanup-mode
 ;; M-x package-install RET whitespace-cleanup-mode RET
@@ -62,6 +60,12 @@
 ;; Flycheck-mode
 (global-flycheck-mode t)
 (add-hook 'after-init-hook 'global-company-mode)
+
+(set-face-background 'mode-line "purple")
+(set-face-foreground 'mode-line "black")
+
+;; Global Keys
+(global-set-key (kbd "M-0") 'kill-whole-line)
 
 (provide '.emacs)
 ;;; .emacs ends here
