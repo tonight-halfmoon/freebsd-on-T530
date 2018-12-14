@@ -8,11 +8,13 @@
 #
 #
 
-setenv XMODIFIERS @im=fcitx
-setenv GTK_IM_MODULE fcitx
-setenv GTK3_IM_MODULE fcitx
+#setenv XMODIFIERS @im=fcitx
+#setenv GTK_IM_MODULE fcitx
+#setenv GTK3_IM_MODULE fcitx
 
 # vidcontrol cyan black
+
+#setenv TERM "xterm-color"
 
 alias h		history 10000
 alias j		jobs -l
@@ -20,6 +22,7 @@ alias la	ls -aF
 alias lf	ls -FA
 alias ll	ls -lAF
 alias ls	ls -FG
+alias al	ls -al
 
 # These are normally set through /etc/login.conf.  You may override them here
 # if wanted.
@@ -32,18 +35,18 @@ setenv	BLOCKSIZE	G
 
 # Reference: http://www.ibb.net/~anne/keyboard.html
 # Reference: https://lists.freebsd.org/pipermail/freebsd-questions/2004-July/054180.html
-#bindkey "^?" delete-char
-#ibindkey "\e[3~" delete-char
+#bindkey "^?" delete-char # for Console
+#bindkey "^[[3~" delete-char # for xterm
+#bindkey "\e[3~" delete-char
 #bindkey "\e[1~" beginning-of-line
-#bindkey "\e[4~" end-of-line
-bindkey "^[[3~" delete-char
+bindkey "\e[4~" end-of-line
 bindkey "^R" history-search-backward
 
 setenv CLICOLOR		1
 
 setenv LSCOLORS "GxCxgxdxGxegedaCagacad"
 
-setenv	EDITOR	emacs #vi
+setenv	EDITOR	vi
 setenv	PAGER	more
 setenv  TITLE   "%{\e]0;%~\007%}"
 
