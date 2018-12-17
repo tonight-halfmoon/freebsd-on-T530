@@ -7,8 +7,7 @@
 
 ```
 # portsnap fetch update
-# portsnap extract
-# portsnap update
+# portsnap fetch extract
 # portmaster -ady --no-confirm
 ;; **
 # portmaster -aD
@@ -56,11 +55,11 @@ Then, to continue the full update. Try with the following
 
 ## Clean up 
 ```
-portmaster --clean-distfiles
-portsclean -C
-portsclean -DD
-delete many packages at once with regX
-pkg delete -R '*proto-*'a
+# portmaster --clean-distfiles -y
+# portsclean -C
+# portsclean -DD
+--> to delete many packages at once with regX
+# pkg delete -R '*proto-*'a
 
 ```
 
