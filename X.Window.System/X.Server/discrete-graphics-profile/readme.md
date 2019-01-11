@@ -103,3 +103,7 @@ By now, you must be logged to the default X Display Manager. Log out and continu
 
 ```
 
+13. Compiz Fusion
+
+check [Compiz](../../compiz-fusion)
+
