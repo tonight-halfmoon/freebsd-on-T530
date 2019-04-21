@@ -122,3 +122,15 @@ Kernel updates have been installed.  Please reboot and run
 # pkg autoremove
 ```
 
+
+## Fix update 
+
+```
+pkg-static upgrade -f
+```
+
+```
+3 portmast -afG
+```
+
+
