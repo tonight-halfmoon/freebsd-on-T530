@@ -130,7 +130,16 @@ pkg-static upgrade -f
 ```
 
 ```
-3 portmast -afG
+# portmast -afG
+```
+```
+# freebsd-update fetch
 ```
 
+```
+# freebsd-update install
+```
 
+# References
+
+0. FreeBSD Handbook Section "Freebsdupdate-portsbuild" in "updating-upgrading-freebsdupdate"
