@@ -34,3 +34,7 @@ hint.attimer.0.port="0x40"
 hint.attimer.0.irq="0"
 hint.acpi_throttle.0.disabled="1"
 hint.p4tcc.0.disabled="1"
+hint.hdaa.1.nid20.config="as=2 seq=0 device=Speaker conn=Fixed ctype=Analog loc=Internal"
+hint.hdaa.0.nid21.config="as=2 seq=15 device=Headphones conn=Jack"
+hint.pcm.0.vol="70"
+

@@ -39,7 +39,7 @@ ifconfig_wlan0=WPA SYNCDHCP
 ```
 ifconfig wlan0 list scan
 ```
-ifconfig wlan0 ssid WLAN1-7Y75QH
+ifconfig wlan0 ssid WLAN1-5G-7Y75QH
 ```
 service netif restart
 ```

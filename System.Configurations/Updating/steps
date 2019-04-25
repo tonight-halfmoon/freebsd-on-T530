@@ -5,6 +5,10 @@
 
 ## Update & Install packages
 
+
+```
+# portupgrade -ra
+
 ```
 # portsnap fetch update
 # portsnap fetch extract
@@ -140,6 +144,9 @@ pkg-static upgrade -f
 # freebsd-update install
 ```
 
+```
+# portupgrade -ra
+```
 # References
 
 0. FreeBSD Handbook Section "Freebsdupdate-portsbuild" in "updating-upgrading-freebsdupdate"
