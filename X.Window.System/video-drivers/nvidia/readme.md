@@ -15,3 +15,6 @@ kldload agp
 ```
 
 It is already loaded.
+
+
+Full experience with Nvidia requires "Compiz Fusion"
