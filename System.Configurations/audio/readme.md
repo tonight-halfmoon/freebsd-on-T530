@@ -48,3 +48,24 @@ kldload
 # sysctl dev.hdac.0.polling=1
 
 ```
+
+## Solving Issue No Sound in Firefox and Chrome, but in Epiphany works!
+
+. Remove pulseaudio package
+'''
+/usr/ports/audio/pulseaudio# make deinstall clean
+'''
+
+. Make sure the following packages are installed
+1. gstreamer1-plugins-vpx-x.x.x
+2. gstreamer1-plugins-x26xxx
+3. gstreamer1-vaapi-xxx
+
+all in /usr/ports/multimedia
+
+. Make sure that /usr/local/etc/asound.conf.sample is copied over /usr/local/etc/asound.conf
+
+
+## Reference
+
+https://forums.freebsd.org/threads/no-sound-in-firefox.45829
