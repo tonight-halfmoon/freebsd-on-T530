@@ -11,6 +11,7 @@
 ```
 
 > 2. Install Nvidia and Intel Drivers
+ Note: if you prefer installing wiht ports, then replace pkg with make install on each package directory inside /usr/ports
 
 ```
  # pkg install nvidia-driver
