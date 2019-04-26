@@ -10,8 +10,9 @@
 # portupgrade -ra
 
 ```
+# freebsd-update fetch install
 # portsnap fetch update
-# portsnap fetch extract
+# portsnap extract
 # portmaster -ady --no-confirm
 ;; **
 # portmaster -aD
