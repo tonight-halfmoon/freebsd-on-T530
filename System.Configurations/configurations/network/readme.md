@@ -21,9 +21,14 @@ In my case, I was advised to either rebuild the kernel with iwn, or
 update '/boot/loader.conf' to load the driver(s)
 
 ```
-
+check `boot_loader.conf` file provided in this repo
 ```
 
+## Add the necessary configuration to make wlan0 on em0
+```
+check `boot_loader.conf` file provided in this repo
+
+```
 # service dhclient status wlan0
 --> if it is running iwth Pid xxx
 then, stop it 
@@ -33,4 +38,4 @@ then, stop it
 
 # resolveconf -u
 
-# service netif restart
+# service netif restart wlan0
