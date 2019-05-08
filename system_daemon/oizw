@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#
+# PROVIDE: dummy
+# REQUIRE:
+# KEYWORD:
+
+_sleeptime=2 # seconds
+
+oiz_start() {
+    while true; do
+	sleep $_sleeptime
+	python py.py
+    done 
+}
+
+oiz_start
+
+exit 0
+

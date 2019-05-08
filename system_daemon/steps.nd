@@ -1,0 +1,5 @@
+$ python setup bdist_pkg
+
+## Requirements
+- /usr/ports/sysutils/py-setuptools-pkg
+sysrc oiz_enable=YES
