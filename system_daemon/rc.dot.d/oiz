@@ -16,14 +16,12 @@ _sleeptime=3 # seconds
 oiz_start() {
     printf "Your daemon is starting ..."
     while true; do
-		sleep $_sleeptime
-		#python py.py
-		start_poiz
-    done 
+	sleep $_sleeptime
+	#python py.py
+	start_poiz
+    done
 }
 
 load_rc_config ${name}
 
 run_rc_command "$1"
-
-

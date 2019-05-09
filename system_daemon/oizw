@@ -9,11 +9,10 @@ _sleeptime=2 # seconds
 oiz_start() {
     while true; do
 	sleep $_sleeptime
-	python py.py
-    done 
+	python oiz.py
+    done
 }
 
 oiz_start
 
 exit 0
-
