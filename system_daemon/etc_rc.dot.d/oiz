@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# PROVIDE: dummy
+# BEFORE: 
+# REQUIRE: LOGIN
+# KEYWORD:
+
+. /etc/rc.subr
+
+name=oiz
+rcvar=${name}_enable
+
+start_cmd="${name}_start"
+
+_sleeptime=3 # seconds
+#user=${_user:-rosemary}
+user=rosemary
+pid_file="/var/run/${name}.pid"
+daemon_process_title="${name}_proc"
+
+oiz_start() {
+    echo "Your daemon is starting."
+    while true; do
+	sleep $_sleeptime
+	#python py.py
+	#touch ${pid_file} && chown ${user} ${pid_file}
+	/usr/sbin/daemon -p ${pid_file} -t ${daemon_process_title} -u ${user} /usr/local/bin/start_poiz
+	#/usr/sbin/daemon /usr/local/bin/start_poiz
+    done
+}
+
+load_rc_config ${name}
+
+run_rc_command "$1"

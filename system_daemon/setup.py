@@ -15,8 +15,8 @@ setup(name=NAME,
       py_modules=['oiz'],
       setup_requires=["setuptools-pkg"],
       entry_points={
-        'console_scripts': [ 'start_poiz=oiz:oiz_start',
-                             'stop_poiz=py:oiz_stop'
+          'console_scripts': [ 'start_poiz=oiz:oiz_start',
+                              'stop_poiz=py:oiz_stop'
         ]
-      }
+       }
 )
