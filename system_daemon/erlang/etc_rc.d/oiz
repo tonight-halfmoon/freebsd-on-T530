@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+# PROVIDE: dummy
+# BEFORE: 
+# REQUIRE: LOGIN
+# KEYWORD:
+
+. /etc/rc.subr
+
+name=oiz
+rcvar=oiz_enable
+
+start_cmd="${name}_start"
+
+_sleeptime=3 # seconds
+#user=${_user:-rosemary}
+pid_file="/var/run/${name}.pid"
+
+oiz_start() {
+    echo "Your daemon is starting."
+    touch $pid_file
+    /usr/sbin/daemon -cf -p $pid_file /usr/local/oize/oize "start"
+}
+
+load_rc_config $name
+
+run_rc_command "$1"

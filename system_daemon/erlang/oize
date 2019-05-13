@@ -1,0 +1,25 @@
+#!/usr/bin/env escript
+%% -*- erlang -*-
+%%! -pa ./ebin/
+
+-mode(compile).
+-import(oiz_proc, [start/1, stop/0]).
+
+main(["start"=Arg]) ->
+    try
+	Start = list_to_atom(Arg),
+	io:format("Arg ~p~n", [Start]),
+	oiz_proc:start([Start])
+    catch
+	E:D ->
+	    io:format("E:~p; D:~p~n ", [E,D]),
+	    usage()
+    end;
+main(["stop"]) ->
+    oiz_proc:stop();
+main(_) ->
+    usage().
+
+usage() ->
+    io:format("usage: oize 'start'|'stop'", []),
+    halt(1).

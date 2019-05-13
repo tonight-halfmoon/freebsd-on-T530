@@ -148,6 +148,19 @@ pkg-static upgrade -f
 ```
 # portupgrade -ra
 ```
+
+```
+# pkg-static install -f pkg
+```
+
+```
+#  portmaster -ady
+```
+
+```
+# pkg upgrade -f
+```
+
 # References
 
 0. FreeBSD Handbook Section "Freebsdupdate-portsbuild" in "updating-upgrading-freebsdupdate"
