@@ -30,7 +30,7 @@
  '(custom-enabled-themes (quote (manoj-dark)))
  '(package-selected-packages
    (quote
-    (flycheck-pycheckers elpy flycheck-pyflakes scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode))))
+    (auto-complete-distel auto-complete python-environment python-mode flycheck-pycheckers elpy flycheck-pyflakes scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -72,8 +72,10 @@
 (setq-default x-stretch-cursor 1)
 (setq inhibit-startup-screen t)
 
-(setq custom-tab-width 2)
-(setq-default python-indent-offset custom-tab-width)
+;(setq custom-tab-width 2)
+;(setq-default python-indent-offset custom-tab-width)
+
+(setq ring-bell-function 'ignore)
 
 (provide '.emacs)
 ;;; .emacs ends here
