@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# PROVIDE: dummy
+# BEFORE: 
+# REQUIRE: LOGIN
+# KEYWORD:
+
+. /etc/rc.subr
+
+name=fw
+rcvar=fw_enable
+
+start_cmd="${name}_start"
+
+fw_start() {
+	/usr/local/fakewriter/runner
+
+}
+
+load_rc_config $name
+
+run_rc_command "$1"

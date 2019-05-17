@@ -1,0 +1,9 @@
+#!/bin/sh
+echo "" >/var/log/fakewriter
+for i in 1 2 3 4 5\
+	 6 7 8
+
+do
+    /usr/local/bin/erl  -pa /usr/local/fakewriter/ebin/ -boot start_clean -noshell -smp +S 1 \
+	-s fakewriter process $i >> /var/log/fakewriter
+done
