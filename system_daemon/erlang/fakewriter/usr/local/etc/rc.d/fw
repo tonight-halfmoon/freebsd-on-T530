@@ -13,8 +13,7 @@ rcvar=fw_enable
 start_cmd="${name}_start"
 
 fw_start() {
-	/usr/local/fakewriter/runner
-
+    /usr/local/fakewriter/runner
 }
 
 load_rc_config $name
