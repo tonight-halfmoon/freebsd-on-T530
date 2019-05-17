@@ -20,5 +20,5 @@
 ```
 
 ```
-# sysrc /usr/local/etc/rc.d/fw start
+# /usr/local/etc/rc.d/fw start
 ```
