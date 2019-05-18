@@ -12,7 +12,7 @@ rcvar=fw_enable
 
 start_precmd="${name}_prestart"
 start_cmd="${name}_start"
-stop_cmd=":"
+stop_cmd="${name}_stop"
 stop_postcmd="${name}_poststop"
 _pidprefix="/var/run/${name}"
 pidfile="${_pidprefix}/pid"
@@ -25,6 +25,11 @@ fw_prestart()
 fw_start()
 {
     /usr/local/fakewriter/runner ${pidfile}
+}
+
+fw_stop()
+{
+    [ -f ${pidfile} ] && /bin/kill $(/bin/cat "${pidfile}")
 }
 
 fw_poststop()

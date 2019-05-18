@@ -11,10 +11,23 @@
 
 ```
 # freebsd-update fetch install
+```
+
+- Follow the steps as described in the official documentation of FreeBSD on System Upgrade. And then perhaps you could continue as follows: (at least that what I had to do) 
+
+```
 # portsnap fetch update
 # portsnap extract
 # portmaster -ady --no-confirm
+```
+
 ;; **
+
+````
+# pkg-static upgrade -f
+```
+
+````
 # portmaster -aD
 # pkg check -Ba
 # portmaster -a
@@ -26,6 +39,7 @@
 ```
 # portmaster -w -r package-name
 ```
+
 In case the command with optin -r does not work try without it, as follows:
 
 ```
@@ -40,7 +54,6 @@ Then, to continue the full update. Try with the following
 ```
 # portmaster -afR --no-confirm
 ```
-
 
 ```
 # pkg update
@@ -131,12 +144,13 @@ Kernel updates have been installed.  Please reboot and run
 ## Fix update 
 
 ```
-pkg-static upgrade -f
+# pkg-static upgrade -f
 ```
 
 ```
-# portmast -afG
+# portmaster -afG
 ```
+
 ```
 # freebsd-update fetch
 ```
