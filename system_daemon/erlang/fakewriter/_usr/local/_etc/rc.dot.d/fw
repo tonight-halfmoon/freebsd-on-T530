@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# PROVIDE: fw
+# BEFORE:
+# REQUIRE: DAEMON
+# KEYWORD:
+
+. /etc/rc.subr
+
+name=fw
+rcvar=fw_enable
+
+start_precmd="${name}_prestart"
+start_cmd="${name}_start"
+stop_cmd=":"
+stop_postcmd="${name}_poststop"
+_pidprefix="/var/run/${name}"
+pidfile="${_pidprefix}/pid"
+
+fw_prestart()
+{
+    mkdir -p ${_pidprefix}
+}
+
+fw_start()
+{
+    /usr/local/fakewriter/runner ${pidfile}
+}
+
+fw_poststop()
+{
+    [ -f ${pidfile} ] && /bin/rm -f ${pidfile}
+}
+
+load_rc_config ${name}
+run_rc_command "$1"

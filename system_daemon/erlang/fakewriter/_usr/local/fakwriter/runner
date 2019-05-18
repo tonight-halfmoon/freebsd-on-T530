@@ -1,0 +1,21 @@
+#!/bin/sh
+
+main()
+{
+    echo "" > /var/log/fakewriter
+    _input=8
+    /usr/local/bin/erl  -pa /usr/local/fakewriter/ebin/ -boot start_clean -noshell -smp +S 1 \
+			-s fakewriter process $_input >> /var/log/fakewriter & echo $! > $pidfile
+}
+
+usage()
+{
+    echo "usage: $0 <path/to/pidfile>"
+    exit 1
+}
+
+[ $# -eq 0 ] && usage
+
+pidfile=$1
+
+main $pidfile
