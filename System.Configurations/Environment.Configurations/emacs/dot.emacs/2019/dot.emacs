@@ -30,7 +30,7 @@
  '(custom-enabled-themes (quote (manoj-dark)))
  '(package-selected-packages
    (quote
-    (auto-complete-distel auto-complete python-environment python-mode flycheck-pycheckers elpy flycheck-pyflakes scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode))))
+    (markdown-mode auto-complete-distel auto-complete python-environment python-mode flycheck-pycheckers elpy flycheck-pyflakes scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

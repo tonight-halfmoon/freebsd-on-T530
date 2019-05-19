@@ -14,7 +14,7 @@
 
 # vidcontrol cyan black
 
-setenv TERM "xterm-color"
+#setenv TERM "xterm-color"
 
 alias h		history 10000
 alias j		jobs -l
@@ -22,6 +22,7 @@ alias la	ls -aF
 alias lf	ls -FA
 alias ll	ls -lAF
 alias ls	ls -FG
+alias al	ls -al
 
 # These are normally set through /etc/login.conf.  You may override them here
 # if wanted.
@@ -45,7 +46,7 @@ setenv CLICOLOR		1
 
 setenv LSCOLORS "GxCxgxdxGxegedaCagacad"
 
-setenv	EDITOR	emacs #vi
+setenv	EDITOR	vi
 setenv	PAGER	more
 setenv  TITLE   "%{\e]0;%~\007%}"
 
