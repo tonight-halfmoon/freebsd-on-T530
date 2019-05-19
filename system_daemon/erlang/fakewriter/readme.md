@@ -20,9 +20,15 @@ There are two options
 
 ## Stop Command
 There are many options
-. Evaluate `/bin/kill` on the PID and delete the PID File
+. Evaluate `/bin/kill` on the PID and delete the PID File in stop_cmd and stop_postcmd functions
 . The program that is wrapped by this system daemon is providing API for descendly stopping and cleaning the process
- 
+
+- For both options, stopping the daemon is applicable as follows
+
+```
+# /usr/local/etc/rc.d/fw stop
+```
+
 ## Bash Script
 - Bash script lauches the program postfixed with '&'
 - The bash script is responsible to find out the PID and to persist the value 
