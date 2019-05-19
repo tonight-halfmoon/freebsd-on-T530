@@ -18,8 +18,15 @@ There are two options
 . Start command points to the program's entry point with a binary file
 . Start command points to bash script
 
+## Stop Command
+There are many options
+. Evaluate `/bin/kill` on the PID and delete the PID File
+. The program that is wrapped by this system daemon is providing API for descendly stopping and cleaning the process
+ 
 ## Bash Script
-Bash script lauches the program postfixed with '&'
+- Bash script lauches the program postfixed with '&'
+- The bash script is responsible to find out the PID and to persist the value 
+- Since Rc.d script is passing a file path. Bash script is going to use that to store the PID
 
 ## PID File
 Your Program or the launching bash script needs to write the pid of the programm process in a Pid File.
