@@ -64,7 +64,7 @@ ___
 	 **P.S. Two VGA devices must be seen, Nvidia and Intel**
 	 Open `/etc/X11/xorg.conf` and make sure the generated devices' BusId values are correct -- fix if not.
 	 The result of this step, is either two devices configured or one. Depending on what you want.
-	 Check the provided [X11 xorg configurations](`../X.Server/discrete-graphics-profile/etc_X11_xorg.conf`)
+	 Check the provided [X11 xorg configurations](../X.Server/discrete-graphics-profile/etc_X11_xorg.conf)
 
 > 6. Load i915kms
 
