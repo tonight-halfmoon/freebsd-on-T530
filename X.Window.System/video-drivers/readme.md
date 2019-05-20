@@ -25,11 +25,13 @@
 ```
  # kldload nvidia-modeset
 
- # sysrc nvidia_load="YES"
+ # sysrc nvidia_load=YES
 
- # sysrc kld_list="nvidia-modeset"
+ # sysrc kld_list=nvidia-modeset
  
 ``` 
+
+Note> Check the copy of a valid [etc rc.conf](../System.Configurations/sc/etc_rc.conf)
 
 > 4. 
 
@@ -81,7 +83,7 @@
 
 ```
 
-> 7. Append '/etc/rc.conf', '/boot/loader.conf' and '/etc/X11/xorg.conf' as provided in this repository
+> 7. Append the contents of [`/etc/rc.conf`](../System.Configurations/sc/etc_rc.conf), [`/boot/loader.conf`](../System.Configurations/sc/etc_rc.conf) and [`/etc/X11/xorg.conf'](../System.Configurations/sc/etc_rc.conf) as provided in this repository.
 
 
 # reboot
