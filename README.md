@@ -11,7 +11,7 @@ On ThinkPad T530 which configured with NVIDIA Optimus, it is necessary to set th
 Release 11.1 is originally installed and then the system is upgraded to release 11.2.
 The EoL of release 11.2 is 11.3-Release + 3 months as published on [FreeBSD Security Information](https://www.freebsd.org/security/security.html#sup).
 
-Check [Update & Upgrade Steps](./Systems.Configurations/Update_and_Upgrade/steps) to see how it is upgraded to release 11.2. 
+Check [Update & Upgrade Steps](./System.Configurations/Update_and_Upgrade/steps) to see how it is upgraded to release 11.2. 
 
 ## Upgrades
 The system is upgraded to Release 12.0. The upgrade was not straight. It required a couple of cycles of update-related commands.  
