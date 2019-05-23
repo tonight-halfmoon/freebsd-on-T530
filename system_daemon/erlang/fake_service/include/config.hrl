@@ -1,0 +1,6 @@
+-define(FREQUENCY_MILLISEONCDS, 3000).
+-define(unit_millis, millisecond).
+-define(agent_proc_name, fake_service_agent_proc).
+-define(server, fake_service_server_name).
+-record(start, {}).
+-record(stop, {}).

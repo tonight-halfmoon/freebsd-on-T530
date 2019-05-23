@@ -1,0 +1,32 @@
+#!/usr/bin/env escript
+%% -*- erlang -*-
+%%! -pa ./ebin/
+
+-mode(compile).
+
+-import(fake_service_server, [write/0]).
+
+-define(SCRIPT_NAME, app_run).
+
+-define(APP_NAME, fake_service).
+
+main(["start"=_Arg]) ->
+    try
+	application:load(?APP_NAME),
+	StartResult=application:start(?APP_NAME),
+	io:format("Application `~p` has ~p.~n", [?APP_NAME, StartResult])
+    catch
+	E:D ->
+	    io:format("E:~p; D:~p~n ", [E,D]),
+	    usage()
+    end;
+main(["stop"=_Arg]) ->
+    io:format("stopping me"),
+    application:stop(?APP_NAME),
+    application:unload(?APP_NAME);
+main(_) ->
+    usage().
+
+usage() ->
+    io:format("usage: ~p \"start\"|\"stop\"\n", [?SCRIPT_NAME]),
+    halt(1).
