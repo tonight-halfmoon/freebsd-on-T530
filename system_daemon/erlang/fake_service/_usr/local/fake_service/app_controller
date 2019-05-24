@@ -1,6 +1,6 @@
 #!/usr/bin/env escript
 %% -*- erlang -*-
-%%! -pa ./include/ ./ebin/
+%%! -pa /usr/local/fake_service/include/ /usr/local/fake_service/ebin/
 
 -mode(compile).
 

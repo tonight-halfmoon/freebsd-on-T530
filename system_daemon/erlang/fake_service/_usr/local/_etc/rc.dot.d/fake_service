@@ -1,0 +1,42 @@
+#!/bin/sh
+#
+# PROVIDE: fw
+# BEFORE:
+# REQUIRE: DAEMON
+# KEYWORD:
+
+. /etc/rc.subr
+
+name=fake_service
+rcvar=fake_service_enable
+
+start_precmd="${name}_prestart"
+start_cmd="${name}_start"
+stop_cmd="${name}_stop"
+stop_postcmd="${name}_poststop"
+_pidprefix="/var/run/${name}"
+pidfile="${_pidprefix}/pid"
+
+fake_service_prestart()
+{
+    mkdir -p ${_pidprefix}
+}
+
+fake_service_start()
+{
+    /usr/local/fake_service/fake_service  ${pidfile}
+}
+
+fake_service_stop()
+{
+    /usr/local/fake_service/fake_service "stop"
+}
+
+fake_service_poststop()
+{
+    [ -f ${pidfile} ] && /bin/kill $(/bin/cat "${pidfile}")
+    [ -f ${pidfile} ] && /bin/rm -f ${pidfile}
+}
+
+load_rc_config ${name}
+run_rc_command "$1"

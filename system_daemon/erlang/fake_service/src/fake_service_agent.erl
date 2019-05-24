@@ -22,7 +22,7 @@ start_link(_Args) ->
     proc_lib:start_link(?MODULE, init, [self()]).
 
 init(Parent) ->
-    register(?agent_proc_name, self()),
+    register(?FAKE_SERVICE_AGENT_PROC_NAME, self()),
     process_flag(trap_exit, true),
     loop(Parent).
 
@@ -30,6 +30,7 @@ loop(Parent) ->
     receive
 	{'EXIT', Parent, Reason} ->
 	    io:format("Received Exit from Parent for reason: ~p.~n", [Reason]),
+	    safely_unregister(?FAKE_SERVICE_AGENT_PROC_NAME),
 	    exit(Reason);
 	stop ->
 	    ok
@@ -38,4 +39,14 @@ loop(Parent) ->
 	    file:write_file("/tmp/fake_service.txt", list_to_binary(lists:map(fun erlang:integer_to_list/1, [SystemTimeInMilliseconds]))),
 	    file:write_file("/tmp/fake_service.txt", list_to_binary("\n")),
 	    loop(Parent)
+    end.
+
+safely_unregister(RegName) ->
+    case whereis(RegName) of
+	undefined ->
+	    io:format("RegName ~p is not registerd!~n", [RegName]);
+	PID ->
+	    io:format("Found for RegName `~p` PID = `~p`~n", [RegName, PID]),
+	    io:format("RegName '~p' will be unregistered.~n", [RegName]),
+	    unregister(RegName)
     end.

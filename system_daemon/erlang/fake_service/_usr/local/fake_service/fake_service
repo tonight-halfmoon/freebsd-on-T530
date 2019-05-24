@@ -1,0 +1,34 @@
+#!/bin/sh
+
+stop()
+{
+    [ ! -d /var/log/fake_service ] && mkdir -p /var/log/fake_service
+    echo "" > /var/log/fake_service/stop.log
+    /usr/local/fake_service/app_controller "stop" 2>&1 >> /var/log/fake_service/stop.log
+    return 0
+}
+
+start()
+{
+    [ ! -d /var/log/fake_service ] && mkdir -p /var/log/fake_service
+    echo "" > /var/log/fake_service/start.log
+    /usr/local/fake_service/app_controller "start" 2>&1 >> /var/log/fake_service/start.log & echo $! > $pidfile
+    return 0
+}
+
+usage()
+{
+    echo "usage: $0 [<path/to/pidfile>|\"stop\"]"
+    exit 1
+}
+
+[ $# -eq 0 ] && usage
+
+if [ $1 == "stop" ]; then
+    stop
+    exit 0
+fi
+
+pidfile=$1
+
+start $pidfile

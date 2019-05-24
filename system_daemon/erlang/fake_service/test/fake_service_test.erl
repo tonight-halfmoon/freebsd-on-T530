@@ -9,7 +9,7 @@
 
 -export([after_each/1]).
 
--include("../include/config.hrl").
+-include("config.hrl").
 
 -include_lib("eunit/include/eunit.hrl").
 
