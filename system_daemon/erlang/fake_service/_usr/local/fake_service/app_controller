@@ -1,8 +1,6 @@
 #!/usr/bin/env escript
 %% -*- erlang -*-
-%%! -pa /usr/local/fake_service/include/ /usr/local/fake_service/ebin/
-
--mode(compile).
+%%! -pa /usr/local/fake_service/ebin/
 
 -define(SCRIPT_NAME, app_controller).
 
@@ -10,17 +8,15 @@
 
 main(["start"=_Arg]) ->
     try
-	io:format("Application '~p' will be loaded and started~n", [?APP_NAME]),
-	application:load(?APP_NAME),
-	StartResult = application:start(?APP_NAME),
-	io:format("Application `~p` has been loaded and started with status: ~p.~n", [?APP_NAME, StartResult])
+	io:format("Application '~p' is loading...~n", [?APP_NAME]),
+	spawn(application, ensure_all_started, [?APP_NAME])
     catch
 	E:D ->
 	    io:format("E:~p; D:~p~n ", [E,D]),
 	    usage()
     end;
 main(["stop"=_Arg]) ->
-    io:format("stopping me"),
+    io:format("stopping me...~n~n", []),
     application:stop(?APP_NAME),
     application:unload(?APP_NAME);
 main(_) ->

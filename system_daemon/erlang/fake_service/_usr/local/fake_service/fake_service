@@ -3,7 +3,7 @@
 stop()
 {
     [ ! -d /var/log/fake_service ] && mkdir -p /var/log/fake_service
-    echo "" > /var/log/fake_service/stop.log
+    echo -e "\\n" >> /var/log/fake_service/stop.log
     /usr/local/fake_service/app_controller "stop" 2>&1 >> /var/log/fake_service/stop.log
     return 0
 }
@@ -11,7 +11,7 @@ stop()
 start()
 {
     [ ! -d /var/log/fake_service ] && mkdir -p /var/log/fake_service
-    echo "" > /var/log/fake_service/start.log
+    echo -e "\\n" >> /var/log/fake_service/start.log
     /usr/local/fake_service/app_controller "start" 2>&1 >> /var/log/fake_service/start.log & echo $! > $pidfile
     return 0
 }
