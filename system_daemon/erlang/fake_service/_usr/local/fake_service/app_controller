@@ -1,6 +1,6 @@
-#!/usr/bin/env escript
+#!/usr/local/bin/escript
 %% -*- erlang -*-
-%%! -pa /usr/local/fake_service/ebin/
+%%! -pa /usr/local/fake_service/ebin debug verbose
 
 -define(SCRIPT_NAME, app_controller).
 
@@ -8,15 +8,15 @@
 
 main(["start"=_Arg]) ->
     try
-	io:format("Application '~p' is loading...~n", [?APP_NAME]),
-	spawn(application, ensure_all_started, [?APP_NAME])
+	io:format("Application ~p is loading...~n", [?APP_NAME]),
+	application:ensure_all_started(?APP_NAME)
     catch
 	E:D ->
 	    io:format("E:~p; D:~p~n ", [E,D]),
 	    usage()
     end;
 main(["stop"=_Arg]) ->
-    io:format("stopping me...~n~n", []),
+    io:format("stopping me~n~n", []),
     application:stop(?APP_NAME),
     application:unload(?APP_NAME);
 main(_) ->

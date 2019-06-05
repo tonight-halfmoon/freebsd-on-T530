@@ -40,6 +40,8 @@ loop([Parent, ProcRegName]) ->
     after ?FREQUENCY_MILLISECONDS ->
 	    SystemTimeInMilliseconds = erlang:system_time(?UNIT_MILLIS),
 	    io:format("System Time ~p millis.~n", [SystemTimeInMilliseconds]),
+            file:write_file("/tmp/fake_service.txt", list_to_binary(lists:map(fun erlang:integer_to_list/1, [SystemTimeInMilliseconds]))),
+            file:write_file("/tmp/fake_service.txt", list_to_binary("\n")),
 	    loop([Parent, ProcRegName])
     end.
 

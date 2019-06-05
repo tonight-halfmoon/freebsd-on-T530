@@ -1,34 +1,40 @@
 #!/bin/sh
 
-stop()
+log_dir="/var/log/fake_service"
+start_log_file="$log_dir/start.log"
+stop_log_file="$log_dir/stop.log"
+app_controller="/usr/local/fake_service/app_controller" 
+
+stop_controller()
 {
-    [ ! -d /var/log/fake_service ] && mkdir -p /var/log/fake_service
-    echo -e "\\n" >> /var/log/fake_service/stop.log
-    /usr/local/fake_service/app_controller "stop" 2>&1 >> /var/log/fake_service/stop.log
-    return 0
+    echo "" > $stop_log_file
+    exec $app_controller "stop" 2>&1 >> $stop_log_file 
+    exit 0
 }
 
-start()
+launch()
 {
-    [ ! -d /var/log/fake_service ] && mkdir -p /var/log/fake_service
-    echo -e "\\n" >> /var/log/fake_service/start.log
-    /usr/local/fake_service/app_controller "start" 2>&1 >> /var/log/fake_service/start.log & echo $! > $pidfile
-    return 0
+    path_to_pid_file=$1
+    rm -r $log_dir
+    [ ! -d $log_dir ] && mkdir -p $log_dir 
+    echo "" > $start_log_file
+    exec $app_controller "start" 2>&1 >> $start_log_file & echo $! > $path_to_pid_file
+    exit 0
 }
 
 usage()
 {
-    echo "usage: $0 [<path/to/pidfile>|\"stop\"]"
+    echo "usage: $0 [<path/to/pid_file>|\"stop\"]"
     exit 1
 }
 
 [ $# -eq 0 ] && usage
 
 if [ $1 == "stop" ]; then
-    stop
+    stop_controller
     exit 0
 fi
 
-pidfile=$1
+pid_file=$1
 
-start $pidfile
+launch $pid_file
