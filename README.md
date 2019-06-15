@@ -63,6 +63,8 @@ FreeBSD Installation is successful and the root password is set and it is online
 2. OS Detection for NVIDIA Optimus: Disabled
 
 
+## Network Interface
+In order to setup the correct firmware of the installed Network Interface (device) the following [steps](./System.Configurations/network) are provided.
 
 ## References:
 
@@ -73,6 +75,7 @@ FreeBSD Installation is successful and the root password is set and it is online
 5. [Forums - Specific Thread](https://forums.freebsd.org/threads/how-to-solving-xorg-with-nvidia-issues-no-screens-found-ee-and-other-nasty-problems-gremlins.64941/)
 6. [Wiki - Tuning Power Comsumption](https://wiki.freebsd.org/TuningPowerConsumption)
 7. [IBM Thinkpad T530 2359CTO](https://wiki.freebsd.org/Laptops/Thinkpad_T530)
+
 
 
 

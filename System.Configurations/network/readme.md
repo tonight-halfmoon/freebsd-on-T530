@@ -11,7 +11,7 @@ Then, try to find out the wireless network device model
 In my case, it is `iwn`
 
 ## Find out the firmware of the network device
-Search for the exact name of the interface firmware. Once found you can easily find out what to choose to be loaded from the followin step
+Search for the exact name of the interface firmware. Once found you can easily find out what to choose to be loaded from the following step
 
 ## Check the guide on which driver necessary to load by evaluating 
 
