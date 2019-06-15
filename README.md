@@ -12,7 +12,7 @@ In this repository I am summing up all of my experience and sharing it with you.
 
 ## Goal
 
-> To save your time and be able to logon a FreeBSD onto a Xfce4/KDE session on ThinkPad T530 with graphics driven by NVIDIA card
+To save your time and be able to logon a FreeBSD onto a Xfce4/KDE session on ThinkPad T530 with graphics driven by NVIDIA card
 
 ## This Experience 
 This experience will let you configure your T530 machine after installation of FreeBSD in `3` folds
@@ -52,7 +52,7 @@ hw.ncpu: 8
 
 The subject ThinkPad T530 is built with GF108 / NVS 5400 NVIDIA Card. This is known on web as NVIDIA Optimus. In fact, the following configurations set is not only required in BSD but Arch Linux, Slackware, and Fedora, too. I have not tried with Ubuntu.
 
-> Check files `cpu_info`, `machine.info` for more details on the subject machine specifications
+> Check [`cpu_info`](./System.Configurations/tools/cpu_info), for more details on the subject machine specifications
 
 ## Assumption
 FreeBSD Installation is successful and the root password is set and it is online.
@@ -73,5 +73,6 @@ FreeBSD Installation is successful and the root password is set and it is online
 5. [Forums - Specific Thread](https://forums.freebsd.org/threads/how-to-solving-xorg-with-nvidia-issues-no-screens-found-ee-and-other-nasty-problems-gremlins.64941/)
 6. [Wiki - Tuning Power Comsumption](https://wiki.freebsd.org/TuningPowerConsumption)
 7. [IBM Thinkpad T530 2359CTO](https://wiki.freebsd.org/Laptops/Thinkpad_T530)
+
 
 
