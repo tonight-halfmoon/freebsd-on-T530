@@ -64,7 +64,7 @@ FreeBSD Installation is successful and the root password is set and it is online
 
 
 ## Network Interface
-In order to setup the correct firmware of the installed Network Interface (device) the following [steps](./System.Configurations/network) are provided.
+In order to setup the correct firmware of the installed Network Interface (device) the following [steps](./System.Configurations/network/readme.md) are provided.
 
 ## References:
 
