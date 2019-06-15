@@ -6,6 +6,29 @@ Experience in FreeBSD -- Setup (Post-Installation) on ThinkPad T530 and Daily Us
 
 On ThinkPad T530 which configured with NVIDIA Optimus, it is necessary to set the right configurations in BIOS.
 
+## Objective
+Post-installation of FreeBSD is time consuming. Especially, there is no single reference guide that walk the FreeBSD user to accomplish this task. When it comes to T530 ThinkPad machine things become even harder.
+In this repository I am summing up all of my experience and sharing it with you. I hope in one source you will be able to have your FreeBSD on you machine ready for daily work.
+
+## Goal
+
+> To save your time and be able to logon a FreeBSD onto a Xfce4/KDE session on ThinkPad T530 with graphics driven by NVIDIA card
+
+## This Experience 
+This experience will let you configure your T530 machine after installation of FreeBSD in `3` folds
+ 
+0. System
+The two most important configuration files are `/boot/loader.conf` and `/etc/rc.conf`. In directory [sc](./System.Configurations/sc), you will find a working copy of those two files with comments to show the purpose of some entries.
+In addition, all the necessary configurations that I needed around the two mentioned files are also copied with files including the target path on your system separated by underscore `_`.
+ 
+0. X Server 
+To setup X Server to utilise Nvidia as the Discrete Graphics provider the configurations are provided in [discrete-graphics](./X.Window.System/X.Server/discrete-graphics-profile/readme.md).
+A copy of `/etc/X11/xorg.conf` is provided for your reference.
+
+0. Video Drivers
+The steps to install and configure video drivers in [video-drivers](./X.Window.System/video-drivers/readme.md)
+
+
 ## FreeBSD Release
 
 Release 11.1 is originally installed and then the system is upgraded to release 11.2.
@@ -39,9 +62,6 @@ FreeBSD Installation is successful and the root password is set and it is online
 1. Graphics Device: Discrete Graphics
 2. OS Detection for NVIDIA Optimus: Disabled
 
-## This Experience 
-
-> To logon a FreeBSD onto a Xfce4 session on ThinkPad T530 with graphics driven by NVIDIA card
 
 
 ## References:
@@ -53,3 +73,5 @@ FreeBSD Installation is successful and the root password is set and it is online
 5. [Forums - Specific Thread](https://forums.freebsd.org/threads/how-to-solving-xorg-with-nvidia-issues-no-screens-found-ee-and-other-nasty-problems-gremlins.64941/)
 6. [Wiki - Tuning Power Comsumption](https://wiki.freebsd.org/TuningPowerConsumption)
 7. [IBM Thinkpad T530 2359CTO](https://wiki.freebsd.org/Laptops/Thinkpad_T530)
+
+
