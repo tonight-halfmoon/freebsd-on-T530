@@ -1,4 +1,5 @@
-#!/usr/bin/env escript
+#!/usr/local/bin/escript
+%%//#!/usr/bin/env escript
 %% -*- erlang -*-
 %%! -pa ./ebin/
 
@@ -23,3 +24,4 @@ main(_) ->
 usage() ->
     io:format("usage: oize 'start'|'stop'", []),
     halt(1).
+

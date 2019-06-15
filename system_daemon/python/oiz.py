@@ -1,4 +1,9 @@
-#!/usr/bin/env python
+#!/usr/local/bin/python
+
+"""
+    #!/usr/bin/env python
+"""
+
 from datetime import datetime
 
 def oiz_fun():
