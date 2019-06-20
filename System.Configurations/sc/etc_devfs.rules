@@ -1,6 +1,0 @@
-[localrules=5]
-add path 'da*' mode 0660 group operator
-
-[localrules=10]
-add path 'dri/*' mode 0666 group video
-add path 'drm/*' mode 0666 group video

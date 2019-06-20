@@ -1,12 +1,14 @@
 
-# Change Foreground and Background, respectively
+## Change Foreground and Background, respectively
+
 
 ```
 $ vidcontrol black cyan
 ```
 
-! Note> The following Guidance is most probably no longer valid / required 
-# High Resolution Console
+> The following Guidance is most probably no longer valid / required 
+
+## High Resolution Console
 
 ## References:
 http://www.freebsdwiki.net/index.php/High_Resolution_Console
@@ -21,6 +23,7 @@ vi VESAKERN
 ## Kernel Configuration
 
 add the following lines to VESAKERN:
+
 
 ```
 options      VESA            # Build VESA module into kernel
@@ -40,11 +43,12 @@ make installkernel KERNCONF=VESAKERN
 ```
 vidcontrol -i mode
 ```
+
 ```
 vidcontrol MODE_333
 ```
 
-Add to `/etc/rc.conf` the following line
+> Add to `/etc/rc.conf` the following line
 
 ``` 
 allscreens_flags="MODE_333"
