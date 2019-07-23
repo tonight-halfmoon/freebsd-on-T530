@@ -1,0 +1,6 @@
+#!/bin/sh
+kill $(ps -e |grep -w app_controller |sed -e 's/^ *//' -e 's/ .*//')
+
+## In order to be able to evaluate the command in shell terminal try it as follows:
+
+## $ kill `ps -e | grep -w app_controller | sed -e 's/^  *//' -e 's/ .*//'`

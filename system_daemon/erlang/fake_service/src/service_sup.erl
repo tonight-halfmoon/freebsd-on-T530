@@ -50,17 +50,16 @@ start_link(Args) ->
 %% @end
 %%--------------------------------------------------------------------
 init(_Args) ->
-
     SupFlags = #{strategy => one_for_one,
-		 intensity => 1,
-		 period => 5},
+								 intensity => 1,
+								 period => 5},
 
-    AChild = #{id => 'fake_service_agent',
-	       start => {fake_service_agent, start_link, []},
-	       restart => permanent,
-	       shutdown => 5000,
-	       type => worker,
-	       modules => []},
+    AChild = #{id => fake_service_agent_id,
+							 start => {fake_service_agent, start_link, []},
+							 restart => permanent,
+							 shutdown => 5000,
+							 type => worker,
+							 modules => []},
 
     {ok, {SupFlags, [AChild]}}.
 

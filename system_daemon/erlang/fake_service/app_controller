@@ -8,13 +8,13 @@
 
 main(["start"=_Arg]) ->
     try
-	io:format("Application '~p' is loading~n", [?APP_NAME]),
-	application:load(?APP_NAME),
-	application:ensure_all_started(?APP_NAME)
+				io:format("Application '~p' is loading~n", [?APP_NAME]),
+				application:load(?APP_NAME),
+				application:ensure_all_started(?APP_NAME)
     catch
-	E:D ->
-	    io:format("E:~p; D:~p~n ", [E,D]),
-	    usage()
+				E:D ->
+						io:format("E:~p; D:~p~n ", [E,D]),
+						usage()
     end;
 main(["stop"=_Arg]) ->
     io:format("stopping me...~n", []),

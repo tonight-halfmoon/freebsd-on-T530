@@ -35,10 +35,10 @@
 %%--------------------------------------------------------------------
 start(_StartType, _StartArgs) ->
     case service_sup:start_link([]) of
-	{ok, Pid} ->
-	    {ok, Pid};
-	Error ->
-	    Error
+				{ok, Pid} ->
+						{ok, Pid};
+				Error ->
+						Error
     end.
 
 %%--------------------------------------------------------------------
