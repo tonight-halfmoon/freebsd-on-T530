@@ -1,0 +1,5 @@
+pwd_mkdb -p /etc/master.passwd
+
+Reference:
+https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=229487
+

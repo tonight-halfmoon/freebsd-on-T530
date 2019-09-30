@@ -1,0 +1,11 @@
+  1036	21:41	pkg install zookeeper
+  1037	21:45	diff /etc/passwd /etc/master.passwd
+  1038	21:47	pwd_mkdb -p /etc/master.passwd
+  1039	21:47	pkg install zookeeper
+  1040	21:47	echo "pwd_mkdb -p /etc/master.passwd" > /home/rosemary/freebsd-on-T530/fix_user_disappeared_during_update
+  1041	21:48	echo 1 > /var/db/zookeeper/myid
+  1042	21:48	chown -R zookeeper:zookeeper /var/db/zookeeper
+  1043	21:48	vim /usr/local/etc/zookeeper/zoo.cfg
+  1044	21:49	sysrc zookeeper_enable
+  1045	21:50	service zookeeper start
+

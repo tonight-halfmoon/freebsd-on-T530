@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export BROD=/usr/home/rosemary/programming/erlang/brod
+export ERL_LIBS=$ERL_LIBS:$BROD
+

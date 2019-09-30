@@ -1,0 +1,7 @@
+colo industry
+syntax on
+set t_Co=256
+set tabstop=2
+set shiftwidth=0
+set expandtab
+set nu

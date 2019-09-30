@@ -1,0 +1,14 @@
+
+nat on wlan0 from {192.168.8.1/24} to any -> (wlan0) 
+
+
+#block drop in all
+#set skip on vm-public
+#pass out all flags S/SA keep state
+#pass quick on vm-public no state
+
+
+#udp_services = "{ domain, ntp }"
+#pass quick inet proto { tcp, udp } to any port $udp_services keep state
+
+

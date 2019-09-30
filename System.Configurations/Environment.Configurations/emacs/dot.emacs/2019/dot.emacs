@@ -8,7 +8,7 @@
 
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-		    (not (gnutls-available-p))))
+        (not (gnutls-available-p))))
        (proto (if no-ssl "http" "https")))
   ;;; Comment/uncomment these two lines to enable/disable MELPA Stable as desired
   (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
@@ -27,16 +27,25 @@
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
    ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
- '(custom-enabled-themes (quote (manoj-dark)))
+ '(custom-enabled-themes (quote (whiteboard)))
+ '(font-use-system-font nil)
  '(package-selected-packages
    (quote
-    (markdown-mode auto-complete-distel auto-complete python-environment python-mode flycheck-pycheckers elpy flycheck-pyflakes scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode))))
+    (general groovy-mode xml+ gradle-mode pdf-tools html-to-markdown js-auto-format-mode js-auto-beautify erlstack-mode erlang markdown-mode auto-complete-distel auto-complete python-environment python-mode flycheck-pycheckers elpy flycheck-pyflakes scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode)))
+ '(safe-local-variable-values (quote ((allout-layout . t)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(mode-line-buffer-id ((t (:background "black" :foreground "green" :weight bold :height 0.9)))))
+ '(company-tooltip ((t (:foreground "cyan"))))
+ '(company-tooltip-selection ((t (:background "white"))))
+ '(isearch ((t (:background "white" :foreground "magenta"))))
+ '(mode-line-buffer-id ((t (:background "white" :foreground "green" :weight bold :height 0.9)))))
+
+;;; Frame Parameters
+;;; Change background of Buffer /Edit space
+(add-to-list 'default-frame-alist '(background-color . "black"))
 
 ;; whitespace-cleanup-mode
 ;; M-x package-install RET whitespace-cleanup-mode RET
@@ -59,23 +68,44 @@
 
 ;; Flycheck-mode
 (global-flycheck-mode t)
-(add-hook 'after-init-hook 'global-company-mode)
 
 (set-face-background 'mode-line "purple")
 (set-face-foreground 'mode-line "black")
 
-;; Global Keys
-(global-set-key (kbd "M-0") 'kill-whole-line)
+(font-lock-mode t)
 
-(set-cursor-color "#7F00FF")
+;; Global Keys
+(global-set-key (kbd "M-9") 'kill-whole-line)
+
+;; (set-cursor-color "#7F00FF")
 (setq-default cursor-type 'hbar)
 (setq-default x-stretch-cursor 1)
 (setq inhibit-startup-screen t)
 
-;(setq custom-tab-width 2)
-;(setq-default python-indent-offset custom-tab-width)
-
+;;; Mute Ring Bell
 (setq ring-bell-function 'ignore)
+
+;;; Gradle Mode
+(require 'gradle-mode)
+
+;;; Tab Indent size 2
+(setq-default tab-width 2)
+
+;;; Indent
+(setq-default indent-tabs-mode nil)
+
+;;; Enable Auto Indent
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
+;;; Erlang Indent Level
+(setq-default erlang-indent-level 2)
+(setq-default allout-auto-activation t)
+
+;;; JavaScript Indent Level
+(setq-default js-indent-level 2)
+
+;;; Whitespace Cleanup on Save Hook
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 (provide '.emacs)
 ;;; .emacs ends here
