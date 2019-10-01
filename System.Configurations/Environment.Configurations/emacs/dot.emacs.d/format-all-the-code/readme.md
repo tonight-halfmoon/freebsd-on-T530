@@ -1,1 +1,0 @@
-https://github.com/lassik/emacs-format-all-the-code.git
