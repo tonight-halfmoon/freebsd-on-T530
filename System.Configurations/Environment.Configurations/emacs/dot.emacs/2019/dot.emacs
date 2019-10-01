@@ -8,14 +8,14 @@
 
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-        (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  ;;; Comment/uncomment these two lines to enable/disable MELPA Stable as desired
-  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
-  (when (< emacs-major-version 24)
-    ;; For important compatibility libraries like cl-lib
-    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
+                      (not (gnutls-available-p))))
+         (proto (if no-ssl "http" "https")))
+ ;;; Comment/uncomment these two lines to enable/disable MELPA Stable as desired
+        (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+ ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+          (when (< emacs-major-version 24)
+                ;; For important compatibility libraries like cl-lib
+                (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
 (custom-set-variables
@@ -30,8 +30,8 @@
  '(custom-enabled-themes (quote (whiteboard)))
  '(font-use-system-font nil)
  '(package-selected-packages
-   (quote
-    (general groovy-mode xml+ gradle-mode pdf-tools html-to-markdown js-auto-format-mode js-auto-beautify erlstack-mode erlang markdown-mode auto-complete-distel auto-complete python-environment python-mode flycheck-pycheckers elpy flycheck-pyflakes scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode)))
+     (quote
+        (general groovy-mode xml+ gradle-mode pdf-tools html-to-markdown js-auto-format-mode js-auto-beautify erlstack-mode erlang markdown-mode auto-complete-distel auto-complete python-environment python-mode flycheck-pycheckers elpy flycheck-pyflakes scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode)))
  '(safe-local-variable-values (quote ((allout-layout . t)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -50,7 +50,15 @@
 ;; whitespace-cleanup-mode
 ;; M-x package-install RET whitespace-cleanup-mode RET
 (require 'whitespace-cleanup-mode)
-(global-whitespace-cleanup-mode t)
+
+;;;(global-whitespace-mode)
+;;;(global-whitespace-cleanup-mode)
+
+(require 'whitespace)
+;;; Whitespace Cleanup on Save Hook
+(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
+(add-hook 'before-save-hook 'erlang-indent-current-buffer)
 
 ;; Company-mode
 (add-hook 'after-init-hook 'global-company-mode)
@@ -60,6 +68,15 @@
 (setq erlang-root-dir "/usr/local/lib/erlang")
 (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
+
+;;;(add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
+;;;(add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
+(add-hook 'erlang-mode-hook '(lambda() (setq indent-tabs-mode nil)))
+
+;;; Erlang Indent Level
+(setq-default erlang-indent-level 2)
+(setq-default allout-auto-activation t)
+(setq-default erlang-indent-paranthesis 2)
 
 ;; Distel
 (add-to-list 'load-path "~/.emacs.d/distel/elisp")
@@ -97,15 +114,8 @@
 ;;; Enable Auto Indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
-;;; Erlang Indent Level
-(setq-default erlang-indent-level 2)
-(setq-default allout-auto-activation t)
-
 ;;; JavaScript Indent Level
 (setq-default js-indent-level 2)
-
-;;; Whitespace Cleanup on Save Hook
-(add-hook 'before-save-hook 'whitespace-cleanup)
 
 (provide '.emacs)
 ;;; .emacs ends here
