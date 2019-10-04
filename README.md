@@ -73,7 +73,7 @@ In order to setup the correct firmware of the installed Network Interface (devic
 3. [FreeBSD Forums](https://forums.freebsd.org)
 4. [FreshPorts](https://freshports.org/x11/nvidia-driver/)
 5. [Forums - Specific Thread](https://forums.freebsd.org/threads/how-to-solving-xorg-with-nvidia-issues-no-screens-found-ee-and-other-nasty-problems-gremlins.64941/)
-6. [Wiki - Tuning Power Comsumption](https://wiki.freebsd.org/TuningPowerConsumption)
+6. [Wiki - Tuning Power Consumption](https://wiki.freebsd.org/TuningPowerConsumption)
 7. [IBM Thinkpad T530 2359CTO](https://wiki.freebsd.org/Laptops/Thinkpad_T530)
 
 
