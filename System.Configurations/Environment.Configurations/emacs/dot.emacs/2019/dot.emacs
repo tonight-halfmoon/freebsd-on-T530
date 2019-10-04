@@ -8,15 +8,16 @@
 
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                      (not (gnutls-available-p))))
-         (proto (if no-ssl "http" "https")))
- ;;; Comment/uncomment these two lines to enable/disable MELPA Stable as desired
-        (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
- ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
-          (when (< emacs-major-version 24)
-                ;; For important compatibility libraries like cl-lib
-                (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+  ;; Comment/uncomment these two lines to enable/disable MELPA Stable as desired
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+  (when (< emacs-major-version 24)
+    ;; For important compatibility libraries like cl-lib
+    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -30,9 +31,9 @@
  '(custom-enabled-themes (quote (whiteboard)))
  '(font-use-system-font nil)
  '(package-selected-packages
-     (quote
-        (general groovy-mode xml+ gradle-mode pdf-tools html-to-markdown js-auto-format-mode js-auto-beautify erlstack-mode erlang markdown-mode auto-complete-distel auto-complete python-environment python-mode flycheck-pycheckers elpy flycheck-pyflakes scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode)))
- '(safe-local-variable-values (quote ((allout-layout . t)))))
+   (quote
+    (smart-hungry-delete es-mode js-format general groovy-mode xml+ gradle-mode pdf-tools html-to-markdown js-auto-format-mode js-auto-beautify erlstack-mode erlang markdown-mode auto-complete-distel auto-complete python-environment python-mode flycheck-pycheckers elpy flycheck-pyflakes scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode)))
+ '(safe-local-variable-values (quote ((sh-indent-comment . t) (allout-layout . t)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -43,22 +44,18 @@
  '(isearch ((t (:background "white" :foreground "magenta"))))
  '(mode-line-buffer-id ((t (:background "white" :foreground "green" :weight bold :height 0.9)))))
 
-;;; Frame Parameters
-;;; Change background of Buffer /Edit space
+;; Frame Parameters
+;; Change background of Buffer /Edit space
 (add-to-list 'default-frame-alist '(background-color . "black"))
 
 ;; whitespace-cleanup-mode
 ;; M-x package-install RET whitespace-cleanup-mode RET
 (require 'whitespace-cleanup-mode)
 
-;;;(global-whitespace-mode)
-;;;(global-whitespace-cleanup-mode)
+;;(global-whitespace-mode)
+;;(global-whitespace-cleanup-mode)
 
 (require 'whitespace)
-;;; Whitespace Cleanup on Save Hook
-(add-hook 'before-save-hook 'whitespace-cleanup)
-(add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
-(add-hook 'before-save-hook 'erlang-indent-current-buffer)
 
 ;; Company-mode
 (add-hook 'after-init-hook 'global-company-mode)
@@ -69,14 +66,37 @@
 (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
 
-;;;(add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
-;;;(add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
-(add-hook 'erlang-mode-hook '(lambda() (setq indent-tabs-mode nil)))
+(add-to-list 'auto-mode-alist '("\\.config?$" . erlang-mode))
+;; (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
+(add-hook 'erlang-mode-hook (lambda() (setq-default indent-tabs-mode nil)))
 
-;;; Erlang Indent Level
+;; Erlang Indent Level
 (setq-default erlang-indent-level 2)
 (setq-default allout-auto-activation t)
 (setq-default erlang-indent-paranthesis 2)
+
+
+;; Cleanup for Whitespace, Trailing Whitespace and Indentation
+
+;; Method  #1
+;; When Erlang is major-mode Whitespace Cleanup on Save Hook
+;;(add-hook 'erlang-mode-hook '(lambda() (add-hook 'before-save-hook 'whitespace-cleanup)))
+
+;; When Erlang is major-mode Delete Trailing Whitespace
+;;(add-hook 'erlang-mode-hook '(lambda() (add-hook 'before-save-hook 'delete-trailing-whitespace)))
+
+;; When Erlang is major-mode Indent Current Buffer according to Erlang formatter
+;;(add-hook 'erlang-mode-hook '(lambda() (add-hook 'before-save-hook 'erlang-indent-current-buffer)))
+
+;; Method #2
+(defun esl-erlang-mode-before-save-hook()
+  (when (eq major-mode 'erlang-mode)
+    (whitespace-cleanup)
+    (delete-trailing-whitespace)
+    (erlang-indent-current-buffer)
+    )
+  )
+(add-hook 'before-save-hook #'esl-erlang-mode-before-save-hook)
 
 ;; Distel
 (add-to-list 'load-path "~/.emacs.d/distel/elisp")
@@ -99,23 +119,41 @@
 (setq-default x-stretch-cursor 1)
 (setq inhibit-startup-screen t)
 
-;;; Mute Ring Bell
+;; Mute Ring Bell
 (setq ring-bell-function 'ignore)
 
-;;; Gradle Mode
+;; Gradle Mode
 (require 'gradle-mode)
 
-;;; Tab Indent size 2
+;; Tab Indent size 2
 (setq-default tab-width 2)
 
-;;; Indent
+;; No Tabs by default. Modes that really need tabs should enable
+;; indent-tabs-mode explicitly. makefile-mode already does that
+;; Indent
 (setq-default indent-tabs-mode nil)
 
-;;; Enable Auto Indent
+;; Enable Auto Indent
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
-;;; JavaScript Indent Level
+(require 'js-mode)
+;; JavaScript Indent Level
 (setq-default js-indent-level 2)
+
+(add-hook 'before-save-hook (lambda() (whitespace-cleanup)))
+(add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
+(add-hook 'before-save-hook (lambda() (indent-according-to-mode)))
+
+(add-hook 'before-save-hook
+          (lambda() (if (not indent-tabs-mode)
+                        (untabify (point-min)(point-max)))))
+
+;; Smart Hungry Whitespace
+;; after package-install smart-hungry-delete
+(require 'smart-hungry-delete)
+(smart-hungry-delete-add-default-hooks)
+(global-set-key (kbd "<backspace>") 'smart-hungry-delete-backward-char)
+(global-set-key (kbd "C-d") 'smart-hungry-delete-forward-char)
 
 (provide '.emacs)
 ;;; .emacs ends here
