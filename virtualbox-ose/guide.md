@@ -1,0 +1,17 @@
+On install:
+VirtualBox Guest
+
+- You need to enable the vboxguest startscript to load the kernel module and vboxservice to use host it synchronization.
+
+```
+  vboxguest_enable="YES"
+  vboxservice_enable="YES"
+```
+
+- You also have to add all X11 users that want to use any of the additional features (clipboard sharing, window scaling) to the wheel group.
+
+```
+  % pw groupmod wheel -m jerry
+```
+
+* Reboot the machine to load the needed kernel modules.
