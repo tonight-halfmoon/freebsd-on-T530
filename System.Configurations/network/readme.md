@@ -67,3 +67,14 @@ From the previous step I concluded that the interface firmware installed on mach
 # service netif restart wlan0
 ```
 
+```
+wpa_supplicant -c /etc/wpa_supplicant.conf -B -i wlan0
+```
+
+* In case the dhclient service is not restarting successfully, then
+remove hanging pid if any
+
+```
+# rm "_ /var/run/dhclient/dhclient.<your-net-interface-name>.pid %% in my case wlan0
+```
+
