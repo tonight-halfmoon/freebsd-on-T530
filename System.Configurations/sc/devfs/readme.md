@@ -1,10 +1,12 @@
-```
-# chmod 0444 /dev/devstat
-```
+
+  * Update after amendment
+
+  ```
+    /etc/rc.d/devfs restart
+  ```
 
 
-add the following line to file `/etc/devfs.conf`
+  ```
+    chmod 0444 /dev/devstat
+  ```
 
-```
-perm	devstat		0444
-```

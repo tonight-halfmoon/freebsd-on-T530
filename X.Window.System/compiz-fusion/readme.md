@@ -13,23 +13,41 @@ change to x11-wm/compiz-fusion, then evaluate
 
 ## Configure
 
-- Add the following two files to your home directory: ~/
+  * Copy script file `start-compiz` into your home directory
+ 
+  ```
+    $HOME/start-compiz
+  ```
 
-```
-~/.config/autostart/compiz.desktop
-```
+  * Copy file `compiz.desktop` into `$HOME/.config/autostart/`
 
-```
-~/start-compiz
-```
+  ```
+  $HOME/.config/autostart/compiz.desktop
+  ```
 
-Note: starting as usual with `startx` will also work. Once you are in the desktop environment, kde or xfce, etc, you could find by now Nvidia Settings App.
+   * Initial desktop configuration for smooth startup (To be able to move/resize application windows around)
+
+    ..* Copy file `Default.ini` into `$HOME/compiz/compizconfig/` 
+
+    ```
+    .config/compiz/compizconfig/Default.ini
+    ```
+
+
+  * Note: Starting as usual with `startx` will also work
+  * Once you are in the desktop environment, kde or xfce, etc, you could find by now Nvidia Settings App
+
+
+  * Compiz requires the X composite extension to be enabled. The following command helps you out.
+
+
+    ```
+    xpdyinfo | grep -i composite
+    ```
 
 ## Reference>
- [] wiki.compiz.org
+  
+  *[](wiki.compiz.org)
 
-Compiz requires the X composite extension to be enabled. The following command helps you out.
-
-$ xpdyinfo | grep -i composite
 
 

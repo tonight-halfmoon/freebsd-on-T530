@@ -1,1 +1,2 @@
+include "/usr/local/share/themes/Xfce-4.6/gtk-2.0/gtkrc"
 gtk-can-change-accels=1

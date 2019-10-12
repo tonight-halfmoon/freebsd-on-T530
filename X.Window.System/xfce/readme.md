@@ -1,20 +1,13 @@
-# Xfce Installation
+# XfCE4 Installation
 
+  * Once installed with pkg or make install clean
 
-```	
-1. pkg install xfce
-```
+  * Make sure the following files exist in `$HOME/` with the necessary configurations
 
-```
-2. compose a ~/.xsession file with the following contents:
-   #!/bin/sh
-   exec /usr/local/bin/startxfce4 --with-ck-launch
-```
+    ..* `.xinitrc`  to start with `startx`
+    ..* `.xsession` if you want to start with a desktop manager like slim
+    ..* `.Xresources` %% Note the Xft.dpi: 96; See section References
+    ..* `.gtkrc-2.0`
 
-```
-3. chmod +x ~/.xsession
-```
-
-```
-4. ln -s ~/.xsession ~/.xinitrc
-```
+## References
+    * [](http://scanline.ca/dpi)
