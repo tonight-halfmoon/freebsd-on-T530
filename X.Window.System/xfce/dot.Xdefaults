@@ -1,1 +1,2 @@
-URxvt*font xft:IPAMincho:size=12
+URxvt*font xft:IPAMincho:size=9
+xterm*locale: UTF-8
