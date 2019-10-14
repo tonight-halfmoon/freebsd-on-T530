@@ -1,4 +1,4 @@
-## Unicode Charactire `\u00B7`is displayed instead of whitespace
+## Unicode Charactire `\u00B7`is displayed instead of middle-dot
 
 ### In `whitespace-mode`
 
@@ -9,7 +9,9 @@
     '(whitespace-display-mappings (quote ((space-mark ?\ [ ] [?.] [0] [32] [42] [46]))))
     ```
 
-    * To customize more with Emacs
+    ..* Moreover, you may customise it manually as follows
+
+    ..* To customize more with Emacs
 
         ..* Customize in emacs using
 
