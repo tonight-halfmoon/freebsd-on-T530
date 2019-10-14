@@ -158,5 +158,9 @@
 (global-set-key (kbd "<backspace>") 'smart-hungry-delete-backward-char)
 (global-set-key (kbd "C-d") 'smart-hungry-delete-forward-char)
 
+;; Python elpy
+;; https://elpy.readthedocs.io/en/latest/introduction.html\#installation
+(elpy-enable)
+
 (provide '.emacs)
 ;;; .emacs ends here
