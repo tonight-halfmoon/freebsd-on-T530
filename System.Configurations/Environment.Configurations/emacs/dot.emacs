@@ -32,7 +32,9 @@
  '(package-selected-packages
    (quote
     (yaml-mode travis smart-hungry-delete es-mode js-format general groovy-mode xml+ gradle-mode pdf-tools html-to-markdown js-auto-format-mode js-auto-beautify erlstack-mode erlang markdown-mode auto-complete-distel auto-complete python-environment python-mode flycheck-pycheckers elpy flycheck-pyflakes scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode)))
- '(safe-local-variable-values (quote ((sh-indent-comment . t) (allout-layout . t)))))
+ '(safe-local-variable-values (quote ((sh-indent-comment . t) (allout-layout . t))))
+ '(whitespace-display-mappings (quote ((space-mark ?\ [ ] [?.] [0] [32] [42] [46]))))
+)
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -42,7 +44,9 @@
  '(company-tooltip-selection ((t (:background "white"))))
  '(isearch ((t (:background "white" :foreground "magenta"))))
  ;; Set Mode-line Buffer -Id (file name open) Background and Foreground
- '(mode-line-buffer-id ((t (:background "black" :foreground "magenta" :weight bold :height 0.9)))))
+ '(mode-line-buffer-id ((t (:background "black" :foreground "magenta" :weight bold :height 0.9))))
+ '(whitespace-space ((t (:bold t :foreground "green"))))
+)
 
 ;; Frame Parameters
 ;; Change background of Buffer /Edit space
