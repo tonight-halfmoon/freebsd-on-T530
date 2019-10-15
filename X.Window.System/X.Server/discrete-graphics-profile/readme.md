@@ -98,7 +98,7 @@ By now, you must be logged to the default X Display Manager. Log out and continu
 12. Setup `synaptics` 
 
 ```
- 12.1 Download module synaptics
+ 12.1 Install module synaptics
  12.2 Configure `xorg.conf` as shown in the example provieded 
 
 ```
