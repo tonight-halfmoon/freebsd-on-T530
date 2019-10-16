@@ -18,6 +18,8 @@
 ```
 # portsnap fetch update
 # portsnap extract
+# portupgrade -a
+# pkg update && pkg upgrade
 # portmaster -ady --no-confirm
 ```
 
