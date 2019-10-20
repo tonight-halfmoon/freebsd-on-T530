@@ -9,5 +9,13 @@
     ..* `.Xresources` %% Note the Xft.dpi: 96; See section References
     ..* `.gtkrc-2.0`
 
+
+  * xfce-evolution
+    Interensting themes to install as follows
+
+    ```
+    # cd /usr/ports/x11-themes/xfce-evolution && make install
+    ```
+
 ## References
     * [](http://scanline.ca/dpi)
