@@ -12,7 +12,8 @@
   ### freebsd-update fetch install
 
 
-  * Follow the steps as described in the official documentation of FreeBSD on System Upgrade. And then perhaps you could continue as follows: (at least that what I had to do) 
+  * Follow the steps as described in the official documentation of FreeBSD on System Upgrade.
+		And then perhaps you could continue as follows: (at least that what I had to do) 
 
   ```
   # portsnap fetch update
@@ -20,8 +21,18 @@
   # portupgrade -a
   # pkg update && pkg upgrade
   # portmaster -ady --no-confirm
+	```
+
+	### Manipulate and fix issues by upgrading adn downgrading
+	
+	* Read man pkg-static before you consider the following command.
+		But in some situations it's helpful to start all over.
+
+	```
   # pkg-static upgrade -f
   ```
+
+	* More
 
   ````
   # portmaster -aD
