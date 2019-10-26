@@ -3,21 +3,28 @@
 set -eb
 
 login() {
-	eval "$(ssh-agent)"
-	ssh-add "$1" 
-	ssh -T git@github.com
+  eval "$(ssh-agent)"
+  ssh-add "$1"
+  ssh -T git@github.com
 }
 
 usage() {
-	echo "$0 (private_key_file_path)"
+  echo "$0 (private_key_file_path)"
 }
 
 if [ -z "$1" ]
 then
-	usage
+  usage
 else
-	login "$1"
+  login "$1"
 fi
 
 exit 0
 
+# Local variables:
+# mode: shell-script
+# sh-basic-offset: 2
+# sh-indent-comment: t
+# indent-tabs-mode: nil
+# End:
+# ex: ts=2 sw=2 et ft=sh
