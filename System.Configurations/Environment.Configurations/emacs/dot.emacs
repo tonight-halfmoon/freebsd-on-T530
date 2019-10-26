@@ -26,16 +26,14 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
-   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
+   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(custom-enabled-themes (quote (manoj-dark)))
  '(font-use-system-font nil)
  '(package-selected-packages
    (quote
-    (elpy erlang gradle-mode es-mode js-auto-beautify js-auto-format-mode js-format html-to-markdown html5-schema xml+ groovy-mode pdf-tools scala-mode kotlin-mode format-all python-environment python-mode auto-complete-distel auto-complete markdown-mode travis yaml-mode flycheck-pyflakes flycheck-pycheckers flycheck-kotlin flycheck-rebar3 flycheck-dialyzer flycheck-gradle flycheck-color-mode-line flycheck general erlstack-mode company-erlang company company-distel whitespace-cleanup-mode kotlin-mode)))
+    (yaml-mode travis smart-hungry-delete es-mode js-format general groovy-mode xml+ gradle-mode pdf-tools html-to-markdown js-auto-format-mode js-auto-beautify erlstack-mode erlang markdown-mode auto-complete-distel auto-complete python-environment python-mode flycheck-pycheckers elpy flycheck-pyflakes scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode)))
  '(safe-local-variable-values (quote ((sh-indent-comment . t) (allout-layout . t))))
- ;; Either the following line or the second following
- '(whitespace-display-mappings (quote ((space-mark 32 [] [46] [0] [32] [42] [46]))))
- ;; '(whitespace-display-mappings (quote ((space-mark ?\ [ ] [?.] [0] [32] [42] [46]))))
+ '(whitespace-display-mappings (quote ((space-mark ?\ [ ] [?.] [0] [32] [42] [46]))))
  )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -45,9 +43,10 @@
  '(company-tooltip ((t (:foreground "cyan"))))
  '(company-tooltip-selection ((t (:background "white"))))
  '(isearch ((t (:background "white" :foreground "magenta"))))
-  ;; Set Mode-line Buffer -Id (file name open) Background and Foreground
+ ;; Set Mode-line Buffer -Id (file name open) Background and Foreground
  '(mode-line-buffer-id ((t (:background "black" :foreground "magenta" :weight bold :height 0.9))))
- '(whitespace-space ((t (:bold t :foreground "green")))))
+ '(whitespace-space ((t (:bold t :foreground "green"))))
+ )
 
 ;; Frame Parameters
 ;; Change background of Buffer /Edit space
@@ -62,13 +61,11 @@
 
 (require 'whitespace)
 
-;;(whitespace-mode t)
-
 ;; Company-mode
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;; Erlang Mode
-(setq load-path (cons "/usr/local/lib/erlang/lib/tools-3.1.0.1/emacs" load-path))
+(setq load-path (cons "/usr/local/lib/erlang/lib/tools-2.9.1/emacs" load-path))
 (setq erlang-root-dir "/usr/local/lib/erlang")
 (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (require 'erlang-start)
@@ -106,10 +103,9 @@
 (add-hook 'before-save-hook #'esl-erlang-mode-before-save-hook)
 
 ;; Distel
-;; https://github.com/massemanet/distel.git
-;;(add-to-list 'load-path "~/.emacs.d/distel/elisp")
-;;(require 'distel)
-;;(distel-setup)
+(add-to-list 'load-path "~/.emacs.d/distel/elisp")
+(require 'distel)
+(distel-setup)
 
 ;; Flycheck-mode
 (global-flycheck-mode t)
@@ -157,20 +153,15 @@
 
 ;; Smart Hungry Whitespace
 ;; after package-install smart-hungry-delete
-;;(require 'smart-hungry-delete)
-;;(smart-hungry-delete-add-default-hooks)
-;;(global-set-key (kbd "<backspace>") 'smart-hungry-delete-backward-char)
-;;(global-set-key (kbd "C-d") 'smart-hungry-delete-forward-char)
+(require 'smart-hungry-delete)
+(smart-hungry-delete-add-default-hooks)
+(global-set-key (kbd "<backspace>") 'smart-hungry-delete-backward-char)
+(global-set-key (kbd "C-d") 'smart-hungry-delete-forward-char)
 
 
 ;; Python elpy
 ;; https://elpy.readthedocs.io/en/latest/introduction.html\#installation
 (elpy-enable)
 
-
 (provide '.emacs)
 ;;; .emacs ends here
-
-;;; Local Variables:
-;;; coding: utf-8
-;;; End:

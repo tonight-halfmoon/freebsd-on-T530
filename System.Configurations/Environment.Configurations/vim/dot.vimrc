@@ -8,3 +8,4 @@ set nu
 set list
 set listchars=eol:$,nbsp:_,tab:>-,trail:~,extends:>,precedes:<
 """set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
