@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -eb
+
+login() {
+	private_key="$1"
+	eval `ssh-agent`
+	ssh-add "$private_key" 
+	ssh -T 'git@github.com'
+}
+
+usage() {
+	echo "$0 (private_key_file_path)"
+}
+
+if [ -z "$1" ]
+then
+	usage
+else
+	login "$1"
+fi
+
+exit 0
+
