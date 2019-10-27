@@ -1,0 +1,252 @@
+;;; package --- Summary:
+;;; Commentary:
+;;; Code:
+
+(require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos)) 
+                    (not (gnutls-available-p)))) 
+       (proto (if no-ssl "http" "https"))) 
+  (add-to-list 'package-archives (cons "melpa-stable" (concat proto
+                                                              "://stable.melpa.org/packages/")) t) 
+  (add-to-list 'package-pinned-packages '(elixir-mode . "melpa-stable")))
+(package-initialize)
+
+;; ==============================================================================================
+;; pkg-install
+;; ==============================================================================================
+;; Consume a list of Emacs MELPA packages
+;; Traverse each package in the list
+;; Prompt for install
+;; User answer y/n.
+;; The MELPA install is not successful if missing library behind
+;; on the OS is required.
+;; In addition, add-to-list package remote source could be necessary
+;; to tell MELPA where to look for the source. See above, the section before package-initialize.
+;; Reference: [](https://stackoverflow.com/a/10095853)
+(defun pkg-install 
+    (&rest 
+     tail)
+  "Prompt for each package in TAIL install with y/n."
+  (mapcar (lambda (next) 
+            (if (package-installed-p next) nil (if (y-or-n-p(format "Install packge '%s'?" next)) 
+                                                   (package-install next) next))) tail))
+(or (file-exists-p package-user-dir) 
+    (package-refresh-contents))
+(pkg-install 'nlinum ;; Emacs's buffer line number column display
+             'whitespace-cleanup-mode 'company
+             ;; Markdown
+             ;; w3 - Emacs W3 web browser
+             'w3 'markdown-mode 'markdown-preview-mode
+             ;;
+             )
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(nlinum-format " %3i ") 
+ '(nlinum-highlight-current-line t) 
+ '(nlinum-widen t) 
+ '(package-selected-packages (quote (w3 whitespace-cleanup-mode web-mode travis nlinum markdown-mode
+                                        js-auto-format-mode groovy-mode gradle-mode
+                                        flycheck-yamllint flycheck-title flycheck-rebar3
+                                        flycheck-pos-tip flycheck-mix flycheck-color-mode-line
+                                        flycheck-checkbashisms exec-path-from-shell dockerfile-mode
+                                        docker-compose-mode docker ac-alchemist))) 
+ '(safe-local-variable-values (quote ((sh-indent-comment . t) 
+                                      (allout-layout . t)))) 
+ '(whitespace-display-mappings (quote ((space-mark 32 [] 
+                                                   [46] 
+                                                   [0] 
+                                                   [32] 
+                                                   [42] 
+                                                   [46])))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip ((t 
+                     (:foreground "cyan")))) 
+ '(company-tooltip-selection ((t 
+                               (:background "white")))) 
+ '(cursor ((t 
+            (:background "black" 
+                         :foreground "magenta")))) 
+ '(isearch ((t 
+             (:background "white" 
+                          :foreground "magenta")))) 
+ '(minibuffer-prompt ((t 
+                       (:foreground "green")))) 
+ '(mode-line-buffer-id ((t 
+                         (:background "magenta" 
+                                      :foregorund "gray")))) 
+ '(mode-line-inactive ((t :foregorund "gray"))) 
+ '(whitespace-big-indent ((t nil))) 
+ '(whitespace-space ((t 
+                      (:bold t 
+                             :foreground "green")))) 
+ '(whitespace-trailing ((t 
+                         (:foreground "green" 
+                                      :weight bold)))))
+
+;; =============================================================================================
+;; Erlang Mode
+;; =============================================================================================
+(add-to-list 'load-path (car (file-expand-wildcards "/usr/local/lib/erlang/lib/tools-*/emacs")))
+(setq erlang-root-dir "/usr/local/lib/erlang")
+(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+(require 'erlang-start)
+(require 'erlang)
+
+(add-to-list 'auto-mode-alist '("\\.config?$" . erlang-mode))
+
+(defun seriott-erlang-mode-hooks () 
+  "Hooks for Erlang mode." 
+  (setq erlang-indent-level 2)
+  ;; (setq erlang-indent-guard 1)
+  (setq allout-auto-activation t) 
+  (local-set-key (kbd "RET") 'newline-and-indent))
+(add-hook 'erlang-mode-hook 'seriott-erlang-mode-hooks)
+
+(defun seriott-erlang-mode-save-hooks () 
+  "Save hooks for Erlang mode."
+  ;; Either compare with `when` if majore-mode is 'erlang-mode
+  ;; or, use double add-hook as follows
+  ;; (when (eq major-mode 'erlang-mode)
+  (whitespace-cleanup) 
+  (delete-trailing-whitespace) 
+  (erlang-indent-current-buffer))
+(add-hook 'erlang-mode-hook (lambda() 
+                              (add-hook 'before-save-hook 'seriott-erlang-mode-save-hooks t t)))
+
+;; ======================================================================================
+;; emacs-lisp `elisp` Mode
+;; ======================================================================================
+;; Reference [](https://github.com/Yuki-Inoue/elisp-format/blob/master/elisp-format.el)
+;; wget (https://raw.githubusercontent.com/Yuki-Inoue/elisp-format/master/elisp-format.el
+;; into `~/.emacs.d/elisp-format`
+(add-to-list 'load-path "~/.emacs.d/elisp-format")
+(require 'elisp-format)
+(defun ear-emacs-lisp-mode-save-hooks () 
+  "Save hooks for emacs-lisp mode."
+  (when (eq major-mode 'emacs-lisp-mode) 
+    (whitespace-cleanup) 
+    (delete-trailing-whitespace) 
+    (elisp-format-buffer)))
+(add-hook 'before-save-hook 'ear-emacs-lisp-mode-save-hooks)
+
+;; ==========================================================
+;; Company Mode
+;; ==========================================================
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; ===========================================================
+;; Cursor
+;; ===========================================================
+;; For FreeBSD users, in vty:`sc` mode evaulate the folllowing
+;; command: `vidcontrol -c destructive`
+(setq-default cursor-type 'hbar)
+;; (set-cursor-color "#7F00FF")
+
+;; ===================================
+;; Nlinum - Buffer Line Numbers Column
+;; ===================================
+(global-nlinum-mode t)
+
+;; ======================================================================================
+;; color-theme
+;; ======================================================================================
+;; Reference [](http://nongnu.org/color-theme)
+;; wget http://download.savannah.nongnu.org/releases/color-theme/color-theme-6.6.0.tar.gz
+;; 7z x color-theme-6.6.0.tar.gz into the `color-theme` directory
+(add-to-list 'load-path "~/.emacs.d/color-theme")
+(require 'color-theme)
+(eval-after-load "color-theme" '(progn (color-theme-initialize)
+                                       ;;(color-theme-euphoria)
+                                       ;;(color-theme-clarity)
+                                       ;;(color-theme-comidia)
+                                       ;;
+                                       (color-theme-tty-dark) 
+                                       (color-theme-jsc-dark) 
+                                       (color-theme-taming-mr-arneson) 
+                                       (color-theme-renegade)
+                                       ;;
+                                       ))
+
+;; ===============
+;; Font lock mode
+;; ===============
+(font-lock-mode t)
+
+;; ==================================
+;; Matching pairs - Show `paren` mode
+;; ==================================
+(show-paren-mode 1)
+
+;; ===========================================
+;; Key binding
+;; ===========================================
+(global-set-key (kbd "M-9") 'kill-whole-line)
+(global-set-key (kbd "C-x p") 
+                (lambda() 
+                  (interactive) 
+                  (other-window -1)))
+
+;; ====================================================================
+;; Indentation
+;; ====================================================================
+;; No tabs by default. Modes that really need tabs should enable
+;; indent-tabs-mode explicitly. makefile-mode already does that
+;; To keep showing dots for every single whitespace
+;;  - Set show `whitespace-big-indent` to nil (check above)
+;;  - `intend-tabs-mode` to nil as follows
+(setq-default indent-tabs-mode nil)
+;; Default tab width `indent size` is 2
+(setq-default tab-width 2)
+;; Enable auto indent
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; Hooks
+;; Either Indent according to Major Mode
+;; or save add hook on specific Major Mode Hook
+;; (add-hook 'before-save-hook (lambda() ;; (if (not indent-tabs-mode)
+;; (indent-according-to-mode)
+;; (untabify (point-min)(point-max))
+;;                              (indent-region (point-min)
+;;                                             (point-max) nil)))
+
+;; ==========
+;; Whitespace
+;; ==========
+
+;; =================================================================
+;; Spell check
+;; =================================================================
+;; (autoload 'flyspell-mode "flyspell" "on-the-fly check spelling." t)
+;; (add-hook 'LaTex-mode-hook 'flyspell-mode)
+;; (add-hook 'text-mode-hook 'flyspell-mode)
+
+;; =================================================
+;; Dockerfile linter
+;; =================================================
+;; Reference: [](https://github.com/hadolint/hadolint.git)
+
+;; ====================================================
+;; markdown Mode
+;; ====================================================
+(defun markdown-mode-save-hooks () 
+  "Save hooks for markdown mode."
+  (when (eq major-mode 'markdown-mode) 
+    (whitespace-cleanup) 
+    (delete-trailing-whitespace) 
+    (indent-according-to-mode)))
+(add-hook 'before-save-hook #'markdown-mode-save-hooks)
+
+(provide '.emacs)
+;;; .emacs ends here
+
+;;; Local Variables:
+;;; coding: utf-8
+;;; End:
