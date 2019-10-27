@@ -34,9 +34,10 @@
     (package-refresh-contents))
 (pkg-install 'nlinum ;; Emacs's buffer line number column display
              'whitespace-cleanup-mode 'company
-             ;; Markdown
              ;; w3 - Emacs W3 web browser
-             'w3 'markdown-mode 'markdown-preview-mode
+             'w3
+             ;; Markdown
+             'markdown-mode 'markdown-preview-mode
              ;; Elixir
              'elixir-mode 'ac-alchemist
              ;; Flycheck
@@ -46,10 +47,14 @@
              'flycheck-yamllint
              ;; Flycheck extension for shell/bash script support
              'flycheck-checkbashisms
+             ;; Flycheck extension for Python support
+             'flycheck-pycheckers
              ;; JavaScript
              'js-auto-format-mode
              ;; Web mode
              'web-mode
+             ;; Python mode
+             'python-mode
              ;;
              )
 
@@ -58,21 +63,24 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(global-flycheck-mode t) 
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id)) 
  '(flycheck-highlighting-mode (quote symbols)) 
+ '(global-flycheck-mode t) 
+ '(js-auto-format-command "prettier") 
+ '(js-auto-format-command-args "--write --single-quote --no-semi") 
  '(nlinum-format " %3i ") 
  '(nlinum-highlight-current-line t) 
  '(nlinum-widen t) 
- '(js-auto-format-command "prettier") 
- '(js-auto-format-command-args "--write --single-quote --no-semi") 
- '(package-selected-packages (quote (flycheck w3 whitespace-cleanup-mode web-mode travis nlinum
-                                              markdown-mode js-auto-format-mode groovy-mode
-                                              gradle-mode flycheck-yamllint flycheck-title
-                                              flycheck-rebar3 flycheck-pos-tip flycheck-mix
-                                              flycheck-color-mode-line flycheck-checkbashisms
-                                              exec-path-from-shell dockerfile-mode
-                                              docker-compose-mode docker ac-alchemist))) 
+ '(package-selected-packages (quote (flycheck-pycheckers elpy python-mode flycheck w3
+                                                         whitespace-cleanup-mode web-mode travis
+                                                         nlinum markdown-mode js-auto-format-mode
+                                                         groovy-mode gradle-mode flycheck-yamllint
+                                                         flycheck-title flycheck-rebar3
+                                                         flycheck-pos-tip flycheck-mix
+                                                         flycheck-color-mode-line
+                                                         flycheck-checkbashisms exec-path-from-shell
+                                                         dockerfile-mode docker-compose-mode docker
+                                                         ac-alchemist))) 
  '(safe-local-variable-values (quote ((sh-indent-comment . t) 
                                       (allout-layout . t)))) 
  '(whitespace-display-mappings (quote ((space-mark 32 [] 
@@ -384,6 +392,31 @@
 ;; (web-beautify-html-buffer))
 ;; (add-hook 'web-mode-hook (lambda()
 ;;                            (add-hook 'before-save-hook 'seriott-web-beautify-save-hooks t t)))
+
+;; ==========================================================
+;; Python Mode
+;; ==========================================================
+(require 'python-mode)
+(defun ser-python-mode-hooks () 
+  "Hooks for python mode." 
+  (setq python-indent-offset 2) 
+  (setq python-indent-guess-indent-offset 2) 
+  (setq python-indent 2) 
+  (add-hook 'local-write-file-hooks (lambda() 
+                                      (whitespace-cleanup) 
+                                      (indent-according-to-mode)
+                                      ;;(save-excursion (py-indent-region (point-min)
+                                      ;;                                (point-max)))
+                                      (delete-trailing-whitespace))))
+(add-hook 'python-mode-hook (lambda() 
+                              (ser-python-mode-hooks)))
+
+(with-eval-after-load 'flycheck (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
+
+;; Elpy
+;; Reference [](https://elpy.readthedocs.io/en/latest/introduction.html\#installation)
+;; (elpy-enable)
+
 
 (provide '.emacs)
 ;;; .emacs ends here
