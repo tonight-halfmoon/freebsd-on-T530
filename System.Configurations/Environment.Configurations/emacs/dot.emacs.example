@@ -48,6 +48,8 @@
              'flycheck-checkbashisms
              ;; JavaScript
              'js-auto-format-mode
+             ;; Web mode
+             'web-mode
              ;;
              )
 
@@ -307,7 +309,8 @@
 ;; '(js-auto-format-command-args "--write --single-quote --no-semi"))
 
 (setq-default js-indent-level 2)
-;; (add-hook 'after-init-hook #'js-auto-format-mode)
+(add-hook 'after-init-hook (lambda() 
+                             (js-auto-format-mode)))
 
 ;; (defun seriott-js-af-mode-hooks ()
 ;;   "Hooks for js af mode."
@@ -321,6 +324,66 @@
     (delete-trailing-whitespace) 
     (js-auto-format-execute)))
 (add-hook 'before-save-hook 'seriott-js-af-mode-save-hooks)
+
+;; ===========================================================================
+;; Web Mode
+;; ===========================================================================
+;; Reference: [](http://web-mode.org/)
+;; $ wget https://raw.githubusercontent.com/fxbois/web-mode/master/web-mode.el
+(add-to-list 'load-path "~/.emacs.d/web-mode")
+(require 'web-mode)
+
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.eex?\\'" . web-mode))
+
+;; Configure engine(s) when file extension is too general or unknown
+(setq web-mode-engines-alist '(("php"    . "\\.phtml\\'") 
+                               ("blade"  . "\\.blade\\.")))
+
+;; Configure
+(add-to-list 'auto-mode-alist '("\\.api\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("/some/react/path/.*\\.js[x]?\\'" . web-mode))
+
+;; associate a file path with content type
+(setq web-mode-content-types-alist '(("json" . "/some/path/.*\\.api\\'") 
+                                     ("xml"  . "/other/path/.*\\.api\\'") 
+                                     ("jsx"  . "/some/react/path/.*\\.js[x]?\\'")))
+
+;; (setq-default web-mode-indent-style 2)
+
+(defun seriott-web-mode-hooks () 
+  "Hooks for Web mode." 
+  (setq web-mode-markup-indent-offset 2) 
+  (setq web-mode-code-indent-offset 2) 
+  (setq web-mode-attr-indent-offset 2) 
+  (setq web-mode-css-indent-offset 2) 
+  (setq web-mode-script-padding 2) 
+  (setq web-mode-style-padding 2) 
+  (setq web-mode-block-padding 4) 
+  (setq web-mode-enable-current-column-highlight t) 
+  (setq web-mode-enable-current-element-highlight t) 
+  (add-hook 'local-write-file-hooks (lambda() 
+                                      (whitespace-cleanup) 
+                                      (indent-according-to-mode) 
+                                      (indent-region (point-min) 
+                                                     (point-max) nil) 
+                                      (delete-trailing-whitespace) nil)))
+(add-hook 'web-mode-hook (lambda() 
+                           (seriott-web-mode-hooks)))
+
+;; =============================================================================================
+;; web-beautify formatter when web mode
+;; =============================================================================================
+;; (add-to-list 'load-path "~/.emacs.d/web-format")
+;; (require 'web-beautify) ;; Dependency: $ npm -g install js-beautify;; add file `~/.jsbeautifyrc` with contents {"indent-size": 2, "end_with_newline": true}
+;; Reference: [](https://github.com/yasuyk/web-beautify)
+
+;; (defun seriott-web-beautify-save-hooks ()
+;; "Save hooks with web-beautify for web mode."
+;;  ;; (!) Becarefull! Add one and only one for the same major mode.
+;; (web-beautify-html-buffer))
+;; (add-hook 'web-mode-hook (lambda()
+;;                            (add-hook 'before-save-hook 'seriott-web-beautify-save-hooks t t)))
 
 (provide '.emacs)
 ;;; .emacs ends here

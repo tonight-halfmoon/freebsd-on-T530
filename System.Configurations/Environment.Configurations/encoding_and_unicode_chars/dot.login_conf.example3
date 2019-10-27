@@ -1,0 +1,21 @@
+# $FreeBSD: releng/12.0/share/skel/dot.login_conf 77995 2001-06-10 17:08:53Z ache $
+#
+# see login.conf(5)
+#
+#me:\
+# :charset=iso-8859-1:\
+# :lang=de_DE.ISO8859-1:
+
+me:\
+  :setenv=LC_COLLATE=C,LC_TYPE=en_GB.UTF-8,LC_ALL=C:\
+  :charset=UTF-8:\
+  :lang=en_GB.UTF-8:
+
+# Local Variables:
+# coding: utf-8
+# mode: shell-script
+# sh-basic-offset: 2
+# sh-indent-comment: t
+# indent-tabs-mode: nil
+# End:
+# ex: ts=2 sw=2 et ft=sh
