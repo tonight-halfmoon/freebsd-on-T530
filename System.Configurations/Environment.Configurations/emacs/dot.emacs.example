@@ -37,6 +37,15 @@
              ;; Markdown
              ;; w3 - Emacs W3 web browser
              'w3 'markdown-mode 'markdown-preview-mode
+             ;; Elixir
+             'elixir-mode 'ac-alchemist
+             ;; Flycheck
+             'flycheck 'flycheck-mix 'flycheck-rebar3 'flycheck-color-mode-line 'flycheck-pos-tip
+             'flycheck-title
+             ;; Flycheck extension for yaml script support
+             'flycheck-yamllint
+             ;; Flycheck extension for shell/bash script support
+             'flycheck-checkbashisms
              ;;
              )
 
@@ -45,15 +54,19 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(global-flycheck-mode t) 
+ '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id)) 
+ '(flycheck-highlighting-mode (quote symbols)) 
  '(nlinum-format " %3i ") 
  '(nlinum-highlight-current-line t) 
  '(nlinum-widen t) 
- '(package-selected-packages (quote (w3 whitespace-cleanup-mode web-mode travis nlinum markdown-mode
-                                        js-auto-format-mode groovy-mode gradle-mode
-                                        flycheck-yamllint flycheck-title flycheck-rebar3
-                                        flycheck-pos-tip flycheck-mix flycheck-color-mode-line
-                                        flycheck-checkbashisms exec-path-from-shell dockerfile-mode
-                                        docker-compose-mode docker ac-alchemist))) 
+ '(package-selected-packages (quote (flycheck w3 whitespace-cleanup-mode web-mode travis nlinum
+                                              markdown-mode js-auto-format-mode groovy-mode
+                                              gradle-mode flycheck-yamllint flycheck-title
+                                              flycheck-rebar3 flycheck-pos-tip flycheck-mix
+                                              flycheck-color-mode-line flycheck-checkbashisms
+                                              exec-path-from-shell dockerfile-mode
+                                              docker-compose-mode docker ac-alchemist))) 
  '(safe-local-variable-values (quote ((sh-indent-comment . t) 
                                       (allout-layout . t)))) 
  '(whitespace-display-mappings (quote ((space-mark 32 [] 
@@ -74,9 +87,6 @@
  '(cursor ((t 
             (:background "black" 
                          :foreground "magenta")))) 
- '(isearch ((t 
-             (:background "white" 
-                          :foreground "magenta")))) 
  '(minibuffer-prompt ((t 
                        (:foreground "green")))) 
  '(mode-line-buffer-id ((t 
@@ -243,6 +253,36 @@
     (delete-trailing-whitespace) 
     (indent-according-to-mode)))
 (add-hook 'before-save-hook #'markdown-mode-save-hooks)
+
+;;===========================================================================================
+;; Elixir Mode
+;;===========================================================================================
+;; Reference [](https://github.com/elixir-editors/emacs-elixir)
+;; wget https://raw.githubusercontent.com/elixir-editors/emacs-elixir/master/elixir-format.el
+(add-to-list 'load-path "~/.emacs.d/elixir-format")
+(require 'elixir-format)
+;; Save hook `formatting` for Elixir Mode.
+(add-hook 'elixir-mode-hook (lambda() 
+                              (add-hook 'before-save-hook 'elixir-format nil t)))
+
+;; ==================================================================
+;; ac alchemist // native alchemist does not support aut-complete AC
+;; ==================================================================
+;; Reference [](https://github.com/syohex/emacs-ac-alchemist)
+(add-hook 'elixir-mode-hook 'ac-alchemist-setup)
+
+;; ==========================================================
+;; Flycheck
+;; ==========================================================
+;; Flycheck global mode is set with emacs's
+;; custom-set-varibles section above
+;; (global-flycheck-mode t)
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; Flycheck extension for Elixir support
+;; Reference [](https://github.com/tomekowal/flycheck-mix)
+(require 'flycheck-mix)
+(flycheck-mix-setup)
 
 (provide '.emacs)
 ;;; .emacs ends here
