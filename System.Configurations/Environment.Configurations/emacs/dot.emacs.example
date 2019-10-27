@@ -46,6 +46,8 @@
              'flycheck-yamllint
              ;; Flycheck extension for shell/bash script support
              'flycheck-checkbashisms
+             ;; JavaScript
+             'js-auto-format-mode
              ;;
              )
 
@@ -60,6 +62,8 @@
  '(nlinum-format " %3i ") 
  '(nlinum-highlight-current-line t) 
  '(nlinum-widen t) 
+ '(js-auto-format-command "prettier") 
+ '(js-auto-format-command-args "--write --single-quote --no-semi") 
  '(package-selected-packages (quote (flycheck w3 whitespace-cleanup-mode web-mode travis nlinum
                                               markdown-mode js-auto-format-mode groovy-mode
                                               gradle-mode flycheck-yamllint flycheck-title
@@ -283,6 +287,40 @@
 ;; Reference [](https://github.com/tomekowal/flycheck-mix)
 (require 'flycheck-mix)
 (flycheck-mix-setup)
+
+;; ==========================================================
+;; JavaScript Mode
+;; ==========================================================
+;; Dependency:
+;; Choose either `eslint` or `prettier`
+;; (1) eslint
+;; npm install --global eslint
+;; add ~/.eslintrc with contents,
+;; e.g., { "extends": "eslint:recommended" }
+;; (2) prettier
+;; npm install --global prettier
+;; Reference [](https://github.com/ybiquitous/js-auto-format-mode)
+;; Configure formatting engine (either eslint or prettier), as follows
+;; Configure with `prettier` (which already evaluated at the top - see above):
+;; (custom-set-variables
+;; '(js-auto-format-command "prettier")
+;; '(js-auto-format-command-args "--write --single-quote --no-semi"))
+
+(setq-default js-indent-level 2)
+;; (add-hook 'after-init-hook #'js-auto-format-mode)
+
+;; (defun seriott-js-af-mode-hooks ()
+;;   "Hooks for js af mode."
+;;   (local-set-key (kbd "RET") 'newline-and-indent))
+;; (add-hook 'js-auto-format-mode-hook 'seriott-js-af-mode-hooks)
+
+(defun seriott-js-af-mode-save-hooks () 
+  "Save hooks for js mode."
+  (when (eq major-mode 'js-mode) 
+    (whitespace-cleanup) 
+    (delete-trailing-whitespace) 
+    (js-auto-format-execute)))
+(add-hook 'before-save-hook 'seriott-js-af-mode-save-hooks)
 
 (provide '.emacs)
 ;;; .emacs ends here
