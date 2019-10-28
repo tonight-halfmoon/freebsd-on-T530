@@ -3,11 +3,11 @@
 ;;; Code:
 
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos)) 
-                    (not (gnutls-available-p)))) 
-       (proto (if no-ssl "http" "https"))) 
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
   (add-to-list 'package-archives (cons "melpa-stable" (concat proto
-                                                              "://stable.melpa.org/packages/")) t) 
+                                                              "://stable.melpa.org/packages/")) t)
   (add-to-list 'package-pinned-packages '(elixir-mode . "melpa-stable")))
 (package-initialize)
 
@@ -23,14 +23,14 @@
 ;; In addition, add-to-list package remote source could be necessary
 ;; to tell MELPA where to look for the source. See above, the section before package-initialize.
 ;; Reference: [](https://stackoverflow.com/a/10095853)
-(defun pkg-install 
-    (&rest 
+(defun pkg-install
+    (&rest
      tail)
   "Prompt for each package in TAIL install with y/n."
-  (mapcar (lambda (next) 
-            (if (package-installed-p next) nil (if (y-or-n-p(format "Install packge '%s'?" next)) 
+  (mapcar (lambda (next)
+            (if (package-installed-p next) nil (if (y-or-n-p(format "Install packge '%s'?" next))
                                                    (package-install next) next))) tail))
-(or (file-exists-p package-user-dir) 
+(or (file-exists-p package-user-dir)
     (package-refresh-contents))
 (pkg-install 'nlinum ;; Emacs's buffer line number column display
              'whitespace-cleanup-mode 'company
@@ -55,6 +55,8 @@
              'web-mode
              ;; Python mode
              'python-mode
+             ;; auto-complete mode
+             'auto-complete
              ;;
              )
 
@@ -63,14 +65,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id)) 
- '(flycheck-highlighting-mode (quote symbols)) 
- '(global-flycheck-mode t) 
- '(js-auto-format-command "prettier") 
- '(js-auto-format-command-args "--write --single-quote --no-semi") 
- '(nlinum-format " %3i ") 
- '(nlinum-highlight-current-line t) 
- '(nlinum-widen t) 
+ '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
+ '(flycheck-highlighting-mode (quote symbols))
+ '(global-flycheck-mode t)
+ '(js-auto-format-command "prettier")
+ '(js-auto-format-command-args "--write --single-quote --no-semi")
+ '(nlinum-format " %3i ")
+ '(nlinum-highlight-current-line t)
+ '(nlinum-widen t)
  '(package-selected-packages (quote (flycheck-pycheckers elpy python-mode flycheck w3
                                                          whitespace-cleanup-mode web-mode travis
                                                          nlinum markdown-mode js-auto-format-mode
@@ -80,39 +82,39 @@
                                                          flycheck-color-mode-line
                                                          flycheck-checkbashisms exec-path-from-shell
                                                          dockerfile-mode docker-compose-mode docker
-                                                         ac-alchemist))) 
- '(safe-local-variable-values (quote ((sh-indent-comment . t) 
-                                      (allout-layout . t)))) 
- '(whitespace-display-mappings (quote ((space-mark 32 [] 
-                                                   [46] 
-                                                   [0] 
-                                                   [32] 
-                                                   [42] 
+                                                         ac-alchemist)))
+ '(safe-local-variable-values (quote ((sh-indent-comment . t)
+                                      (allout-layout . t))))
+ '(whitespace-display-mappings (quote ((space-mark 32 []
+                                                   [46]
+                                                   [0]
+                                                   [32]
+                                                   [42]
                                                    [46])))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-tooltip ((t 
-                     (:foreground "cyan")))) 
- '(company-tooltip-selection ((t 
-                               (:background "white")))) 
- '(cursor ((t 
-            (:background "black" 
-                         :foreground "magenta")))) 
- '(minibuffer-prompt ((t 
-                       (:foreground "green")))) 
- '(mode-line-buffer-id ((t 
-                         (:background "magenta" 
-                                      :foregorund "gray")))) 
- '(mode-line-inactive ((t :foregorund "gray"))) 
- '(whitespace-big-indent ((t nil))) 
- '(whitespace-space ((t 
-                      (:bold t 
-                             :foreground "green")))) 
- '(whitespace-trailing ((t 
-                         (:foreground "green" 
+ '(company-tooltip ((t
+                     (:foreground "cyan"))))
+ '(company-tooltip-selection ((t
+                               (:background "white"))))
+ '(cursor ((t
+            (:background "black"
+                         :foreground "magenta"))))
+ '(minibuffer-prompt ((t
+                       (:foreground "green"))))
+ '(mode-line-buffer-id ((t
+                         (:background "magenta"
+                                      :foregorund "gray"))))
+ '(mode-line-inactive ((t :foregorund "gray")))
+ '(whitespace-big-indent ((t nil)))
+ '(whitespace-space ((t
+                      (:bold t
+                             :foreground "green"))))
+ '(whitespace-trailing ((t
+                         (:foreground "green"
                                       :weight bold)))))
 
 ;; =============================================================================================
@@ -126,23 +128,20 @@
 
 (add-to-list 'auto-mode-alist '("\\.config?$" . erlang-mode))
 
-(defun seriott-erlang-mode-hooks () 
-  "Hooks for Erlang mode." 
+(defun seriott-erlang-mode-hooks ()
+  "Hooks for Erlang mode."
+  (setq indent-tabs-mode nil)
+  (setq allout-auto-activation t)
   (setq erlang-indent-level 2)
-  ;; (setq erlang-indent-guard 1)
-  (setq allout-auto-activation t) 
   (local-set-key (kbd "RET") 'newline-and-indent))
 (add-hook 'erlang-mode-hook 'seriott-erlang-mode-hooks)
 
-(defun seriott-erlang-mode-save-hooks () 
+(defun seriott-erlang-mode-save-hooks ()
   "Save hooks for Erlang mode."
-  ;; Either compare with `when` if majore-mode is 'erlang-mode
-  ;; or, use double add-hook as follows
-  ;; (when (eq major-mode 'erlang-mode)
-  (whitespace-cleanup) 
-  (delete-trailing-whitespace) 
-  (erlang-indent-current-buffer))
-(add-hook 'erlang-mode-hook (lambda() 
+  (erlang-indent-current-buffer)
+  (whitespace-cleanup)
+  (delete-trailing-whitespace))
+(add-hook 'erlang-mode-hook (lambda()
                               (add-hook 'before-save-hook 'seriott-erlang-mode-save-hooks t t)))
 
 ;; ======================================================================================
@@ -153,18 +152,19 @@
 ;; into `~/.emacs.d/elisp-format`
 (add-to-list 'load-path "~/.emacs.d/elisp-format")
 (require 'elisp-format)
-(defun ear-emacs-lisp-mode-save-hooks () 
+(defun ear-emacs-lisp-mode-save-hooks ()
   "Save hooks for emacs-lisp mode."
-  (when (eq major-mode 'emacs-lisp-mode) 
-    (whitespace-cleanup) 
-    (delete-trailing-whitespace) 
-    (elisp-format-buffer)))
+  (when (eq major-mode 'emacs-lisp-mode)
+    (elisp-format-buffer)
+    (whitespace-cleanup)
+    (delete-trailing-whitespace)))
 (add-hook 'before-save-hook 'ear-emacs-lisp-mode-save-hooks)
 
 ;; ==========================================================
 ;; Company Mode
 ;; ==========================================================
-(add-hook 'after-init-hook 'global-company-mode)
+;; Either Utilise `company-mode` or `auto-complete-mode`
+;; (add-hook 'after-init-hook 'global-company-mode)
 
 ;; ===========================================================
 ;; Cursor
@@ -192,9 +192,9 @@
                                        ;;(color-theme-clarity)
                                        ;;(color-theme-comidia)
                                        ;;
-                                       (color-theme-tty-dark) 
-                                       (color-theme-jsc-dark) 
-                                       (color-theme-taming-mr-arneson) 
+                                       (color-theme-tty-dark)
+                                       (color-theme-jsc-dark)
+                                       (color-theme-taming-mr-arneson)
                                        (color-theme-renegade)
                                        ;;
                                        ))
@@ -213,14 +213,14 @@
 ;; Key binding
 ;; ===========================================
 (global-set-key (kbd "M-9") 'kill-whole-line)
-(global-set-key (kbd "C-x p") 
-                (lambda() 
-                  (interactive) 
+(global-set-key (kbd "C-x p")
+                (lambda()
+                  (interactive)
                   (other-window -1)))
 
-;; ====================================================================
+;; ==============================================================
 ;; Indentation
-;; ====================================================================
+;; ==============================================================
 ;; No tabs by default. Modes that really need tabs should enable
 ;; indent-tabs-mode explicitly. makefile-mode already does that
 ;; To keep showing dots for every single whitespace
@@ -235,7 +235,8 @@
 ;; Hooks
 ;; Either Indent according to Major Mode
 ;; or save add hook on specific Major Mode Hook
-;; (add-hook 'before-save-hook (lambda() ;; (if (not indent-tabs-mode)
+;; (add-hook 'before-save-hook (lambda()
+;; (if (not indent-tabs-mode)
 ;; (indent-according-to-mode)
 ;; (untabify (point-min)(point-max))
 ;;                              (indent-region (point-min)
@@ -245,28 +246,32 @@
 ;; Whitespace
 ;; ==========
 
-;; =================================================================
+;; ===================================================================
 ;; Spell check
-;; =================================================================
+;; ===================================================================
 ;; (autoload 'flyspell-mode "flyspell" "on-the-fly check spelling." t)
 ;; (add-hook 'LaTex-mode-hook 'flyspell-mode)
 ;; (add-hook 'text-mode-hook 'flyspell-mode)
 
-;; =================================================
+;; =======================================================
 ;; Dockerfile linter
-;; =================================================
+;; =======================================================
 ;; Reference: [](https://github.com/hadolint/hadolint.git)
 
-;; ====================================================
+;; =====================================================================
 ;; markdown Mode
-;; ====================================================
-(defun markdown-mode-save-hooks () 
-  "Save hooks for markdown mode."
-  (when (eq major-mode 'markdown-mode) 
-    (whitespace-cleanup) 
-    (delete-trailing-whitespace) 
-    (indent-according-to-mode)))
-(add-hook 'before-save-hook #'markdown-mode-save-hooks)
+;; =====================================================================
+(defun ser-markdown-mode-hooks ()
+  "Hooks for Markdown mode."
+  (setq indent-tabs-mode nil)
+  (setq tab-width 2)
+  (setq allout-auto-activation t)
+  (setq markdown-indent-on-enter t)
+  (add-hook 'local-write-file-hooks (lambda()
+                                      (indent-according-to-mode)
+                                      (whitespace-cleanup)
+                                      (delete-trailing-whitespace) nil)))
+(add-hook 'markdown-mode-hook 'ser-markdown-mode-hooks)
 
 ;;===========================================================================================
 ;; Elixir Mode
@@ -276,7 +281,7 @@
 (add-to-list 'load-path "~/.emacs.d/elixir-format")
 (require 'elixir-format)
 ;; Save hook `formatting` for Elixir Mode.
-(add-hook 'elixir-mode-hook (lambda() 
+(add-hook 'elixir-mode-hook (lambda()
                               (add-hook 'before-save-hook 'elixir-format nil t)))
 
 ;; ==================================================================
@@ -298,9 +303,9 @@
 (require 'flycheck-mix)
 (flycheck-mix-setup)
 
-;; ==========================================================
+;; ===================================================================
 ;; JavaScript Mode
-;; ==========================================================
+;; ===================================================================
 ;; Dependency:
 ;; Choose either `eslint` or `prettier`
 ;; (1) eslint
@@ -311,13 +316,13 @@
 ;; npm install --global prettier
 ;; Reference [](https://github.com/ybiquitous/js-auto-format-mode)
 ;; Configure formatting engine (either eslint or prettier), as follows
-;; Configure with `prettier` (which already evaluated at the top - see above):
+;; Configure with `prettier` ( - see above):
 ;; (custom-set-variables
 ;; '(js-auto-format-command "prettier")
 ;; '(js-auto-format-command-args "--write --single-quote --no-semi"))
 
 (setq-default js-indent-level 2)
-(add-hook 'after-init-hook (lambda() 
+(add-hook 'after-init-hook (lambda()
                              (js-auto-format-mode)))
 
 ;; (defun seriott-js-af-mode-hooks ()
@@ -325,11 +330,11 @@
 ;;   (local-set-key (kbd "RET") 'newline-and-indent))
 ;; (add-hook 'js-auto-format-mode-hook 'seriott-js-af-mode-hooks)
 
-(defun seriott-js-af-mode-save-hooks () 
+(defun seriott-js-af-mode-save-hooks ()
   "Save hooks for js mode."
-  (when (eq major-mode 'js-mode) 
-    (whitespace-cleanup) 
-    (delete-trailing-whitespace) 
+  (when (eq major-mode 'js-mode)
+    (whitespace-cleanup)
+    (delete-trailing-whitespace)
     (js-auto-format-execute)))
 (add-hook 'before-save-hook 'seriott-js-af-mode-save-hooks)
 
@@ -345,7 +350,7 @@
 (add-to-list 'auto-mode-alist '("\\.eex?\\'" . web-mode))
 
 ;; Configure engine(s) when file extension is too general or unknown
-(setq web-mode-engines-alist '(("php"    . "\\.phtml\\'") 
+(setq web-mode-engines-alist '(("php"    . "\\.phtml\\'")
                                ("blade"  . "\\.blade\\.")))
 
 ;; Configure
@@ -353,37 +358,39 @@
 (add-to-list 'auto-mode-alist '("/some/react/path/.*\\.js[x]?\\'" . web-mode))
 
 ;; associate a file path with content type
-(setq web-mode-content-types-alist '(("json" . "/some/path/.*\\.api\\'") 
-                                     ("xml"  . "/other/path/.*\\.api\\'") 
+(setq web-mode-content-types-alist '(("json" . "/some/path/.*\\.api\\'")
+                                     ("xml"  . "/other/path/.*\\.api\\'")
                                      ("jsx"  . "/some/react/path/.*\\.js[x]?\\'")))
 
 ;; (setq-default web-mode-indent-style 2)
 
-(defun seriott-web-mode-hooks () 
-  "Hooks for Web mode." 
-  (setq web-mode-markup-indent-offset 2) 
-  (setq web-mode-code-indent-offset 2) 
-  (setq web-mode-attr-indent-offset 2) 
-  (setq web-mode-css-indent-offset 2) 
-  (setq web-mode-script-padding 2) 
-  (setq web-mode-style-padding 2) 
-  (setq web-mode-block-padding 4) 
-  (setq web-mode-enable-current-column-highlight t) 
-  (setq web-mode-enable-current-element-highlight t) 
-  (add-hook 'local-write-file-hooks (lambda() 
-                                      (whitespace-cleanup) 
-                                      (indent-according-to-mode) 
-                                      (indent-region (point-min) 
-                                                     (point-max) nil) 
+(defun seriott-web-mode-hooks ()
+  "Hooks for Web mode."
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-attr-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-script-padding 2)
+  (setq web-mode-style-padding 2)
+  (setq web-mode-block-padding 4)
+  (setq web-mode-enable-current-column-highlight t)
+  (setq web-mode-enable-current-element-highlight t)
+  (add-hook 'local-write-file-hooks (lambda()
+                                      (whitespace-cleanup)
+                                      (indent-according-to-mode)
+                                      (indent-region (point-min)
+                                                     (point-max) nil)
                                       (delete-trailing-whitespace) nil)))
-(add-hook 'web-mode-hook (lambda() 
+(add-hook 'web-mode-hook (lambda()
                            (seriott-web-mode-hooks)))
 
-;; =============================================================================================
+;; =====================================================================================
 ;; web-beautify formatter when web mode
-;; =============================================================================================
+;; =====================================================================================
 ;; (add-to-list 'load-path "~/.emacs.d/web-format")
-;; (require 'web-beautify) ;; Dependency: $ npm -g install js-beautify;; add file `~/.jsbeautifyrc` with contents {"indent-size": 2, "end_with_newline": true}
+;; (require 'web-beautify)
+;; Dependency: $ npm -g install js-beautify
+;; add file `~/.jsbeautifyrc` with contents {"indent-size": 2, "end_with_newline": true}
 ;; Reference: [](https://github.com/yasuyk/web-beautify)
 
 ;; (defun seriott-web-beautify-save-hooks ()
@@ -397,18 +404,16 @@
 ;; Python Mode
 ;; ==========================================================
 (require 'python-mode)
-(defun ser-python-mode-hooks () 
-  "Hooks for python mode." 
-  (setq python-indent-offset 2) 
-  (setq python-indent-guess-indent-offset 2) 
-  (setq python-indent 2) 
-  (add-hook 'local-write-file-hooks (lambda() 
-                                      (whitespace-cleanup) 
+(defun ser-python-mode-hooks ()
+  "Hooks for python mode."
+  (setq python-indent-offset 2)
+  (setq python-indent-guess-indent-offset 2)
+  (setq python-indent 2)
+  (add-hook 'local-write-file-hooks (lambda()
+                                      (whitespace-cleanup)
                                       (indent-according-to-mode)
-                                      ;;(save-excursion (py-indent-region (point-min)
-                                      ;;                                (point-max)))
                                       (delete-trailing-whitespace))))
-(add-hook 'python-mode-hook (lambda() 
+(add-hook 'python-mode-hook (lambda()
                               (ser-python-mode-hooks)))
 
 (with-eval-after-load 'flycheck (add-hook 'flycheck-mode-hook #'flycheck-pycheckers-setup))
@@ -417,10 +422,30 @@
 ;; Reference [](https://elpy.readthedocs.io/en/latest/introduction.html\#installation)
 ;; (elpy-enable)
 
+;; ======================================================================
+;; auto-complete AC mode
+;; ======================================================================
+(require 'auto-complete)
+;; Reference [](https://github.com/auto-complete/auto-complete/issues/191)
+(defun plg-ac-config()
+  "Configure auto-complete AC Mode."
+  (setq ac-auto-start 1)
+  (setq ac-dwim t)
+  (setq ac-quick-help-display 0.1)
+  (setq ac-override-local-map nil)
+  (setq ac-ignore-case t)
+  (global-auto-complete-mode t))
+(mapc (lambda(mode)
+        (add-to-list 'ac-modes mode))
+      '(erlang-mode elixir-mode js-mode python-mode markdown-mode web-mode latex-mode text-mode
+                    eshell-mode emacs-lisp-mode))
+(plg-ac-config)
+
 
 (provide '.emacs)
-;;; .emacs ends here
 
-;;; Local Variables:
-;;; coding: utf-8
-;;; End:
+;; Local Variables:
+;; coding: utf-8
+;; indent-tabs-mode: nil
+;; End:
+;;; .emacs ends here
