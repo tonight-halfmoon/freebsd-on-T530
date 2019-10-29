@@ -57,6 +57,8 @@
              'python-mode
              ;; auto-complete mode
              'auto-complete
+             ;; Projectile
+             'projectile
              ;;
              )
 
@@ -73,16 +75,14 @@
  '(nlinum-format " %3i ")
  '(nlinum-highlight-current-line t)
  '(nlinum-widen t)
- '(package-selected-packages (quote (flycheck-pycheckers elpy python-mode flycheck w3
-                                                         whitespace-cleanup-mode web-mode travis
-                                                         nlinum markdown-mode js-auto-format-mode
-                                                         groovy-mode gradle-mode flycheck-yamllint
-                                                         flycheck-title flycheck-rebar3
-                                                         flycheck-pos-tip flycheck-mix
-                                                         flycheck-color-mode-line
-                                                         flycheck-checkbashisms exec-path-from-shell
-                                                         dockerfile-mode docker-compose-mode docker
-                                                         ac-alchemist)))
+ '(package-selected-packages (quote (projectile flycheck-pycheckers elpy python-mode flycheck w3
+                                                whitespace-cleanup-mode web-mode travis nlinum
+                                                markdown-mode js-auto-format-mode groovy-mode
+                                                gradle-mode flycheck-yamllint flycheck-title
+                                                flycheck-rebar3 flycheck-pos-tip flycheck-mix
+                                                flycheck-color-mode-line flycheck-checkbashisms
+                                                exec-path-from-shell dockerfile-mode
+                                                docker-compose-mode docker ac-alchemist)))
  '(safe-local-variable-values (quote ((sh-indent-comment . t)
                                       (allout-layout . t))))
  '(whitespace-display-mappings (quote ((space-mark 32 []
@@ -284,8 +284,20 @@
 (add-hook 'elixir-mode-hook (lambda()
                               (add-hook 'before-save-hook 'elixir-format nil t)))
 
+;; The following hook assumes `.formatter.exs' file exists in the directory
+;; containing the target source code
+;; Reference [](https://github.com/elixir-editors/emacs-elixir#add-elixir-mode-hook-to-run-elixir-format-on-file-save)
+;; Reference [mix format](https://hexdocs.pm/mix/master/Mix.Tasks.Format.html)
+(add-hook 'elixir-mode-hook (lambda()
+                              (setq elixir-format-arguments (list "--dot-formatter" (concat
+                                                                                     (locate-dominating-file
+                                                                                      buffer-file-name
+                                                                                      ".formatter.exs")
+                                                                                     ".formatter.exs")))
+                              (setq elixir-format-arguments nil)))
+
 ;; ==================================================================
-;; ac alchemist // native alchemist does not support aut-complete AC
+;; Ac alchemist // native alchemist does not support aut-complete AC
 ;; ==================================================================
 ;; Reference [](https://github.com/syohex/emacs-ac-alchemist)
 (add-hook 'elixir-mode-hook 'ac-alchemist-setup)
@@ -441,6 +453,11 @@
                     eshell-mode emacs-lisp-mode))
 (plg-ac-config)
 
+;; ===========================================================================================
+;; Projectile mode
+;; ==============================================================================================
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c C-c") 'projectile-command-map)
 
 (provide '.emacs)
 
