@@ -1,19 +1,19 @@
-  ## Experience with commands related to maintaining FreeBSD and system packages update and upgrade
+## Experience with commands related to maintaining FreeBSD and system packages update and upgrade
 
-  ### Update & Install packages
+### Update & Install packages
 
   ```
   # portupgrade -ra
 
   ```
 
-  ### Updateing the base FreeBSD Operating System
+### Updating the base FreeBSD Operating System
 
   ```
-  freebsd-update fetch install
+  # freebsd-update fetch install
   ```
 
-  ### Update and Upgrade Installed Packages
+### Update and Upgrade Installed Packages
 
   * Follow the steps as described in the official documentation of FreeBSD on System Upgrade.
     And then perhaps you could continue as follows: (at least that what I had to do)
@@ -26,15 +26,17 @@
   # portmaster -ady --no-confirm
   ```
 
-  ### Lock and Unlock for Portmaster
+### Lock and Unlock for Portmaster
 
-  * When `pkg upgrade` asks to downgrade/reinstall packages that was initially installed by `portmaster`
+  * When `pkg upgrade` asks to downgrade/reinstall packages that was initially installed by `portmaster`, then\
+    you can lock them
 
-  ```
-  pkg lock <package_name>
-  ```
 
-  ### Manipulate and fix issues by upgrading adn downgrading
+        ```
+        # pkg lock <package_name>
+        ```
+
+### Manipulate and fix issues by upgrading adn downgrading
 
   * Read man pkg-static before you consider the following command.
     But in some situations it's helpful to start all over.
@@ -43,58 +45,52 @@
   # pkg-static upgrade -f
   ```
 
-  * More
+### Fix broken portmaster packages update
 
-  ````
-  # portmaster -aD
-  # pkg check -Ba
-  # portmaster -a
+        * When something goes wrong with a package then try the following
 
-  ```
+        * Remove it with portmaster
 
-  * When something goes wrong with a package then try the following
 
-    * Remove it with portmaster
+        ```
+        # portmaster -w -r <package-name>
+        ```
 
-    ```
-    # portmaster -w -r <package-name>
-    ```
 
-    * Remove it with the package manager
+        * Remove it with the package manager
 
-    ```
-    # pkg remove <package-name>
-    ```
+
+        ```
+        # pkg remove <package-name>
+        ```
 
         * Example: `pkg remove libXTrap`
 
-    * In case you are not sure about the package name, then search for it
+        * In case you are not sure about the package name, then search for it
 
-    ```
-    # pkg search key
-    ```
+        ```
+        # pkg search key
+        ```
 
-    * In case the command with optin -r does not work try without it, as follows:
 
-    ```
-    # portmaster -w package-name
-    ```
+        * In case the command with optin -r does not work try without it, as follows:
 
-    * Find out the reason of failure. If that is because of packages conflict, the deinstall the other package which the cause.
-      Sometimes, it may even need to deinstall the package first. Then, try again.
+        ```
+        # portmaster -w package-name
+        ```
 
-    * Then, to continue the full update. Try with the following
+        * Find out the reason of failure. If that is because of packages conflict, the deinstall the other package which the cause.\
+          Sometimes, it may even need to deinstall the package first. Then, try again.
 
-    ```
-    # portmaster -afR --no-confirm
-    ```
+        * Then, to continue the full update. Try with the following
 
-    ```
-    # pkg update && pkg upgrade
 
-    ```
+        ```
+        # portmaster -afR --no-confirm
+        ```
 
-  ### Clean up
+### Clean up
+
 
   ```
   # portmaster --clean-distfiles -y
@@ -105,14 +101,16 @@
 
   ```
 
-  ### Upgrade certain package
+### Upgrade certain package
+
 
   ```
   # Upgrade a package
   # portupgrade -R firefox
   ```
 
-  ### Updating FreeBSD
+
+### Upgrading FreeBSD to target release
 
   ```
   # freebsd-update fetch
@@ -124,7 +122,7 @@
   # freebsd-update install
   ```
 
-  ### Uninstall/Deinstall packages
+### Uninstall/Deinstall packages
 
     1. Method 1
 
@@ -139,7 +137,7 @@
     # /usr/ports/name make deinstall
     ```
 
-  ### Fix broken apps when they depend on packages has been removed
+### Fix broken packages when they depend on packages has been removed
 
   ```
   # pkg update -f
@@ -147,13 +145,15 @@
   # pkg check -a -d
   ```
 
-  ### Autoremove left-over packages
+### Autoremove left-over packages
+
 
   ```
   # pkg autoremove
   ```
 
-  ### Fix update
+### Fix update
+
 
   ```
   # pkg-static upgrade -f
@@ -187,9 +187,9 @@
   # pkg upgrade -f
   ```
 
-  ---
-  ### References:
-  ---
+---
+### References:
+---
     * [](https://www.freebsd.org/doc/handbook/ports-using.html)
     * [](https://forums.freebsd.org/threads/not-able-to-build-gnupg.52242/)
     * FreeBSD Handbook Section "Freebsdupdate-portsbuild" in "updating-upgrading-freebsdupdate"
