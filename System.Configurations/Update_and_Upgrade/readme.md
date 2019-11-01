@@ -1,6 +1,4 @@
-
-Before making a release update, make sure to save yourself from a long time waste. 
-
+Before making a release update, make sure to save yourself from a long time waste.
 
 First, read the release notes of the target release. In this case, [FreeBSD 11.2-RELEASE Release Notes](https://www.freebsd.org.releases/11,2R/relnotes.html).
 

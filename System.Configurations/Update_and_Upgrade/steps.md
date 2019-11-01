@@ -1,19 +1,22 @@
-
-  ## Commands to maintaining FreeBSD and system packages update and upgrade
-
+  ## Experience with commands related to maintaining FreeBSD and system packages update and upgrade
 
   ### Update & Install packages
-
 
   ```
   # portupgrade -ra
 
   ```
-  ### freebsd-update fetch install
 
+  ### Updateing the base FreeBSD Operating System
+
+  ```
+  freebsd-update fetch install
+  ```
+
+  ### Update and Upgrade Installed Packages
 
   * Follow the steps as described in the official documentation of FreeBSD on System Upgrade.
-		And then perhaps you could continue as follows: (at least that what I had to do) 
+    And then perhaps you could continue as follows: (at least that what I had to do)
 
   ```
   # portsnap fetch update
@@ -21,18 +24,26 @@
   # portupgrade -a
   # pkg update && pkg upgrade
   # portmaster -ady --no-confirm
-	```
+  ```
 
-	### Manipulate and fix issues by upgrading adn downgrading
-	
-	* Read man pkg-static before you consider the following command.
-		But in some situations it's helpful to start all over.
+  ### Lock and Unlock for Portmaster
 
-	```
+  * When `pkg upgrade` asks to downgrade/reinstall packages that was initially installed by `portmaster`
+
+  ```
+  pkg lock <package_name>
+  ```
+
+  ### Manipulate and fix issues by upgrading adn downgrading
+
+  * Read man pkg-static before you consider the following command.
+    But in some situations it's helpful to start all over.
+
+  ```
   # pkg-static upgrade -f
   ```
 
-	* More
+  * More
 
   ````
   # portmaster -aD
@@ -43,7 +54,7 @@
 
   * When something goes wrong with a package then try the following
 
-    * Remove it with portmaster 
+    * Remove it with portmaster
 
     ```
     # portmaster -w -r <package-name>
@@ -56,7 +67,6 @@
     ```
 
         * Example: `pkg remove libXTrap`
-
 
     * In case you are not sure about the package name, then search for it
 
@@ -79,7 +89,6 @@
     # portmaster -afR --no-confirm
     ```
 
-
     ```
     # pkg update && pkg upgrade
 
@@ -96,27 +105,24 @@
 
   ```
 
-  ### Upgrade certain package 
+  ### Upgrade certain package
 
   ```
   # Upgrade a package
   # portupgrade -R firefox
   ```
 
-  ### Updating FreeBSD 
-
+  ### Updating FreeBSD
 
   ```
   # freebsd-update fetch
   ```
-
 
   ```
   # freebsd-update upgrade -r 11.2
 
   # freebsd-update install
   ```
-
 
   ### Uninstall/Deinstall packages
 
@@ -148,7 +154,6 @@
   ```
 
   ### Fix update
-
 
   ```
   # pkg-static upgrade -f
@@ -188,4 +193,4 @@
     * [](https://www.freebsd.org/doc/handbook/ports-using.html)
     * [](https://forums.freebsd.org/threads/not-able-to-build-gnupg.52242/)
     * FreeBSD Handbook Section "Freebsdupdate-portsbuild" in "updating-upgrading-freebsdupdate"
-
+    * [DigitalOcean - Community](https://www.digitalocean.com/community/tutorials/an-introduction-to-basic-freebsd-maintenance)
