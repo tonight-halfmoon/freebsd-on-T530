@@ -1,15 +1,12 @@
 # Configurations for NVIDIA Optimus and Intel
 
-
 1. Enable linux
 
   ```
   # kldload linux
 
   # sysrc linux_enable="YES"
-
   ```
-
 2. Install Nvidia and Intel Drivers
 
 
@@ -17,7 +14,6 @@
   # pkg install nvidia-driver
 
   # pkg install xf86-video-intel
-
   ```
 
 3. Load Nvidia and Enable Nvidia as Nvidia Modeset
@@ -28,7 +24,6 @@
   # sysrc nvidia_load=YES
 
   # sysrc kld_list=nvidia-modeset
-
   ```
 
 * Note Check the copy of a valid [etc rc.conf](../System.Configurations/sc/etc_rc.conf)
@@ -96,10 +91,9 @@ ___
 
 8. Append the modest of Nvidia to `/boot/loader.conf` as follows
 
-    ```
-    nvidia-modeset_load="YES"
-
-    ```
+  ```
+  nvidia-modeset_load="YES"
+  ```
 
 9. Append the contents of [`/etc/rc.conf`](../../System.Configurations/sc/etc_rc.conf), [`/boot/loader.conf`](../../System.Configurations/sc/etc_rc.conf) and [`/etc/X11/xorg.conf'](../../System.Configurations/sc/etc_rc.conf) as provided in this repository.
 
