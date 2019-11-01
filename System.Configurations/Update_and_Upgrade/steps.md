@@ -125,18 +125,21 @@ Experience with commands related to performing update and upgrade to the FreBSD 
 
 ### Uninstall/Deinstall packages
 
-    1. Method 1
+  * Method 1
+
 
     ```
     # pkg_deinstall name
 
     ```
 
-    2. Method 2
+  * Method 2
+
 
     ```
     # /usr/ports/name make deinstall
     ```
+
 
 ### Fix broken packages when they depend on packages has been removed
 
