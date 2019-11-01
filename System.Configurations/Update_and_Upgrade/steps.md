@@ -1,4 +1,5 @@
-## Experience with commands related to maintaining FreeBSD and system packages update and upgrade
+## Experience on FreeBSD and system packages update and upgrade
+Experience with commands related to performing update and upgrade to the FreBSD operating system and the instaled packages
 
 ### Update & Install packages
 
