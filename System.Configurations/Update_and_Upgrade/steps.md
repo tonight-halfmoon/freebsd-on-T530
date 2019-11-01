@@ -33,9 +33,9 @@ Experience with commands related to performing update and upgrade to the FreBSD 
     you can lock them
 
 
-        ```
-        # pkg lock <package_name>
-        ```
+  ```
+  # pkg lock <package_name>
+  ```
 
 ### Manipulate and fix issues by upgrading adn downgrading
 
@@ -48,47 +48,43 @@ Experience with commands related to performing update and upgrade to the FreBSD 
 
 ### Fix broken portmaster packages update
 
-        * When something goes wrong with a package then try the following
+  * When something goes wrong with a package then try the following
 
-        * Remove it with portmaster
+  * Remove it with portmaster
 
+  ```
+  # portmaster -w -r <package-name>
+  ```
 
-        ```
-        # portmaster -w -r <package-name>
-        ```
+  * Remove it with the package manager
 
+  ```
+  # pkg remove <package-name>
+  ```
 
-        * Remove it with the package manager
+  * Example: `pkg remove libXTrap`
 
-
-        ```
-        # pkg remove <package-name>
-        ```
-
-        * Example: `pkg remove libXTrap`
-
-        * In case you are not sure about the package name, then search for it
-
-        ```
-        # pkg search key
-        ```
+  * In case you are not sure about the package name, then search for it
 
 
-        * In case the command with optin -r does not work try without it, as follows:
+  ```
+  # pkg search key
+  ```
 
-        ```
-        # portmaster -w package-name
-        ```
+  * In case the command with optin -r does not work try without it, as follows:
 
-        * Find out the reason of failure. If that is because of packages conflict, the deinstall the other package which the cause.\
-          Sometimes, it may even need to deinstall the package first. Then, try again.
+  ```
+  # portmaster -w package-name
+  ```
 
-        * Then, to continue the full update. Try with the following
+  * Find out the reason of failure. If that is because of packages conflict, the deinstall the other package which the cause.
+    Sometimes, it may even need to deinstall the package first. Then, try again.
 
+  * Then, to continue the full update. Try with the following
 
-        ```
-        # portmaster -afR --no-confirm
-        ```
+  ```
+  # portmaster -afR --no-confirm
+  ```
 
 ### Clean up
 
