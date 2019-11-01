@@ -7,8 +7,7 @@
                     (not (gnutls-available-p))))
        (proto (if no-ssl "http" "https")))
   (add-to-list 'package-archives (cons "melpa-stable" (concat proto
-                                                              "://stable.melpa.org/packages/"))
-               t)
+                                                              "://stable.melpa.org/packages/")) t)
   (add-to-list 'package-pinned-packages '(elixir-mode . "melpa-stable")))
 (package-initialize)
 
@@ -44,8 +43,7 @@ packge '%s'?" next))
              ;; `Elixir'
              'elixir-mode 'ac-alchemist
              ;; `Flycheck'
-             'flycheck 'flycheck-mix 'flycheck-rebar3
-             'flycheck-color-mode-line 'flycheck-pos-tip
+             'flycheck 'flycheck-mix 'flycheck-rebar3 'flycheck-color-mode-line 'flycheck-pos-tip
              'flycheck-title
              ;; Flycheck extension for `yaml' script support
              'flycheck-yamllint
@@ -57,8 +55,8 @@ packge '%s'?" next))
              'js-auto-format-mode
              ;; `Web' mode
              'web-mode
-             ;; `Json' mode
-             'json-mode 'json-reformat
+             ;; `web-beautify'
+             'web-beautify
              ;; `Python' mode
              'python-mode
              ;; `auto-complete' mode
@@ -74,6 +72,7 @@ packge '%s'?" next))
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(file-coding-system-alist (quote (("\\.json\\'" . utf-8)
+                                    ("\\.conf\\'" . utf-8)
                                     ("\\.tzst\\'" no-conversion . no-conversion)
                                     ("\\.zst\\'" no-conversion . no-conversion)
                                     ("\\.dz\\'" no-conversion . no-conversion)
@@ -82,8 +81,7 @@ packge '%s'?" next))
                                     ("\\.lzma\\'" no-conversion . no-conversion)
                                     ("\\.lz\\'" no-conversion . no-conversion)
                                     ("\\.g?z\\'" no-conversion . no-conversion)
-                                    ("\\.\\(?:tgz\\|svgz\\|sifz\\)\\'"
-                                     no-conversion .
+                                    ("\\.\\(?:tgz\\|svgz\\|sifz\\)\\'" no-conversion .
                                      no-conversion)
                                     ("\\.tbz2?\\'" no-conversion . no-conversion)
                                     ("\\.bz2\\'" no-conversion . no-conversion)
@@ -95,8 +93,8 @@ packge '%s'?" next))
                                     ("\\(\\`\\|/\\)loaddefs.el\\'" raw-text . raw-text-unix)
                                     ("\\.tar\\'" no-conversion . no-conversion)
                                     ("\\.po[tx]?\\'\\|\\.po\\." . po-find-file-coding-system)
-                                    ("\\.\\(tex\\|ltx\\|dtx\\|drv\\)\\'"
-                                     . latexenc-find-file-coding-system)
+                                    ("\\.\\(tex\\|ltx\\|dtx\\|drv\\)\\'" .
+                                     latexenc-find-file-coding-system)
                                     ("" undecided))))
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(flycheck-highlighting-mode (quote symbols))
@@ -107,27 +105,16 @@ packge '%s'?" next))
  '(nlinum-format " %3i ")
  '(nlinum-highlight-current-line t)
  '(nlinum-widen t)
- '(package-selected-packages (quote (json-mode projectile
-                                               flycheck-pycheckers elpy
-                                               python-mode flycheck w3
-                                               whitespace-cleanup-mode
-                                               web-mode travis nlinum
-                                               markdown-mode
-                                               js-auto-format-mode
-                                               groovy-mode gradle-mode
-                                               flycheck-yamllint
-                                               flycheck-title
-                                               flycheck-rebar3
-                                               flycheck-pos-tip
-                                               flycheck-mix
-                                               flycheck-color-mode-line
-                                               flycheck-checkbashisms
-                                               exec-path-from-shell
-                                               dockerfile-mode
-                                               docker-compose-mode
-                                               docker ac-alchemist)))
- '(safe-local-variable-values (quote ((buffer-file-coding-system
-                                       . utf-8)
+ '(package-selected-packages (quote (web-beautify json-mode projectile flycheck-pycheckers elpy
+                                                  python-mode flycheck w3 whitespace-cleanup-mode
+                                                  web-mode travis nlinum markdown-mode
+                                                  js-auto-format-mode groovy-mode gradle-mode
+                                                  flycheck-yamllint flycheck-title flycheck-rebar3
+                                                  flycheck-pos-tip flycheck-mix
+                                                  flycheck-color-mode-line flycheck-checkbashisms
+                                                  exec-path-from-shell dockerfile-mode
+                                                  docker-compose-mode docker ac-alchemist)))
+ '(safe-local-variable-values (quote ((buffer-file-coding-system . utf-8)
                                       (sh-indent-comment . t)
                                       (allout-layout . t))))
  '(whitespace-display-mappings (quote ((space-mark 32 []
@@ -152,8 +139,7 @@ packge '%s'?" next))
                        (:foreground "green"))))
  '(mode-line-buffer-id ((t
                          (:background "magenta"
-                                      :foregorund
-                                      "gray"))))
+                                      :foregorund "gray"))))
  '(mode-line-inactive ((t :foregorund "gray")))
  '(whitespace-big-indent ((t nil)))
  '(whitespace-space ((t
@@ -176,9 +162,7 @@ packge '%s'?" next))
 
 (defun seriott-erlang-mode-hooks ()
   "Hooks for Erlang mode."
-  (setq
-   indent-tabs-mode
-   nil)
+  (setq indent-tabs-mode nil)
   (setq allout-auto-activation t)
   (setq erlang-indent-level 2)
   (local-set-key (kbd "RET") 'newline-and-indent))
@@ -312,9 +296,7 @@ mode."
 ;; =====================================================================
 (defun ser-markdown-mode-hooks ()
   "Hooks for Markdown mode."
-  (setq
-   indent-tabs-mode
-   nil)
+  (setq indent-tabs-mode nil)
   (setq tab-width 2)
   (setq allout-auto-activation t)
   (setq markdown-indent-on-enter t)
@@ -324,9 +306,9 @@ mode."
                                       (delete-trailing-whitespace) nil)))
 (add-hook 'markdown-mode-hook 'ser-markdown-mode-hooks)
 
-;;===========================================================================================
+;; ==========================================================================================================
 ;; Elixir Mode
-;;===========================================================================================
+;; ==========================================================================================================
 ;; Reference [](https://github.com/elixir-editors/emacs-elixir)
 ;; wget https://raw.githubusercontent.com/elixir-editors/emacs-elixir/master/elixir-format.el
 (add-to-list 'load-path "~/.emacs.d/elixir-format")
@@ -337,7 +319,8 @@ mode."
 
 ;; The following hook assumes `.formatter.exs' file exists in the directory
 ;; containing the target source code
-;; Reference [](https://github.com/elixir-editors/emacs-elixir#add-elixir-mode-hook-to-run-elixir-format-on-file-save)
+;; Reference [](https://github.com/elixir-editors/emacs-elixir\
+;; #add-elixir-mode-hook-to-run-elixir-format-on-file-save)
 ;; Reference [mix format](https://hexdocs.pm/mix/master/Mix.Tasks.Format.html)
 (add-hook 'elixir-mode-hook (lambda()
                               (setq elixir-format-arguments (list "--dot-formatter" (concat
@@ -383,7 +366,6 @@ mode."
 ;; (custom-set-variables
 ;; '(js-auto-format-command "prettier")
 ;; '(js-auto-format-command-args "--write --single-quote --no-semi"))
-
 (setq-default js-indent-level 2)
 (add-hook 'after-init-hook (lambda()
                              (js-auto-format-mode)))
@@ -416,7 +398,7 @@ mode."
 ;; then try `json-mode' and format with `json-mode-beautify'
 ;; Check defined hook `sat-json-mode-hooks', enable it to try it, and disable
 ;; the following line.
-(add-to-list 'auto-mode-alist '("\\.json?\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.json?\\'" . web-mode))
 
 ;; Configure engine(s) when file extension is too general or unknown
 ;; Examples:
@@ -438,9 +420,7 @@ mode."
 
 (defun seriott-web-mode-hooks ()
   "Hooks for Web mode."
-  (setq
-   web-mode-markup-indent-offset
-   2)
+  (setq web-mode-markup-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-attr-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
@@ -459,25 +439,30 @@ mode."
                            (seriott-web-mode-hooks)))
 
 ;; =====================================================================================
-;; `web-beautify' formatter when web mode
+;; `web-beautify' formatter in `Json' mode
 ;; =====================================================================================
-;; (add-to-list 'load-path "~/.emacs.d/web-format")
-;; (require 'web-beautify)
 ;; Dependency: $ npm -g install js-beautify
+;; Passing formatting configurations:
+;; `Option-1'
 ;; add file `~/.jsbeautifyrc` with contents {"indent-size": 2, "end_with_newline": true}
+;; `Option-2'
+;; via environment variable
+;; Other options, check: [](https://github.com/beautify-web/js-beautify#options)
 ;; Reference: [](https://github.com/yasuyk/web-beautify)
-;; (defun seriott-web-beautify-save-hooks ()
-;;  "Save hooks with web-beautify for web mode."
-;;  ;; (!) Becarefull! Add one and only one for the same major mode.
-;; (web-beautify-html-buffer))
-;; (add-hook 'web-mode-hook (lambda()
-;; (add-hook 'before-save-hook 'seriott-web-beautify-save-hooks t t)))
-;;  (web-beautify-json-buffer))
-;; (add-hook 'json-mode-hook (lambda()
-;;                            (add-hook 'before-save-hook 'seriott-web-beautify-save-hooks t t)))
+(defun halloween-web-beautify-hooks ()
+  "Hooks with web-beautify."
+  ;; (!) Becarefull! Add one and only one for the same major mode.
+  ;; (web-beautify-html-buffer)
+  (setenv "jsbeautify_indent_size" "2")
+  (setenv "jsbeautify_end_with_newline" "true")
+  (setq indent-tabs-mode nil)
+  (add-hook 'before-save-hook (lambda()
+                                (web-beautify-js-buffer)
+                                (whitespace-cleanup))))
+(add-hook 'json-mode-hook 'halloween-web-beautify-hooks)
 
 ;; ===========================================================================
-;; `Json' Mode
+;; `Json' Mode -- not being utilised! Check `web-beautify' hooks
 ;; ===========================================================================
 (defun sat-json-mode-hooks ()
   "Hooks for json mode."
@@ -499,9 +484,7 @@ mode."
 (require 'python-mode)
 (defun ser-python-mode-hooks ()
   "Hooks for python mode."
-  (setq
-   python-indent-offset
-   2)
+  (setq python-indent-offset 2)
   (setq python-indent-guess-indent-offset 2)
   (setq python-indent 2)
   (add-hook 'local-write-file-hooks (lambda()
@@ -524,9 +507,7 @@ mode."
 ;; Reference [](https://github.com/auto-complete/auto-complete/issues/191)
 (defun plg-ac-config()
   "Configure auto-complete AC Mode."
-  (setq
-   ac-auto-start
-   1)
+  (setq ac-auto-start 1)
   (setq ac-dwim t)
   (setq ac-quick-help-display 0.1)
   (setq ac-override-local-map nil)
@@ -534,8 +515,7 @@ mode."
   (global-auto-complete-mode t))
 (mapc (lambda(mode)
         (add-to-list 'ac-modes mode))
-      '(erlang-mode elixir-mode js-mode python-mode markdown-mode
-                    web-mode latex-mode text-mode
+      '(erlang-mode elixir-mode js-mode python-mode markdown-mode web-mode latex-mode text-mode
                     eshell-mode emacs-lisp-mode))
 (plg-ac-config)
 
@@ -550,10 +530,9 @@ mode."
 ;; =======================================================
 (defun ni-conf-unix-mode-hooks()
   "Hooks for conf-unix mode."
-  (setq
-   indent-tabs-mode
-   nil)
+  (setq indent-tabs-mode nil)
   (setq tab-width 2)
+  (setq require-final-newline (quote mode-require-final-newline))
   (add-hook 'before-save-hook (lambda()
                                 (indent-region (point-min)
                                                (point-max))
@@ -576,10 +555,7 @@ mode."
 ;; `====================================================================='
 (defun ni-sh-mode-hooks()
   "Hooks for sh mode."
-  (setq
-   require-final-newline
-   (quote
-    mode-require-final-newline))
+  (setq require-final-newline (quote mode-require-final-newline))
   (setq indent-tabs-mode nil sh-basic-offset 2)
   (add-hook 'before-save-hook (lambda()
                                 (indent-region (point-min)
