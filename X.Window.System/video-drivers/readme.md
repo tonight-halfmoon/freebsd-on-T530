@@ -11,8 +11,9 @@
 
 
   ```
-  # pkg install nvidia-driver-390
-
+  # cd /usr/ports/x11/nvidia-driver-390 && make install clean && cd ..
+  # cd /linux-nvidia-libs-390 && make install clean && cd ..
+  
   # pkg install xf86-video-intel
   ```
 
