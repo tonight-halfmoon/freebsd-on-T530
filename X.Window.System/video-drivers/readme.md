@@ -9,12 +9,21 @@
   ```
 2. Install Nvidia and Intel Drivers
 
+  + Make sure that any linux-c6-/c7- not installed.
+    For example:
+    ```
+    /usr/ports/x11/linux-c6-pixman/
+    /usr/ports/x11/linux-c7-pixman/
+    /usr/ports/x11/linux-c7-xorg-libs/
+    /usr/ports/x11/linux-c6-xorg-libs/
+    /usr/ports/x11/linux-c7-libxkbcommon/
+    ```
+    Remove any of these if its installed. nvidia-driver-libs-xxx will automatically install its relevant
+    dependency
 
   ```
   # cd /usr/ports/x11/nvidia-driver-390 && make install clean && cd ..
   # cd /linux-nvidia-libs-390 && make install clean && cd ..
-  
-  # pkg install xf86-video-intel
   ```
 
 3. Load Nvidia and Enable Nvidia as Nvidia Modeset
