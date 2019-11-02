@@ -11,7 +11,7 @@
 
 
   ```
-  # pkg install nvidia-driver
+  # pkg install nvidia-driver-390
 
   # pkg install xf86-video-intel
   ```
@@ -114,3 +114,4 @@ ___
 ----
 
 [] (http://tldp.org/HOWTO/Xterm-Title-3.html)
+[] (https://www.nvidia.com/Download/driverResults.aspx/137612/en-us)
