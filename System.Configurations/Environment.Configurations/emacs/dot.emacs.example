@@ -439,9 +439,9 @@ mode."
                            (seriott-web-mode-hooks)))
 
 ;; =====================================================================================
-;; `web-beautify' formatter in `Json' mode
+;; `web-beautify' formatter
 ;; =====================================================================================
-;; Dependency: $ npm -g install js-beautify
+;; Dependency: $ npm install -g js-beautify
 ;; Passing formatting configurations:
 ;; `Option-1'
 ;; add file `~/.jsbeautifyrc` with contents {"indent-size": 2, "end_with_newline": true}
@@ -459,6 +459,10 @@ mode."
   (add-hook 'before-save-hook (lambda()
                                 (web-beautify-js-buffer)
                                 (whitespace-cleanup))))
+
+;; =========================================
+;; Format with `web-beautify' in `json-mode'
+;; =========================================
 (add-hook 'json-mode-hook 'halloween-web-beautify-hooks)
 
 ;; ===========================================================================
