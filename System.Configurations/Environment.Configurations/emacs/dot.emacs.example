@@ -232,18 +232,16 @@
 (add-to-list 'load-path "~/.emacs.d/color-theme")
 (require 'color-theme)
 
-(eval-after-load "color-theme" '(progn (color-theme-initialize)
-                                       ;; (color-theme-euphoria)
-                                       ;; (color-theme-clarity)
-                                       ;; (color-theme-comidia)
-                                       ;;
-                                       (color-theme-tty-dark)
-                                       (color-theme-jsc-dark)
-                                       (color-theme-taming-mr-arneson)
-                                       (color-theme-renegade)
-                                       ;;
-                                       ))
+;; (color-theme-euphoria)
+;; (color-theme-clarity)
+;; (color-theme-comidia)
+;; (color-theme-tty-dark)
+;; (color-theme-jsc-dark)
 
+;; customised theme source "~/.emacs.d/color-theme/themes/color-theme-amado.el"
+(eval-after-load "color-theme" '(progn (color-theme-initialize)
+                                       (color-theme-arneson)
+                                       (color-theme-amado)))
 ;; ===============
 ;; Font lock mode
 ;; ===============
