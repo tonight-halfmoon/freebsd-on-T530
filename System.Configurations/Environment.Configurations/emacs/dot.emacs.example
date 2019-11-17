@@ -26,11 +26,9 @@
 (defun pkg-install
     (&rest
      tail)
-  "Prompt for each package in TAIL
-install with y/n."
+  "Prompt for each package in TAIL install with y/n."
   (mapcar (lambda (next)
-            (if (package-installed-p next) nil (if (y-or-n-p(format "Install
-packge '%s'?" next))
+            (if (package-installed-p next) nil (if (y-or-n-p(format "Install packge '%s'?" next))
                                                    (package-install next) next))) tail))
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
@@ -39,7 +37,7 @@ packge '%s'?" next))
              ;; `w3' - Emacs W3 web browser
              'w3
              ;; `Markdown'
-             'markdown-mode 'markdown-preview-mode
+             'markdown-mode ;; 'markdown-preview-mode
              ;; `Elixir'
              'elixir-mode 'ac-alchemist
              ;; `Flycheck'
@@ -63,6 +61,12 @@ packge '%s'?" next))
              'auto-complete
              ;; `Projectile'
              'projectile
+             ;; Groovy
+             'groovy-mode
+             ;; YAML mode
+             'yaml-mode
+             ;; Dockerfile mode
+             'dockerfile-mode
              ;;
              )
 
@@ -105,15 +109,14 @@ packge '%s'?" next))
  '(nlinum-format " %3i ")
  '(nlinum-highlight-current-line t)
  '(nlinum-widen t)
- '(package-selected-packages (quote (web-beautify json-mode projectile flycheck-pycheckers elpy
-                                                  python-mode flycheck w3 whitespace-cleanup-mode
-                                                  web-mode travis nlinum markdown-mode
-                                                  js-auto-format-mode groovy-mode gradle-mode
-                                                  flycheck-yamllint flycheck-title flycheck-rebar3
-                                                  flycheck-pos-tip flycheck-mix
-                                                  flycheck-color-mode-line flycheck-checkbashisms
-                                                  exec-path-from-shell dockerfile-mode
-                                                  docker-compose-mode docker ac-alchemist)))
+ '(package-selected-packages (quote (dockerfile-mode yaml-mode groovy-mode projectile python-mode
+                                                     web-beautify web-mode js-auto-format-mode
+                                                     flycheck-pycheckers flycheck-checkbashisms
+                                                     flycheck-yamllint flycheck-title
+                                                     flycheck-pos-tip flycheck-color-mode-line
+                                                     flycheck-rebar3 flycheck-mix flycheck
+                                                     ac-alchemist elixir-mode markdown-mode w3
+                                                     company whitespace-cleanup-mode nlinum)))
  '(safe-local-variable-values (quote ((buffer-file-coding-system . utf-8)
                                       (sh-indent-comment . t)
                                       (allout-layout . t))))
@@ -137,10 +140,19 @@ packge '%s'?" next))
                          :foreground "magenta"))))
  '(minibuffer-prompt ((t
                        (:foreground "green"))))
+ ;; Mode-line face active
+ ;; Check installed theme, `color-theme'
+ ;; if this customisation does not work
+ '(mode-line ((t
+               (:background "cyan"
+                            :foreground "white"))))
  '(mode-line-buffer-id ((t
                          (:background "magenta"
                                       :foregorund "gray"))))
  '(mode-line-inactive ((t :foregorund "gray")))
+ '(modeline ((t
+              (:background "cyan"
+                           :foreground "white"))))
  '(whitespace-big-indent ((t nil)))
  '(whitespace-space ((t
                       (:bold t
@@ -185,8 +197,7 @@ packge '%s'?" next))
 (add-to-list 'load-path "~/.emacs.d/elisp-format")
 (require 'elisp-format)
 (defun ear-emacs-lisp-mode-save-hooks ()
-  "Save hooks for emacs-lisp
-mode."
+  "Save hooks for emacs-lisp mode."
   (when (eq major-mode 'emacs-lisp-mode)
     (elisp-format-buffer)
     (whitespace-cleanup)
@@ -220,6 +231,7 @@ mode."
 ;; `7z x color-theme-6.6.0.tar.gz` into the `color-theme' directory
 (add-to-list 'load-path "~/.emacs.d/color-theme")
 (require 'color-theme)
+
 (eval-after-load "color-theme" '(progn (color-theme-initialize)
                                        ;; (color-theme-euphoria)
                                        ;; (color-theme-clarity)
@@ -285,11 +297,6 @@ mode."
 ;; (autoload 'flyspell-mode "flyspell" "on-the-fly check spelling." t)
 ;; (add-hook 'LaTex-mode-hook 'flyspell-mode)
 ;; (add-hook 'text-mode-hook 'flyspell-mode)
-
-;; =======================================================
-;; `Dockerfile' linter
-;; =======================================================
-;; Reference: [](https://github.com/hadolint/hadolint.git)
 
 ;; =====================================================================
 ;; `markdown' Mode
@@ -566,6 +573,55 @@ mode."
                                                (point-max))
                                 (whitespace-cleanup))))
 (add-hook 'sh-mode-hook 'ni-sh-mode-hooks)
+
+;; ==================================
+;; `Dockerfile' mode
+;; ==================================
+(defun jeng-dockerfile-mode-hooks ()
+  "Hooks for Dockerfile mode."
+  (setq indent-tabs-mode nil)
+  (setq tab-width 2)
+  (add-hook 'before-save-hook (lambda()
+                                (whitespace-cleanup))))
+(add-hook 'dockerfile-mode 'jeng-dockerfile-mode-hooks)
+
+;; =======================================================
+;; `Dockerfile' linter
+;; =======================================================
+;; Reference: [](https://github.com/hadolint/hadolint.git)
+
+;; =======================================================
+;; `groovy' mode
+;; =======================================================
+(defun jeng-groovy-mode-hooks ()
+  "Hooks for groovy mode."
+  (setq indent-tabs-mode nil)
+  (setq groovy-indent-offset 2)
+  (add-hook 'before-save-hook (lambda()
+                                (indent-region (point-min)
+                                               (point-max))
+                                (whitespace-cleanup))))
+(add-hook 'groovy-mode-hook 'jeng-groovy-mode-hooks)
+
+;; =======================================================
+;; `yaml' mode
+;; =======================================================
+(require 'yaml-mode)
+(defun mor-yaml-mode-hooks ()
+  "Hooks for yaml mode."
+  (setq indent-tabs-mode nil)
+  (setq yaml-indent-offset 2)
+  (define-key yaml-mode-map "\C-m" 'newline-and-indent)
+  (add-hook 'before-save-hook (lambda()
+                                (whitespace-cleanup))))
+(add-hook 'yaml-mode-hook 'mor-yaml-mode-hooks)
+
+;; =========================================================================================
+;; Jenkins file mode
+;; =========================================================================================
+;; wget https://raw.githubusercontent.com/john2x/jenkinsfile-mode/master/jenkinsfile-mode.el
+(add-to-list 'load-path "~/.emacs.d/jenkinsfile-mode")
+(require 'jenkinsfile-mode)
 
 (provide '.emacs)
 
