@@ -20,11 +20,9 @@ Experience with commands related to performing update and upgrade to the FreBSD 
     And then perhaps you could continue as follows: (at least that what I had to do)
 
   ```
-  # portsnap fetch update
-  # portsnap fetch extract
+  # `portsnap fetch update && portsnap fetch extract && portmaster -ady --no-confirm`
   # portupgrade -a
   # pkg update && pkg upgrade
-  # portmaster -ady --no-confirm
   ```
 
 ### Lock and Unlock for Portmaster

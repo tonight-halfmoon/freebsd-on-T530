@@ -3,12 +3,10 @@
 ;;; Code:
 
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  (add-to-list 'package-archives (cons "melpa-stable" (concat proto
-                                                              "://stable.melpa.org/packages/")) t)
-  (add-to-list 'package-pinned-packages '(elixir-mode . "melpa-stable")))
+(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/"))
+             t)
+(add-to-list 'package-pinned-packages '(elixir-mode . "melpa-stable"))
+
 (package-initialize)
 
 ;; ==============================================================================================
@@ -109,14 +107,6 @@
  '(nlinum-format " %3i ")
  '(nlinum-highlight-current-line t)
  '(nlinum-widen t)
- '(package-selected-packages (quote (dockerfile-mode yaml-mode groovy-mode projectile python-mode
-                                                     web-beautify web-mode js-auto-format-mode
-                                                     flycheck-pycheckers flycheck-checkbashisms
-                                                     flycheck-yamllint flycheck-title
-                                                     flycheck-pos-tip flycheck-color-mode-line
-                                                     flycheck-rebar3 flycheck-mix flycheck
-                                                     ac-alchemist elixir-mode markdown-mode w3
-                                                     company whitespace-cleanup-mode nlinum)))
  '(safe-local-variable-values (quote ((buffer-file-coding-system . utf-8)
                                       (sh-indent-comment . t)
                                       (allout-layout . t))))
@@ -227,8 +217,13 @@
 ;; color-theme
 ;; ======================================================================================
 ;; Reference [](http://nongnu.org/color-theme)
-;; wget http://download.savannah.nongnu.org/releases/color-theme/color-theme-6.6.0.tar.gz
-;; `7z x color-theme-6.6.0.tar.gz` into the `color-theme' directory
+
+;; `wget http://download.savannah.nongnu.org/releases/color-theme/color-theme-6.6.0.tar.gz`
+;; `7z x color-theme-6.6.0.tar.gz`
+;; `7z x color-theme-6.6.0.tar`
+;; `mv ./color-theme-6.6.0 ~/.emacs.d/color-theme`
+;; `cp ./color-theme-amado.el ~/.emacs.d/color-theme/themes/`
+
 (add-to-list 'load-path "~/.emacs.d/color-theme")
 (require 'color-theme)
 
@@ -626,6 +621,8 @@
 ;; Local Variables:
 ;; coding: utf-8
 ;; buffer-file-coding-system: utf-8
+;; mode: emacs-lisp
 ;; indent-tabs-mode: nil
 ;; End:
+;; vim: sw=2 ts=2 et
 ;;; .emacs ends here

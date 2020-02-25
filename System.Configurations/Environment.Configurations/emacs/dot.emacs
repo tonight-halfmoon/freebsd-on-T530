@@ -7,39 +7,18 @@
 ;;; Code:
 
 (require 'package)
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if no-ssl "http" "https")))
-  ;; Comment/uncomment these two lines to enable/disable MELPA Stable as desired
-  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
-  (when (< emacs-major-version 24)
-    ;; For important compatibility libraries like cl-lib
-    (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
+(add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+(add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")) t)
+
 (package-initialize)
 
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(custom-enabled-themes (quote (manoj-dark)))
  '(font-use-system-font nil)
- '(package-selected-packages
-   (quote
-    (yaml-mode travis smart-hungry-delete es-mode js-format general groovy-mode xml+ gradle-mode pdf-tools html-to-markdown js-auto-format-mode js-auto-beautify erlstack-mode erlang markdown-mode auto-complete-distel auto-complete python-environment python-mode flycheck-pycheckers elpy flycheck-pyflakes scala-mode flycheck-color-mode-line format-all company-distel company whitespace-cleanup-mode kotlin-mode)))
  '(safe-local-variable-values (quote ((sh-indent-comment . t) (allout-layout . t))))
  '(whitespace-display-mappings (quote ((space-mark ?\ [ ] [?.] [0] [32] [42] [46]))))
  )
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(company-tooltip ((t (:foreground "cyan"))))
  '(company-tooltip-selection ((t (:background "white"))))
  '(isearch ((t (:background "white" :foreground "magenta"))))
@@ -164,4 +143,12 @@
 (elpy-enable)
 
 (provide '.emacs)
+
+;; Local Variables:
+;; coding: utf-8
+;; buffer-file-coding-system: utf-8
+;; mode: emacs-lisp
+;; indent-tabs-mode: nil
+;; End:
+;; vim: sw=2 ts=2 et
 ;;; .emacs ends here

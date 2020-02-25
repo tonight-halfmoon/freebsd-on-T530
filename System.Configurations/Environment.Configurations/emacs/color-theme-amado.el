@@ -4,6 +4,9 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (require 'color-theme))
+
 (defun color-theme-amado ()
   "Renegade BBS styled color theme.   Works well in X and terminals.
 Created by Dave Benjamin <ramen@ramenfest.com> Dec 23 2005."
@@ -27,6 +30,10 @@ Created by Dave Benjamin <ramen@ramenfest.com> Dec 23 2005."
                                                                    :weight bold))))
                                            (fixed-pitch ((t
                                                           (:family "courier"))))
+                                           (font-lock-doc-string-face ((t
+                                                                        (:foreground "turquoise"))))
+                                           (font-lock-preprocessor-face ((t
+                                                                          (:foreground "green3"))))
                                            (font-lock-builtin-face ((t
                                                                      (:bold t
                                                                             :foreground
@@ -34,19 +41,20 @@ Created by Dave Benjamin <ramen@ramenfest.com> Dec 23 2005."
                                                                             :weight bold))))
                                            (font-lock-comment-face ((t
                                                                      (:bold t
-                                                                            :foreground "yellow"
-                                                                            :weight bold))))
+                                                                            :foreground "gray"
+                                                                            :weight light))))
                                            (font-lock-constant-face ((t
-                                                                      (:foreground "magenta3"))))
+                                                                      (:foreground "purple"))))
                                            (font-lock-doc-face ((t
                                                                  (:bold t
                                                                         :weight bold
-                                                                        :foreground "red"))))
+                                                                        :background "white"
+                                                                        :foreground "black"))))
                                            (font-lock-function-name-face ((t
                                                                            (:foreground "gray"))))
                                            (font-lock-keyword-face ((t
                                                                      (:bold t
-                                                                            :foreground "cyan"
+                                                                            :foreground "green"
                                                                             :weight bold))))
                                            (font-lock-string-face ((t
                                                                     (:bold t
@@ -54,10 +62,10 @@ Created by Dave Benjamin <ramen@ramenfest.com> Dec 23 2005."
                                                                            :weight bold))))
                                            (font-lock-type-face ((t
                                                                   (:bold t
-                                                                         :foreground "cyan"
+                                                                         :foreground "yellow"
                                                                          :weight bold))))
                                            (font-lock-variable-name-face ((t
-                                                                           (:foreground "cyan3"))))
+                                                                           (:foreground "yellow"))))
                                            (font-lock-warning-face ((t
                                                                      (:bold t
                                                                             :foreground "red"
@@ -278,9 +286,9 @@ message, paren, shell, and widget."
                                                        (font-lock-function-name-face ((t
                                                                                        (:foreground
                                                                                         "white"))))
-                                                       (font-lock-keyword-face ((t
-                                                                                 (:foreground
-                                                                                  "green"))))
+                                                       ;; (font-lock-keyword-face ((t
+                                                       ;;				 (:foreground
+                                                       ;;         "green"))))
                                                        (font-lock-preprocessor-face ((t
                                                                                       (:foreground
                                                                                        "green3"))))
@@ -471,6 +479,6 @@ message, paren, shell, and widget."
                                                        (zmacs-region ((t
                                                                        (:background "gray65")))))))
 
-(provide 'color-theme-amaodo)
+(provide 'color-theme-amado)
 
 ;;; color-theme-amado.el ends here
